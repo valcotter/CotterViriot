@@ -7,5 +7,6 @@ public class Test {
 		Fenetre f1 = new Fenetre();		
 		//Coucou
 		System.out.println();
+		System.out.println("coucou");
 	}
 }
