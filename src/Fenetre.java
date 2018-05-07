@@ -9,8 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -30,15 +32,14 @@ public class Fenetre extends JFrame
 {
 	//Création bouton
 	private AfficheImage imageFond = new AfficheImage();
-	private BoutonRond b_home = new BoutonRond("Bouton");
-	private BoutonRond b_close = new BoutonRond("Fermer");
-	
+	private JButton b_home = new JButton("Bouton");
+    private JButton b_close = new JButton("Fermer");	
 	
 	public Fenetre()
 	{		
+		
 		//Paramètre fenêtre
 		this.setSize(400, 726);												//Definir la taille (taille de l'image dans notre cas)
-		//this.setTitle("Projet Smartphone");								//Definir titre de la fenetre
 		this.setLocationRelativeTo(null);									//Centre la fenetre sur l'écran
 		//this.setResizable(false);											//Empêche le redimensionnement de la fenêtre
 		this.setUndecorated(true);											//Enlever les bordures
@@ -55,6 +56,7 @@ public class Fenetre extends JFrame
 		
 		this.setContentPane(imageFond);	
 		this.setVisible(true);
+		
 
 	}
 	
