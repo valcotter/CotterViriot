@@ -13,12 +13,15 @@ public class AfficheImage extends JPanel
 		try 
 		{
 			Image img = ImageIO.read(new File("fondecran.jpg"));
-			g.drawImage(img, 0, 0, this);
+			//g.setColor(getBackground());
+			//g.fillRect(0, 0, getWidth(), getHeight());
+			g.drawImage(img, 0, 0,this.getWidth(),this.getHeight(), this);
 		}
 		
 		catch(IOException e)
 		{
 			e.printStackTrace();
 		}
+		
 	}
 }
