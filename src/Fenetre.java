@@ -31,7 +31,8 @@ public class Fenetre extends JFrame
 	//Création bouton
 	private AfficheImage imageFond = new AfficheImage();
 	private JButton b_home = new JButton("Bouton");
-	private JButton b_close = new JButton("Fermer");
+	private BoutonRond b_close = new BoutonRond("Fermer");
+	
 	
 	public Fenetre()
 	{		
