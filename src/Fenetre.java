@@ -30,21 +30,21 @@ public class Fenetre extends JFrame
 {
 	//Création bouton
 	private AfficheImage imageFond = new AfficheImage();
-	private JButton b_home = new JButton("Bouton");
+	private BoutonRond b_home = new BoutonRond("Bouton");
 	private BoutonRond b_close = new BoutonRond("Fermer");
 	
 	
 	public Fenetre()
 	{		
 		//Paramètre fenêtre
-		this.setSize(400, 726);				//Definir la taille (taille de l'image dans notre cas)
-		//this.setTitle("Projet Smartphone");	//Definir titre de la fenetre
-		this.setLocationRelativeTo(null);	//Centre la fenetre sur l'écran
-		//this.setResizable(false);			//Empêche le redimensionnement de la fenêtre
-		this.setUndecorated(true);			//Enlever les bordures
+		this.setSize(400, 726);												//Definir la taille (taille de l'image dans notre cas)
+		//this.setTitle("Projet Smartphone");								//Definir titre de la fenetre
+		this.setLocationRelativeTo(null);									//Centre la fenetre sur l'écran
+		//this.setResizable(false);											//Empêche le redimensionnement de la fenêtre
+		this.setUndecorated(true);											//Enlever les bordures
 		this.setShape(new RoundRectangle2D.Double(0,0,400,726,100,100));	//Bordure ronde
-		this.setBackground(Color.BLACK);	//Couleur de fond
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBackground(Color.BLACK);									//Couleur de fond
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				//Ferme correctement la fenêtre
 		
 		//Ajouter bouton au content panel
 		imageFond.add(b_home, BorderLayout.SOUTH);
