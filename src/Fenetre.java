@@ -38,10 +38,10 @@ public class Fenetre extends JFrame
 	public Fenetre()
 	{		
 		
-		//Paramètre fenêtre
+		//Paramètres fenêtre
 		this.setSize(400, 726);												//Definir la taille (taille de l'image dans notre cas)
 		this.setLocationRelativeTo(null);									//Centre la fenetre sur l'écran
-		//this.setResizable(false);											//Empêche le redimensionnement de la fenêtre
+		this.setResizable(false);											//Empêche le redimensionnement de la fenêtre
 		this.setUndecorated(true);											//Enlever les bordures
 		this.setShape(new RoundRectangle2D.Double(0,0,400,726,100,100));	//Bordure ronde
 		this.setBackground(Color.BLACK);									//Couleur de fond
@@ -56,7 +56,6 @@ public class Fenetre extends JFrame
 		
 		this.setContentPane(imageFond);	
 		this.setVisible(true);
-		
 
 	}
 	
