@@ -1,7 +1,11 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +13,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**************************************************
@@ -24,34 +29,53 @@ import javax.swing.JPanel;
 public class Fenetre extends JFrame
 {
 	//Création bouton
-	private AfficheImage panel1 = new AfficheImage ();
-	private JButton bouton = new JButton("Bouton central");
-	private JButton bouton2 = new JButton ("Bouton numero 2");
+	private AfficheImage imageFond = new AfficheImage();
+	private JButton b_home = new JButton("Bouton");
+	private JButton b_close = new JButton("Fermer");
 	
 	public Fenetre()
 	{		
+		//Paramètre fenêtre
 		this.setSize(400, 726);				//Definir la taille (taille de l'image dans notre cas)
-		this.setTitle("Projet Smartphone");	//Definir titre de la fenetre
+		//this.setTitle("Projet Smartphone");	//Definir titre de la fenetre
 		this.setLocationRelativeTo(null);	//Centre la fenetre sur l'écran
-		this.setResizable(false);			//Empêche le redimensionnement de la fenêtre
+		//this.setResizable(false);			//Empêche le redimensionnement de la fenêtre
 		this.setUndecorated(true);			//Enlever les bordures
-									
 		this.setShape(new RoundRectangle2D.Double(0,0,400,726,100,100));	//Bordure ronde
-		this.setBackground(Color.BLACK);	//Couleur de fond			
-		
-		//this.getContentPane().add(bouton, BorderLayout.SOUTH);
+		this.setBackground(Color.BLACK);	//Couleur de fond
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Ajouter bouton au content panel
-		panel1.add(bouton);
-		panel1.add(bouton2);
+		imageFond.add(b_home, BorderLayout.SOUTH);
+		imageFond.add(b_close, BorderLayout.NORTH);
 		
+		b_home.addActionListener(new ButtonAction());
+		b_close.addActionListener(new ButtonAction());
 		
-		bouton.setBounds(10,10,80,30);
-		
-		this.setContentPane(panel1);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		//Ferme réellement le programme lorsque l'on clique sur la croix
+		this.setContentPane(imageFond);	
 		this.setVisible(true);
 
 	}
+	
+
+	public class ButtonAction implements ActionListener
+	{	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if(e.getSource() == b_close)		//Si on clique sur le bouton close
+			{
+				//Création de l'option panel
+				JOptionPane op1 = new JOptionPane(); 
+				
+				//Ferme la fenêtre automatiquement
+				dispose();
+
+			}
+			
+		}
+	
+	}
+
 }
 
