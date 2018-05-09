@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -35,7 +36,8 @@ public class Fenetre extends JFrame
 	private JButton b_home = new JButton("Bouton");
     private JButton b_close = new JButton("Fermer");	
     private JPanel_BordureNoire panelNord = new JPanel_BordureNoire(); 
-    private JPanel_BordureNoire panelSud = new JPanel_BordureNoire(); 
+    private JPanel_BordureNoire panelSud = new JPanel_BordureNoire();
+  
 	
 	public Fenetre()
 	{		
@@ -48,12 +50,18 @@ public class Fenetre extends JFrame
 		this.setShape(new RoundRectangle2D.Double(0,0,400,726,100,100));	//Bordure ronde
 		this.setBackground(Color.BLACK);									//Couleur de fond
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				//Ferme correctement la fenêtre
+
+		//Create the panel that contains the "cards".
+		JPanel cards = new JPanel(new CardLayout());
+		//Test CardLayout
+		cards.add(imageFond);
+		
 		
 		//Ajouter bouton au content panel
 		panelNord.add(b_close); 
 		panelSud.add(b_home); 
-		imageFond.add(panelNord, BorderLayout.SOUTH);
-		imageFond.add(panelSud, BorderLayout.NORTH);
+		imageFond.add(panelNord, BorderLayout.NORTH);
+		imageFond.add(panelSud, BorderLayout.SOUTH);
 		
 		b_home.addActionListener(new ButtonAction());
 		b_close.addActionListener(new ButtonAction());
