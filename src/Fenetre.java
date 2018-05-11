@@ -37,6 +37,8 @@ public class Fenetre extends JFrame
     private JButton b_close = new JButton("Fermer");	
     private JPanel_BordureNoire panelNord = new JPanel_BordureNoire(); 
     private JPanel_BordureNoire panelSud = new JPanel_BordureNoire();
+    private Acceuil_FlowLayout panelCentral = new Acceuil_FlowLayout(); 
+    
   
 	
 	public Fenetre()
@@ -65,6 +67,10 @@ public class Fenetre extends JFrame
 		
 		b_home.addActionListener(new ButtonAction());
 		b_close.addActionListener(new ButtonAction());
+		
+		//Ajout du bouton de l'application contact 
+		imageFond.add(panelCentral); 
+		
 		
 		this.setContentPane(imageFond);	
 		this.setVisible(true);
