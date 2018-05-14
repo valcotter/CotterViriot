@@ -4,23 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import FenetrePrincipal.*;
+
+
+
 /**************************************************
  * Classe Fenetre
  * Auteur : Cotter Valentine
@@ -34,19 +27,29 @@ import FenetrePrincipal.*;
 public class Fenetre extends JFrame
 {
 	//Création bouton
+	
+	//Image de fond
 	private AfficheImage imageFond = new AfficheImage();
+	private JPanel acceuil = new JPanel(); 
+	
+	//Boutons
 	private JButton b_home = new JButton("Bouton");
-    private JButton b_close = new JButton("Fermer");	
+    private JButton b_close = new JButton("Fermer");
+    private BoutonApplication btnContact = new BoutonAppContact();
+    private BoutonApplication btnGalerie = new BoutonAppContact(); 
+    
+    //Panel restant tous le temsp sur la fen�tre 
     private JPanel_BordureNoire panelNord = new JPanel_BordureNoire(); 
     private JPanel_BordureNoire panelSud = new JPanel_BordureNoire();
-    private Acceuil_FlowLayout panelCentral = new Acceuil_FlowLayout(); 
     
-  
+    //Panel des applications 
+    private JPanel cards = new JPanel(new CardLayout());
+
 	
 	public Fenetre()
 	{		
 		
-		//Paramètres fenêtre
+		//Param�tres fen�tres
 		this.setSize(400, 726);												//Definir la taille (taille de l'image dans notre cas)
 		this.setLocationRelativeTo(null);									//Centre la fenetre sur l'écran
 		this.setResizable(false);											//Empêche le redimensionnement de la fenêtre
@@ -54,25 +57,26 @@ public class Fenetre extends JFrame
 		this.setShape(new RoundRectangle2D.Double(0,0,400,726,100,100));	//Bordure ronde
 		this.setBackground(Color.BLACK);									//Couleur de fond
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				//Ferme correctement la fenêtre
-
-		//Create the panel that contains the "cards".
-		JPanel cards = new JPanel(new CardLayout());
-		//Test CardLayout
-		cards.add(imageFond);
-		
 		
 		//Ajouter bouton au content panel
 		panelNord.add(b_close); 
 		panelSud.add(b_home); 
 		imageFond.add(panelNord, BorderLayout.NORTH);
 		imageFond.add(panelSud, BorderLayout.SOUTH);
+		imageFond.add(btnContact, BorderLayout.CENTER); 
 		
 		b_home.addActionListener(new ButtonAction());
 		b_close.addActionListener(new ButtonAction());
 		
-		//Ajout du bouton de l'application contact 
-		imageFond.add(panelCentral); 
+		//Panel d'acceuil 
+		acceuil.setLayout(new FlowLayout(10,25,25));
+		acceuil.setOpaque(false);
+		acceuil.add(btnContact); 
+		acceuil.add(btnGalerie); ///!\ Changer l'icone pour faire la galerie
+		imageFond.add(acceuil); 
 		
+		//Test CardLayout
+		cards.add(imageFond);
 		
 		this.setContentPane(imageFond);	
 		this.setVisible(true);
@@ -93,11 +97,17 @@ public class Fenetre extends JFrame
 				//Ferme la fenêtre automatiquement
 				dispose();
 
-			}
-			
+			}	
 		}
-	
 	}
+	
+//	class ouvrirContact implements ActionListener {
+//		public void actionPerformed(ActionEvent arg0) {
+//			cards.show(acceuil, "Acceuil");
+//
+//		}
+//	}
+		
 
 }
 
