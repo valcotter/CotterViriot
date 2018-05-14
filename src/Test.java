@@ -1,4 +1,4 @@
-import javax.swing.JFrame;
+import FenetrePrincipal.*;
 
 public class Test {
 
