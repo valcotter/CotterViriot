@@ -1,18 +1,18 @@
 package FenetrePrincipal;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.JButton;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
 
 /**************************************************
  * Classe Fenetre
@@ -31,19 +31,23 @@ public class Fenetre extends JFrame
 	//Image de fond
 	private AfficheImage imageFond = new AfficheImage();
 	private JPanel acceuil = new JPanel(); 
-	
-	//Boutons
-	private JButton b_home = new JButton("Bouton");
-    private JButton b_close = new JButton("Fermer");
-    private BoutonApplication btnContact = new BoutonAppContact();
-    private BoutonApplication btnGalerie = new BoutonAppContact(); 
+    
+    //Image qui sert de bouton 
+    //Application contact
+    ImageIcon contact = new ImageIcon("contacts.png"); 
+    JLabel appContact = new JLabel(contact); 
+    //Application contact 
+    ImageIcon galerie = new ImageIcon("gallery.png"); 
+    JLabel appGalerie = new JLabel(galerie); 
     
     //Panel restant tous le temsp sur la fen�tre 
-    private JPanel_BordureNoire panelNord = new JPanel_BordureNoire(); 
-    private JPanel_BordureNoire panelSud = new JPanel_BordureNoire();
     
-    //Panel des applications 
-    private JPanel cards = new JPanel(new CardLayout());
+    
+    //Panel des applications  
+    protected CardLayout cl = new CardLayout(); 
+    protected JPanel cards = new JPanel(); //On a besoin de cards dans les listeners
+    private PanelDefault contactApp = new PanelDefault(); 
+    private PanelDefault galerieApp = new PanelDefault(); 
 
 	
 	public Fenetre()
@@ -58,56 +62,65 @@ public class Fenetre extends JFrame
 		this.setBackground(Color.BLACK);									//Couleur de fond
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				//Ferme correctement la fenêtre
 		
-		//Ajouter bouton au content panel
-		panelNord.add(b_close); 
-		panelSud.add(b_home); 
-		imageFond.add(panelNord, BorderLayout.NORTH);
-		imageFond.add(panelSud, BorderLayout.SOUTH);
-		imageFond.add(btnContact, BorderLayout.CENTER); 
-		
-		b_home.addActionListener(new ButtonAction());
-		b_close.addActionListener(new ButtonAction());
+		//Ajout d'un actionListener au label 
+		appContact.addMouseListener(new changerSouris());
+		appContact.addMouseListener(new ouvrirContact());
+		appGalerie.addMouseListener(new changerSouris());
+		appGalerie.addMouseListener(new ouvrirGalerie());
 		
 		//Panel d'acceuil 
 		acceuil.setLayout(new FlowLayout(10,25,25));
 		acceuil.setOpaque(false);
-		acceuil.add(btnContact); 
-		acceuil.add(btnGalerie); ///!\ Changer l'icone pour faire la galerie
+		acceuil.add(appContact); 
+		acceuil.add(appGalerie); 
 		imageFond.add(acceuil); 
 		
-		//Test CardLayout
-		cards.add(imageFond);
+		//Test 
+		contactApp.setBackground(Color.PINK);
+		galerieApp.setBackground(Color.YELLOW);
 		
-		this.setContentPane(imageFond);	
+		//Test CardLayout; 
+		cards.setLayout(cl);
+		cards.add(imageFond, "Acceuil"); 
+		cards.add(contactApp, "Contact"); 
+		cards.add(galerieApp, "Galerie"); 
+		
+		this.setContentPane(cards);	
+		
+		
 		this.setVisible(true);
 
 	}
 	
-
-	public class ButtonAction implements ActionListener
-	{	
+	class changerSouris extends MouseAdapter{
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-			if(e.getSource() == b_close)		//Si on clique sur le bouton close
-			{
-				//Création de l'option panel
-				JOptionPane op1 = new JOptionPane(); 
-				
-				//Ferme la fenêtre automatiquement
-				dispose();
-
-			}	
+		public void mouseEntered(MouseEvent arg0) {
+			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); 
+		}
+		
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			setCursor(Cursor.getDefaultCursor()); 
+		}
+		
+	}	
+	
+	class ouvrirContact extends MouseAdapter{
+		
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			cl.show(cards, "Contact");
 		}
 	}
 	
-//	class ouvrirContact implements ActionListener {
-//		public void actionPerformed(ActionEvent arg0) {
-//			cards.show(acceuil, "Acceuil");
-//
-//		}
-//	}
+	class ouvrirGalerie extends MouseAdapter{
 		
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			cl.show(cards, "Galerie");
+		}
+		
+	}
 
 }
 
