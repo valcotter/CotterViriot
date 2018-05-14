@@ -1,3 +1,4 @@
+package FenetrePrincipal;
 import java.awt.Color;
 import java.awt.FlowLayout;
 

@@ -1,3 +1,4 @@
+package FenetrePrincipal;
 import java.awt.Color;
 
 import javax.swing.JPanel;
