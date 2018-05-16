@@ -42,14 +42,14 @@ public class Fenetre extends JFrame
 
     
     //Panel des applications  
-    protected CardLayout cl = new CardLayout(); 
+    protected CardLayout cl = new CardLayout();
     protected JPanel cards = new JPanel(); //On a besoin de cards dans les listeners
     private PanelDefault contactApp = new PanelDefault();
     private PanelDefault galerieApp = new PanelDefault();
 	
 	public Fenetre()
-	{		
-		//Param�tres fen�tres
+	{
+		//Paramètres fenètres
 		this.setSize(400, 726);												//Definir la taille (taille de l'image dans notre cas)
 		this.setLocationRelativeTo(null);									//Centre la fenetre sur l'écran
 		this.setResizable(false);											//Empêche le redimensionnement de la fenêtre
@@ -58,18 +58,17 @@ public class Fenetre extends JFrame
 		this.setBackground(Color.BLACK);									//Couleur de fond
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				//Ferme correctement la fenêtre
 		
-		//Ajout d'un actionListener au label 
+		//Ajout d'un actionListener au label
 		appContact.addMouseListener(new changerSouris());
 		appContact.addMouseListener(new ouvrirContact());
 		appGalerie.addMouseListener(new changerSouris());
 		appGalerie.addMouseListener(new ouvrirGalerie());
 		
-		//Panel d'acceuil
+		//Panel d'accueil
 		accueil.setLayout(new FlowLayout(10,25,25));
 		accueil.setOpaque(false);
 		accueil.add(appContact);
 		accueil.add(appGalerie);
-
 		imageFond.add(accueil);
 		
 		//Test 

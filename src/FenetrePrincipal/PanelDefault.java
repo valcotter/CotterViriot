@@ -26,8 +26,8 @@ public class PanelDefault extends JPanel
     private JButton b_home = new JButton("Home");
     private JButton b_close = new JButton("Fermer");
 
-	public PanelDefault() {
-		
+	public PanelDefault() 
+	{
 		this.setLayout(new BorderLayout());
 		//this.setOpaque(false);
 		b_close.addActionListener(new ButtonAction());
@@ -35,7 +35,6 @@ public class PanelDefault extends JPanel
 		panelSud.add(b_home); 
 		this.add(panelNord, BorderLayout.NORTH);
 		this.add(panelSud, BorderLayout.SOUTH);
-			
 	}
 	
 	public class ButtonAction implements ActionListener

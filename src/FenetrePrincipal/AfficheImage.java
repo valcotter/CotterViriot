@@ -21,10 +21,9 @@ import Main.Test;
 //Voir pour fair une interface
 public class AfficheImage extends JPanel
 {
-	
 	private JPanel_BordureNoire panelNord = new JPanel_BordureNoire(); 
     private JPanel_BordureNoire panelSud = new JPanel_BordureNoire();
-    private JButton b_home = new JButton("Bouton");
+    private JButton b_home = new JButton("Home");
     private JButton b_close = new JButton("Fermer");
     
 	public AfficheImage()
@@ -33,6 +32,7 @@ public class AfficheImage extends JPanel
 		this.setLayout(new BorderLayout());
 		b_close.addActionListener(new ButtonAction());
 		b_close.addMouseListener(new changerSouris());
+		b_home.addMouseListener(new changerSouris());
 		panelNord.add(b_close); 
 		panelSud.add(b_home); 
 		this.add(panelNord, BorderLayout.NORTH);
@@ -68,7 +68,12 @@ public class AfficheImage extends JPanel
 				//Ferme la fenêtre automatiquement
 				Test.f1.dispose();
 
-			}	
+			}
+			
+			if(e.getSource() == b_home)
+			{
+				
+			}
 		}
 	}
 	
