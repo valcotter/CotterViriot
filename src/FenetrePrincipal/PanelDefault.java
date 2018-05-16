@@ -11,8 +11,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Main.*; 
@@ -25,19 +29,23 @@ public class PanelDefault extends JPanel
     private JPanel_BordureNoire panelSud = new JPanel_BordureNoire();
     private JButton b_home = new JButton("Home");
     private JButton b_close = new JButton("Fermer");
+    private ImageIcon home = new ImageIcon("btnHome.png");
+    private JLabel btnHome = new JLabel(home);
 
 	public PanelDefault() 
 	{
 		this.setLayout(new BorderLayout());
 		//this.setOpaque(false);
-		b_close.addActionListener(new ButtonAction());
+		b_close.addActionListener(new ButtonClose());
+		//btnHome.addMouseListener(new ouvrirAcceuil()); 
 		panelNord.add(b_close); 
-		panelSud.add(b_home); 
+		panelSud.add(btnHome); 
+		
 		this.add(panelNord, BorderLayout.NORTH);
 		this.add(panelSud, BorderLayout.SOUTH);
 	}
 	
-	public class ButtonAction implements ActionListener
+	public class ButtonClose implements ActionListener
 	{	
 		@Override
 		public void actionPerformed(ActionEvent e) {

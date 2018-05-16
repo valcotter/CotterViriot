@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import FenetrePrincipal.PanelDefault.ButtonAction;
 import Main.Test;
 
 //Voir pour fair une interface

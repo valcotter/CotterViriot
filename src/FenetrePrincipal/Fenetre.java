@@ -86,7 +86,7 @@ public class Fenetre extends JFrame
 		this.setVisible(true);
 	}
 	
-	class changerSouris extends MouseAdapter
+	private class changerSouris extends MouseAdapter
 	{
 		@Override
 		public void mouseEntered(MouseEvent arg0) 
@@ -101,7 +101,7 @@ public class Fenetre extends JFrame
 		}
 	}
 	
-	class ouvrirContact extends MouseAdapter
+	private class ouvrirContact extends MouseAdapter
 	{
 		@Override
 		public void mouseClicked(MouseEvent arg0)
@@ -110,7 +110,7 @@ public class Fenetre extends JFrame
 		}
 	}
 	
-	class ouvrirGalerie extends MouseAdapter
+	private class ouvrirGalerie extends MouseAdapter
 	{
 		@Override
 		public void mouseClicked(MouseEvent arg0)
@@ -118,5 +118,15 @@ public class Fenetre extends JFrame
 			cl.show(cards, "Galerie");
 		}
 	}
+	
+	public class ouvrirAcceuil extends MouseAdapter
+	{
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{
+			cl.show(cards, "Acceuil");
+		}
+	}
+	
 }
 
