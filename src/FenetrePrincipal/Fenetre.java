@@ -1,5 +1,6 @@
 package FenetrePrincipal;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -27,33 +28,28 @@ import javax.swing.JPanel;
 public class Fenetre extends JFrame
 {
 	//CrÃ©ation bouton
-	
 	//Image de fond
 	private AfficheImage imageFond = new AfficheImage();
-	private JPanel acceuil = new JPanel(); 
+	private JPanel accueil = new JPanel();
     
-    //Image qui sert de bouton 
+	//Boutons avec images en fond
     //Application contact
-    ImageIcon contact = new ImageIcon("contacts.png"); 
-    JLabel appContact = new JLabel(contact); 
-    //Application contact 
-    ImageIcon galerie = new ImageIcon("gallery.png"); 
-    JLabel appGalerie = new JLabel(galerie); 
-    
-    //Panel restant tous le temsp sur la fenêtre 
-    
+    ImageIcon contact = new ImageIcon("contacts.png");
+    JLabel appContact = new JLabel(contact);
+    //Application contact
+    ImageIcon galerie = new ImageIcon("gallery.png");
+    JLabel appGalerie = new JLabel(galerie);
+
     
     //Panel des applications  
     protected CardLayout cl = new CardLayout(); 
     protected JPanel cards = new JPanel(); //On a besoin de cards dans les listeners
-    private PanelDefault contactApp = new PanelDefault(); 
-    private PanelDefault galerieApp = new PanelDefault(); 
-
+    private PanelDefault contactApp = new PanelDefault();
+    private PanelDefault galerieApp = new PanelDefault();
 	
 	public Fenetre()
 	{		
-		
-		//Paramètres fenêtres
+		//Paramï¿½tres fenï¿½tres
 		this.setSize(400, 726);												//Definir la taille (taille de l'image dans notre cas)
 		this.setLocationRelativeTo(null);									//Centre la fenetre sur l'Ã©cran
 		this.setResizable(false);											//EmpÃªche le redimensionnement de la fenÃªtre
@@ -68,12 +64,13 @@ public class Fenetre extends JFrame
 		appGalerie.addMouseListener(new changerSouris());
 		appGalerie.addMouseListener(new ouvrirGalerie());
 		
-		//Panel d'acceuil 
-		acceuil.setLayout(new FlowLayout(10,25,25));
-		acceuil.setOpaque(false);
-		acceuil.add(appContact); 
-		acceuil.add(appGalerie); 
-		imageFond.add(acceuil); 
+		//Panel d'acceuil
+		accueil.setLayout(new FlowLayout(10,25,25));
+		accueil.setOpaque(false);
+		accueil.add(appContact);
+		accueil.add(appGalerie);
+
+		imageFond.add(accueil);
 		
 		//Test 
 		contactApp.setBackground(Color.PINK);
@@ -81,46 +78,46 @@ public class Fenetre extends JFrame
 		
 		//Test CardLayout; 
 		cards.setLayout(cl);
-		cards.add(imageFond, "Acceuil"); 
-		cards.add(contactApp, "Contact"); 
-		cards.add(galerieApp, "Galerie"); 
+		cards.add(imageFond, "Accueil");
+		cards.add(contactApp, "Contact");
+		cards.add(galerieApp, "Galerie");
 		
-		this.setContentPane(cards);	
-		
+		this.setContentPane(cards);
 		
 		this.setVisible(true);
-
 	}
 	
-	class changerSouris extends MouseAdapter{
+	class changerSouris extends MouseAdapter
+	{
 		@Override
-		public void mouseEntered(MouseEvent arg0) {
+		public void mouseEntered(MouseEvent arg0) 
+		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); 
 		}
 		
 		@Override
-		public void mouseExited(MouseEvent arg0) {
+		public void mouseExited(MouseEvent arg0) 
+		{
 			setCursor(Cursor.getDefaultCursor()); 
 		}
-		
-	}	
+	}
 	
-	class ouvrirContact extends MouseAdapter{
-		
+	class ouvrirContact extends MouseAdapter
+	{
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0)
+		{
 			cl.show(cards, "Contact");
 		}
 	}
 	
-	class ouvrirGalerie extends MouseAdapter{
-		
+	class ouvrirGalerie extends MouseAdapter
+	{
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0)
+		{
 			cl.show(cards, "Galerie");
 		}
-		
 	}
-
 }
 

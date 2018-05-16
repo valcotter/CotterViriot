@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 
 public class JPanel_BordureNoire extends JPanel 
 {
-
-	public JPanel_BordureNoire() {
+	public JPanel_BordureNoire() 
+	{
 		this.setBackground(Color.BLACK);
 		this.setSize(450, 75);
 	}	

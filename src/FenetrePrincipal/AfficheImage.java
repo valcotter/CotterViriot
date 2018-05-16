@@ -1,9 +1,12 @@
 package FenetrePrincipal;
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -29,6 +32,7 @@ public class AfficheImage extends JPanel
 		//Par défaut les images seront en BorderLayout
 		this.setLayout(new BorderLayout());
 		b_close.addActionListener(new ButtonAction());
+		b_close.addMouseListener(new changerSouris());
 		panelNord.add(b_close); 
 		panelSud.add(b_home); 
 		this.add(panelNord, BorderLayout.NORTH);
@@ -58,7 +62,7 @@ public class AfficheImage extends JPanel
 			
 			if(e.getSource() == b_close) //Si on clique sur le bouton close
 			{
-				//Cr�ation de l'option panel
+				//Cr�ation de l'option panel
 				JOptionPane op1 = new JOptionPane(); 
 				
 				//Ferme la fenêtre automatiquement
@@ -66,5 +70,21 @@ public class AfficheImage extends JPanel
 
 			}	
 		}
+	}
+	
+	class changerSouris extends MouseAdapter
+	{
+		@Override
+		public void mouseEntered(MouseEvent arg0) 
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); 
+		}
+		
+		@Override
+		public void mouseExited(MouseEvent arg0) 
+		{
+			setCursor(Cursor.getDefaultCursor()); 
+		}
+		
 	}
 }
