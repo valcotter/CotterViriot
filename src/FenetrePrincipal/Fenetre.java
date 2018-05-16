@@ -15,6 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Main.Test;
+
 /**************************************************
  * Classe Fenetre
  * Auteur : Cotter Valentine
@@ -29,23 +31,32 @@ public class Fenetre extends JFrame
 {
 	//CrÃ©ation bouton
 	//Image de fond
-	private AfficheImage imageFond = new AfficheImage();
-	private JPanel accueil = new JPanel();
+	//private AfficheImage imageFond = new AfficheImage();
+	private AfficheImage accueil = new AfficheImage();
     
 	//Boutons avec images en fond
     //Application contact
-    ImageIcon contact = new ImageIcon("contacts.png");
-    JLabel appContact = new JLabel(contact);
-    //Application contact
-    ImageIcon galerie = new ImageIcon("gallery.png");
-    JLabel appGalerie = new JLabel(galerie);
-
+    private ImageIcon contact = new ImageIcon("contacts.png");
+    private JLabel appContact = new JLabel(contact);
+    //Application Galerie
+    private ImageIcon galerie = new ImageIcon("gallery.png");
+    private JLabel appGalerie = new JLabel(galerie);
+    //Bouton home 
+    private ImageIcon home = new ImageIcon("menu.png");
+    private JLabel btnHome = new JLabel(home);
+    //Bouton eteindre 
+    private ImageIcon close = new ImageIcon("power.png"); 
+    private JLabel btnClose = new JLabel(close); 
+    
+    //Panel "Définitif" -> Reste toujours sur l'écran 
+    private JPanel_BordureNoire panelNord = new JPanel_BordureNoire(); 
+    private JPanel_BordureNoire panelSud = new JPanel_BordureNoire(); 
     
     //Panel des applications  
     protected CardLayout cl = new CardLayout();
     protected JPanel cards = new JPanel(); //On a besoin de cards dans les listeners
-    private PanelDefault contactApp = new PanelDefault();
-    private PanelDefault galerieApp = new PanelDefault();
+    private JPanel contactApp = new JPanel(); 
+    private JPanel galerieApp = new JPanel();
 	
 	public Fenetre()
 	{
@@ -54,9 +65,20 @@ public class Fenetre extends JFrame
 		this.setLocationRelativeTo(null);									//Centre la fenetre sur l'Ã©cran
 		this.setResizable(false);											//EmpÃªche le redimensionnement de la fenÃªtre
 		this.setUndecorated(true);											//Enlever les bordures
+		this.setLayout(new BorderLayout());
 		this.setShape(new RoundRectangle2D.Double(0,0,400,726,100,100));	//Bordure ronde
 		this.setBackground(Color.BLACK);									//Couleur de fond
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				//Ferme correctement la fenÃªtre
+		
+		//Panel définitif 
+		btnClose.addMouseListener(new changerSouris());
+		btnClose.addMouseListener(new fermerFenetre());
+		btnHome.addMouseListener(new changerSouris());
+		btnHome.addMouseListener(new ouvrirAcceuil());
+		panelNord.add(btnClose); 
+		panelSud.add(btnHome); 
+		this.add(panelNord, BorderLayout.NORTH); 
+		this.add(panelSud, BorderLayout.SOUTH);
 		
 		//Ajout d'un actionListener au label
 		appContact.addMouseListener(new changerSouris());
@@ -69,7 +91,6 @@ public class Fenetre extends JFrame
 		accueil.setOpaque(false);
 		accueil.add(appContact);
 		accueil.add(appGalerie);
-		imageFond.add(accueil);
 		
 		//Test 
 		contactApp.setBackground(Color.PINK);
@@ -77,11 +98,12 @@ public class Fenetre extends JFrame
 		
 		//Test CardLayout; 
 		cards.setLayout(cl);
-		cards.add(imageFond, "Accueil");
+		cards.add(accueil, "Accueil");
 		cards.add(contactApp, "Contact");
 		cards.add(galerieApp, "Galerie");
+		this.add(cards, BorderLayout.CENTER); 
 		
-		this.setContentPane(cards);
+		//this.setContentPane(cards);
 		
 		this.setVisible(true);
 	}
@@ -124,7 +146,16 @@ public class Fenetre extends JFrame
 		@Override
 		public void mouseClicked(MouseEvent arg0)
 		{
-			cl.show(cards, "Acceuil");
+			cl.show(cards, "Accueil");
+		}
+	}
+	
+	public class fermerFenetre extends MouseAdapter
+	{
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{
+			Test.f1.dispose();
 		}
 	}
 	
