@@ -7,6 +7,8 @@
 
 package FenetrePrincipal;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 public class AppliContact extends JPanel{
@@ -16,15 +18,18 @@ public class AppliContact extends JPanel{
 	JPanel cards = new JPanel(); 
 	
 	//Les différents panels
-	JPanel listeContact = new JPanel(); 
+	JPanel list = new JPanel(); 
 	JPanel detailContact = new JPanel(); 
+	
+	//Arraylist de contact 
+	ArrayList<Contact> listeContact = new ArrayList<Contact>(); 
 	
 	public AppliContact() {
 	
 		cards.setLayout(new CardLayout());
-		cards.add(listeContact); 
+		cards.add(list); 
 		cards.add(detailContact);
-		
+	
 	}
 
 }
