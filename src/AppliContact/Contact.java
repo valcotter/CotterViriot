@@ -3,7 +3,7 @@
 * Date de création : 16 mai 2018
 */
 
-package FenetrePrincipal;
+package AppliContact;
 
 public class Contact {
 	

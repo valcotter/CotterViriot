@@ -15,6 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import AppliContact.AppliContact;
+import AppliContact.ListeContact_GL;
 import Main.Test;
 
 /**************************************************
@@ -55,7 +57,7 @@ public class Fenetre extends JFrame
     //Panel des applications  
     protected CardLayout cl = new CardLayout();
     protected JPanel cards = new JPanel(); //On a besoin de cards dans les listeners
-    private JPanel contactApp = new JPanel(); 
+    private AppliContact contactApp = new AppliContact(); 
     private JPanel galerieApp = new JPanel();
 	
 	public Fenetre()
@@ -93,7 +95,7 @@ public class Fenetre extends JFrame
 		accueil.add(appGalerie);
 		
 		//Test 
-		contactApp.setBackground(Color.PINK);
+		//contactApp.setBackground(Color.PINK);
 		galerieApp.setBackground(Color.YELLOW);
 		
 		//Test CardLayout; 

@@ -5,7 +5,7 @@
 * Date de création : 16 mai 2018
 */
 
-package FenetrePrincipal;
+package AppliContact;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 
@@ -14,21 +14,20 @@ import javax.swing.JPanel;
 public class AppliContact extends JPanel{
 	
 	//Cardlayout pour les différentes pages 
-	CardLayout cl = new CardLayout(); 
-	JPanel cards = new JPanel(); 
+	private CardLayout cl = new CardLayout(); 
+	private JPanel cards = new JPanel(); 
 	
 	//Les différents panels
-	JPanel list = new JPanel(); 
-	JPanel detailContact = new JPanel(); 
-	
-	//Arraylist de contact 
-	ArrayList<Contact> listeContact = new ArrayList<Contact>(); 
+	private ListeContact_GL liste = new ListeContact_GL(); 
+	private JPanel detailContact = new JPanel(); 
 	
 	public AppliContact() {
 	
-		cards.setLayout(new CardLayout());
-		cards.add(list); 
-		cards.add(detailContact);
+		cards.setLayout(cl);
+		cards.add(liste, "Liste"); 
+		cards.add(detailContact, "DetailContact");
+		
+		this.add(cards);
 	
 	}
 
