@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import AppliContact.AppliContact;
-import AppliContact.ListeContact_GL;
 import Main.Test;
 
 /**************************************************
