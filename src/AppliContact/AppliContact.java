@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -92,7 +93,7 @@ public class AppliContact extends JPanel{
 				
 		public FormulaireCreation() {
 			
-			//
+			//Accès classe voisine 
 			ListeContact_GL lc = new ListeContact_GL(); 
 			
 			//Listener 
@@ -148,12 +149,22 @@ public class AppliContact extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
-				Contact c = new Contact(nomT.getText(), prenomT.getText(), 
+				//Le contact est cours de création 
+				Contact tempo = new Contact(nomT.getText(), prenomT.getText(), 
 						numTelT.getText(), mailT.getText()); 
 				
-				lc.getListeContact().addElement(nomT.getText()+" "+prenomT.getText());
+				//On sérialize le contact 
+				SaveFileSTream sft = new SaveFileSTream(); 
+				sft.MySerialization(tempo);
 				
+				//On revient sur le panel liste
 				cl.show(cards, "Liste");
+				
+				//On vide le formulaire
+				nomT.setText("");
+				prenomT.setText("");
+				numTelT.setText(""); 
+				mailT.setText("");
 				
 			}
 		}
@@ -245,12 +256,15 @@ public class AppliContact extends JPanel{
 		
 	}
 	
-	class MySerialization {
+	class SaveFileSTream {
 		
-		public MySerialization(Contact c) {
+		public void MySerialization(Contact c) {
 		
 			try {
-				FileOutputStream fos = new FileOutputStream("contact.serial");
+				
+				String path = "SerializationContact/contact"+c.getNumTelephone()+".serial"; 
+				
+				FileOutputStream fos = new FileOutputStream(new File(path));
 				
 				ObjectOutputStream oos = new ObjectOutputStream(fos); 
 				
@@ -271,16 +285,11 @@ public class AppliContact extends JPanel{
 				e.printStackTrace();
 			}
 		}
-	}
-	
-	class MyDeserialization {
 		
-		private Contact c; 
-		
-		public MyDeserialization() {
+		public void MyDeserialization(Contact c) {
 		
 			try {
-				FileInputStream fis = new FileInputStream("contact.serial");
+				FileInputStream fis = new FileInputStream("contact"+c.getNumTelephone()+".serial");
 				
 				ObjectInputStream ois = new ObjectInputStream(fis); 
 				
