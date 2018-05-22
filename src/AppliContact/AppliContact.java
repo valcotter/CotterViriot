@@ -35,6 +35,12 @@ import javafx.scene.shape.Box;
 
 public class AppliContact extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	//Cardlayout pour les différentes pages 
 	private CardLayout cl = new CardLayout(); 
 	private JPanel cards = new JPanel(); 
@@ -56,7 +62,7 @@ public class AppliContact extends JPanel{
 	}
 	
 	class FormulaireCreation extends JPanel{
-		
+
 		//Instanciation classe voisine 
 		ListeContact_GL lc = new ListeContact_GL(); 
 		
@@ -94,7 +100,8 @@ public class AppliContact extends JPanel{
 		public FormulaireCreation() {
 			
 			//Accès classe voisine 
-			ListeContact_GL lc = new ListeContact_GL(); 
+			ListeContact_GL lc = new ListeContact_GL();
+			 
 			
 			//Listener 
 			precedent.addMouseListener(new RetourListeContat());
@@ -157,6 +164,20 @@ public class AppliContact extends JPanel{
 				SaveFileSTream sft = new SaveFileSTream(); 
 				sft.MySerialization(tempo);
 				
+				//On déserialize et on gère la liste 
+				//ERREUR ICI A REVOIR 
+				File f = new File("SerializationContact");
+				String paths[] = f.list(); 
+				int longueurListe = paths.length; 
+				Contact[] tab = new Contact[longueurListe]; 
+				
+				for(int i=0; i<paths.length; i++) {
+					Contact c = sft.MyDeserialization(paths[i]); 
+					tab[i] = c; 
+					System.out.println(paths[i]);
+					System.out.println(tab[i].toString()+"\n");
+				}
+				
 				//On revient sur le panel liste
 				cl.show(cards, "Liste");
 				
@@ -172,19 +193,24 @@ public class AppliContact extends JPanel{
 	}
 	
 	class ListeContact_GL extends JPanel {
-		
+
 		//Bouton d'ajout d'un contact 
 		private JButton addContact = new JButton("Ajouter un nouveau contact"); 
 		
 		//Liste 
-		DefaultListModel<String> listeContact = new DefaultListModel<>(); 
+		private DefaultListModel<String> listeContact = new DefaultListModel<>(); 
+		private JPanel liste = new JPanel();
 
 		public ListeContact_GL() {
 			
+			//Panel général
 			this.setLayout(new BorderLayout(1,0));
 			addContact.addMouseListener(new NouveauContact());
 			this.add(addContact, BorderLayout.NORTH); 
-		
+			
+			//Panel gridlayout de la liste 
+			liste.setLayout(new GridLayout(1, 0));
+			
 		}
 		
 		class NouveauContact extends MouseAdapter
@@ -203,7 +229,6 @@ public class AppliContact extends JPanel{
 		public void setListeContact(DefaultListModel<String> listeContact) {
 			this.listeContact = listeContact;
 		}
-		
 		
 	}
 	
@@ -260,9 +285,9 @@ public class AppliContact extends JPanel{
 		
 		public void MySerialization(Contact c) {
 		
+			String path = "SerializationContact/contact"+c.getNumTelephone()+".serial"; 
+			
 			try {
-				
-				String path = "SerializationContact/contact"+c.getNumTelephone()+".serial"; 
 				
 				FileOutputStream fos = new FileOutputStream(new File(path));
 				
@@ -286,10 +311,14 @@ public class AppliContact extends JPanel{
 			}
 		}
 		
-		public void MyDeserialization(Contact c) {
-		
+		public Contact MyDeserialization(String path) {
+			
+			String pathComplet = "SerializationContact/"+path; 
+			
+			Contact c = null; 
+			
 			try {
-				FileInputStream fis = new FileInputStream("contact"+c.getNumTelephone()+".serial");
+				FileInputStream fis = new FileInputStream(pathComplet);
 				
 				ObjectInputStream ois = new ObjectInputStream(fis); 
 				
@@ -310,6 +339,8 @@ public class AppliContact extends JPanel{
 			} catch (ClassNotFoundException cnfe) {
 				cnfe.printStackTrace();
 			}
+			
+			return c; 
 			
 		}
 		
