@@ -12,7 +12,12 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
@@ -240,5 +245,64 @@ public class AppliContact extends JPanel{
 		
 	}
 	
+	class MySerialization {
+		
+		public MySerialization(Contact c) {
+		
+			try {
+				FileOutputStream fos = new FileOutputStream("contact.serial");
+				
+				ObjectOutputStream oos = new ObjectOutputStream(fos); 
+				
+				try {
+					oos.writeObject(c);
+					oos.flush();
+				} finally {
+					try {
+						oos.close();
+					} finally {
+						fos.close();
+					}
+				}
 	
+				System.out.println("C'est ok S");
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	class MyDeserialization {
+		
+		private Contact c; 
+		
+		public MyDeserialization() {
+		
+			try {
+				FileInputStream fis = new FileInputStream("contact.serial");
+				
+				ObjectInputStream ois = new ObjectInputStream(fis); 
+				
+				try {
+					c = (Contact) ois.readObject(); 
+				} finally {
+					try {
+						ois.close();
+					} finally {
+						fis.close();
+					}
+				}
+	
+				System.out.println("C'est ok D");
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException cnfe) {
+				cnfe.printStackTrace();
+			}
+			
+		}
+		
+	}
 }
