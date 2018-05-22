@@ -12,8 +12,11 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -48,6 +51,9 @@ public class AppliContact extends JPanel{
 	
 	class FormulaireCreation extends JPanel{
 		
+		//Instanciation classe voisine 
+		ListeContact_GL lc = new ListeContact_GL(); 
+		
 		//Les différents panels 
 		private JPanel photo = new JPanel(); 
 		private JPanel formulaire = new JPanel(); 
@@ -81,8 +87,12 @@ public class AppliContact extends JPanel{
 				
 		public FormulaireCreation() {
 			
+			//
+			ListeContact_GL lc = new ListeContact_GL(); 
+			
 			//Listener 
 			precedent.addMouseListener(new RetourListeContat());
+			sauvegarder.addMouseListener(new SaveContact());
 			
 			//Barre supérieur 
 			barreSuperieur.setLayout(new GridLayout(1, 3, 130, 0));
@@ -135,7 +145,11 @@ public class AppliContact extends JPanel{
 			{
 				Contact c = new Contact(nomT.getText(), prenomT.getText(), 
 						numTelT.getText(), mailT.getText()); 
-			
+				
+				lc.getListeContact().addElement(nomT.getText()+" "+prenomT.getText());
+				
+				cl.show(cards, "Liste");
+				
 			}
 		}
 		
@@ -146,22 +160,18 @@ public class AppliContact extends JPanel{
 		//Bouton d'ajout d'un contact 
 		private JButton addContact = new JButton("Ajouter un nouveau contact"); 
 		
-		//Jlist 
-		private JList<String> maListe = new JList<String>(); 
-		
-		//Arraylist de contact
-		private ArrayList<Contact> listeContact = new ArrayList<Contact>(); 
+		//Liste 
+		DefaultListModel<String> listeContact = new DefaultListModel<>(); 
 
 		public ListeContact_GL() {
 			
 			this.setLayout(new BorderLayout(1,0));
-			this.setBackground(Color.WHITE);
 			addContact.addMouseListener(new NouveauContact());
 			this.add(addContact, BorderLayout.NORTH); 
 		
 		}
 		
-		public class NouveauContact extends MouseAdapter
+		class NouveauContact extends MouseAdapter
 		{
 			@Override
 			public void mouseClicked(MouseEvent arg0)
@@ -170,18 +180,23 @@ public class AppliContact extends JPanel{
 			}
 		}
 		
-		public ArrayList<Contact> getListeContact() {
+		public DefaultListModel<String> getListeContact() {
 			return listeContact;
 		}
 
-		public void setListeContact(ArrayList<Contact> listeContact) {
+		public void setListeContact(DefaultListModel<String> listeContact) {
 			this.listeContact = listeContact;
 		}
 		
+		
 	}
 	
-	class Contact {
+	class Contact implements Serializable {
 		
+		/**
+		 * Default serialVersionUID
+		 */
+		private static final long serialVersionUID = 1L;
 		private String nom; 
 		private String prenom; 
 		private String numTelephone; 
@@ -218,6 +233,12 @@ public class AppliContact extends JPanel{
 			this.numTelephone = numTelephone;
 		}
 		
+		public String toString() {
+			String s = prenom+" "+nom; 
+			return s; 
+		}
+		
 	}
+	
 	
 }
