@@ -17,6 +17,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -45,7 +46,7 @@ public class AppliContact extends JPanel{
 	
 	}
 	
-	public class FormulaireCreation extends JPanel{
+	class FormulaireCreation extends JPanel{
 		
 		//Les différents panels 
 		private JPanel photo = new JPanel(); 
@@ -110,7 +111,6 @@ public class AppliContact extends JPanel{
 			formulaire.add(mailL); 
 			formulaire.add(mailT);
 			
-			
 			//Tous le panel 
 			this.setLayout(new GridLayout(3, 1,0,30));
 			this.add(photo);
@@ -128,16 +128,30 @@ public class AppliContact extends JPanel{
 			}
 		}
 		
+		class SaveContact extends MouseAdapter
+		{
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+			{
+				Contact c = new Contact(nomT.getText(), prenomT.getText(), 
+						numTelT.getText(), mailT.getText()); 
+			
+			}
+		}
+		
 	}
 	
-	public class ListeContact_GL extends JPanel {
+	class ListeContact_GL extends JPanel {
 		
 		//Bouton d'ajout d'un contact 
 		private JButton addContact = new JButton("Ajouter un nouveau contact"); 
 		
+		//Jlist 
+		private JList<String> maListe = new JList<String>(); 
+		
 		//Arraylist de contact
 		private ArrayList<Contact> listeContact = new ArrayList<Contact>(); 
-		
+
 		public ListeContact_GL() {
 			
 			this.setLayout(new BorderLayout(1,0));
@@ -156,9 +170,17 @@ public class AppliContact extends JPanel{
 			}
 		}
 		
+		public ArrayList<Contact> getListeContact() {
+			return listeContact;
+		}
+
+		public void setListeContact(ArrayList<Contact> listeContact) {
+			this.listeContact = listeContact;
+		}
+		
 	}
 	
-	public class Contact {
+	class Contact {
 		
 		private String nom; 
 		private String prenom; 
