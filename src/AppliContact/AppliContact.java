@@ -34,12 +34,7 @@ import javafx.scene.layout.Border;
 import javafx.scene.shape.Box;
 
 public class AppliContact extends JPanel{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
+
 	
 	//Cardlayout pour les différentes pages 
 	private CardLayout cl = new CardLayout(); 
@@ -59,6 +54,67 @@ public class AppliContact extends JPanel{
 		
 		this.add(cards);
 	
+	}
+	
+	public void MySerialization(Contact c) {
+		
+		String path = "SerializationContact/contact"+c.getNumTelephone()+".serial"; 
+		
+		try {
+			
+			FileOutputStream fos = new FileOutputStream(new File(path));
+			
+			ObjectOutputStream oos = new ObjectOutputStream(fos); 
+			
+			try {
+				oos.writeObject(c);
+				oos.flush();
+			} finally {
+				try {
+					oos.close();
+				} finally {
+					fos.close();
+				}
+			}
+
+			System.out.println("C'est ok S");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Contact MyDeserialization(String path) {
+		
+		String pathComplet = "SerializationContact/"+path; 
+		
+		Contact c = null; 
+		
+		try {
+			FileInputStream fis = new FileInputStream(pathComplet);
+			
+			ObjectInputStream ois = new ObjectInputStream(fis); 
+			
+			try {
+				c = (Contact) ois.readObject(); 
+			} finally {
+				try {
+					ois.close();
+				} finally {
+					fis.close();
+				}
+			}
+
+			System.out.println("C'est ok D");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+		}
+		
+		return c; 
+		
 	}
 	
 	class FormulaireCreation extends JPanel{
@@ -98,11 +154,7 @@ public class AppliContact extends JPanel{
 	    
 				
 		public FormulaireCreation() {
-			
-			//Accès classe voisine 
-			ListeContact_GL lc = new ListeContact_GL();
 			 
-			
 			//Listener 
 			precedent.addMouseListener(new RetourListeContat());
 			sauvegarder.addMouseListener(new SaveContact());
@@ -152,31 +204,29 @@ public class AppliContact extends JPanel{
 		}
 		
 		class SaveContact extends MouseAdapter
-		{
+		{	
 			@Override
 			public void mouseClicked(MouseEvent arg0)
-			{
+			{	
+				//Accès classe voisine 
+				ListeContact_GL lc = new ListeContact_GL(); 
+				
 				//Le contact est cours de création 
+				System.out.println("1. Création contact");
 				Contact tempo = new Contact(nomT.getText(), prenomT.getText(), 
 						numTelT.getText(), mailT.getText()); 
 				
 				//On sérialize le contact 
-				SaveFileSTream sft = new SaveFileSTream(); 
-				sft.MySerialization(tempo);
+				System.out.println("2. Serialization");
+				MySerialization(tempo);
+				
+				//On vide la liste 
+				System.out.println("5*.On vide la liste");
+				lc.getListeDeroulante().removeAll(); 
 				
 				//On déserialize et on gère la liste 
-				//ERREUR ICI A REVOIR 
-				File f = new File("SerializationContact");
-				String paths[] = f.list(); 
-				int longueurListe = paths.length; 
-				Contact[] tab = new Contact[longueurListe]; 
-				
-				for(int i=0; i<paths.length; i++) {
-					Contact c = sft.MyDeserialization(paths[i]); 
-					tab[i] = c; 
-					System.out.println(paths[i]);
-					System.out.println(tab[i].toString()+"\n");
-				}
+				System.out.println("3. Appel déserialization + init liste");
+				lc.majListe();
 				
 				//On revient sur le panel liste
 				cl.show(cards, "Liste");
@@ -198,8 +248,7 @@ public class AppliContact extends JPanel{
 		private JButton addContact = new JButton("Ajouter un nouveau contact"); 
 		
 		//Liste 
-		private DefaultListModel<String> listeContact = new DefaultListModel<>(); 
-		private JPanel liste = new JPanel();
+		private JList<String> listeDeroulante; 
 
 		public ListeContact_GL() {
 			
@@ -207,10 +256,45 @@ public class AppliContact extends JPanel{
 			this.setLayout(new BorderLayout(1,0));
 			addContact.addMouseListener(new NouveauContact());
 			this.add(addContact, BorderLayout.NORTH); 
+
+			majListe();
 			
-			//Panel gridlayout de la liste 
-			liste.setLayout(new GridLayout(1, 0));
+		}
+		
+		private void creationContactListe(String[] tab, int nbContact) {
+		
+			System.out.println("boucle ajout élément liste");
+			listeDeroulante = new JList<String>(tab); 
+			this.add(listeDeroulante);
+		}
+		
+		public void majListe() {
 			
+			System.out.println("4. majListe");
+			File f = new File("SerializationContact");
+			String paths[] = f.list();
+			int longueurListe = paths.length; 
+			Contact[] tab = new Contact[longueurListe]; 
+			String[] recupLibelle = new String[longueurListe]; 
+			
+			for(int i=0; i<paths.length; i++) {
+				System.out.println("Deserialization"+i);
+				Contact c = MyDeserialization(paths[i]); 
+				tab[i] = c; 
+				recupLibelle[i] = tab[i].toString(); 
+			}
+			
+			System.out.println("Appel fonction");
+			creationContactListe(recupLibelle, longueurListe);
+			
+		}
+		
+		public JList<String> getListeDeroulante() {
+			return listeDeroulante;
+		}
+
+		public void setListeDeroulante(JList<String> listeDeroulante) {
+			this.listeDeroulante = listeDeroulante;
 		}
 		
 		class NouveauContact extends MouseAdapter
@@ -221,23 +305,10 @@ public class AppliContact extends JPanel{
 				cl.show(cards, "NouveauContact");
 			}
 		}
-		
-		public DefaultListModel<String> getListeContact() {
-			return listeContact;
-		}
-
-		public void setListeContact(DefaultListModel<String> listeContact) {
-			this.listeContact = listeContact;
-		}
-		
 	}
 	
 	class Contact implements Serializable {
 		
-		/**
-		 * Default serialVersionUID
-		 */
-		private static final long serialVersionUID = 1L;
 		private String nom; 
 		private String prenom; 
 		private String numTelephone; 
@@ -281,68 +352,4 @@ public class AppliContact extends JPanel{
 		
 	}
 	
-	class SaveFileSTream {
-		
-		public void MySerialization(Contact c) {
-		
-			String path = "SerializationContact/contact"+c.getNumTelephone()+".serial"; 
-			
-			try {
-				
-				FileOutputStream fos = new FileOutputStream(new File(path));
-				
-				ObjectOutputStream oos = new ObjectOutputStream(fos); 
-				
-				try {
-					oos.writeObject(c);
-					oos.flush();
-				} finally {
-					try {
-						oos.close();
-					} finally {
-						fos.close();
-					}
-				}
-	
-				System.out.println("C'est ok S");
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		public Contact MyDeserialization(String path) {
-			
-			String pathComplet = "SerializationContact/"+path; 
-			
-			Contact c = null; 
-			
-			try {
-				FileInputStream fis = new FileInputStream(pathComplet);
-				
-				ObjectInputStream ois = new ObjectInputStream(fis); 
-				
-				try {
-					c = (Contact) ois.readObject(); 
-				} finally {
-					try {
-						ois.close();
-					} finally {
-						fis.close();
-					}
-				}
-	
-				System.out.println("C'est ok D");
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException cnfe) {
-				cnfe.printStackTrace();
-			}
-			
-			return c; 
-			
-		}
-		
-	}
 }
