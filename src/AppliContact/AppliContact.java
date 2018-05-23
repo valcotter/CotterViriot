@@ -46,6 +46,7 @@ public class AppliContact extends JPanel{
 	private ListeContact_GL liste = new ListeContact_GL(); 
 	private JPanel detailContact = new JPanel(); 
 	private FormulaireCreation formNewContact = new FormulaireCreation(); 
+	private ficheContact ficheC = new ficheContact(); 
 	
 	public AppliContact() {
 	
@@ -53,6 +54,7 @@ public class AppliContact extends JPanel{
 		cards.add(liste, "Liste"); 
 		cards.add(detailContact, "DetailContact");
 		cards.add(formNewContact, "NouveauContact");
+		cards.add(ficheC, "DetailContact");
 		
 		this.add(cards);
 	
@@ -214,18 +216,18 @@ public class AppliContact extends JPanel{
 				ListeContact_GL lc = new ListeContact_GL(); 
 				
 				//Le contact est cours de création 
-				System.out.println("1. Création contact");
+				//System.out.println("1. Création contact");
 				
 				Contact tempo = new Contact(nomT.getText(), prenomT.getText(), 
-						numTelT.getText(), mailT.getText()); 
+						numTelT.getText(), mailT.getText(), "contactDefaut.png"); 
 				
 				//On sérialize le contact 
-				System.out.println("2. Serialization");
+				//System.out.println("2. Serialization");
 				MySerialization(tempo);
 				
 				
 				//On déserialize et on gère la liste 
-				System.out.println("3. Appel déserialization + init liste");
+				//System.out.println("3. Appel déserialization + init liste");
 				lc.majListe();
 				
 				//On revient sur le panel liste
@@ -242,6 +244,7 @@ public class AppliContact extends JPanel{
 		
 	}
 	
+	//Mise à jour de la liste ne marche pas !! 
 	class ListeContact_GL extends JPanel {
 
 		//Bouton d'ajout d'un contact 
@@ -259,15 +262,13 @@ public class AppliContact extends JPanel{
 			
 			majListe();
 			
+			listeDeroulante.addMouseListener(new OuvrirDetailContact());
 			
 		}
 		
 		private void creationContactListe(String[] tab, int nbContact) {
 			
 			Font fontListe = new Font("Arial", 0, 30);
-			
-			
-			
 			
 			listeDeroulante = new JList<String>(tab); 
 			
@@ -277,21 +278,17 @@ public class AppliContact extends JPanel{
 			listeDeroulante.setFont(fontListe);
 			listeDeroulante.setOpaque(false);
 			
-			
-			for(int i = 0; i < tab.length; i++) {
+			/*for(int i = 0; i < tab.length; i++) {
 				System.out.println("Nous sommes dans la boucle");
 				System.out.println(tab[i].toString());
 			}
 			
-			System.out.println("boucle ajout élément liste");
-			
-			
-			
+			System.out.println("boucle ajout élément liste");*/
 		}
 		
 		public void majListe() {
 			
-			System.out.println("4. majListe");
+			//System.out.println("4. majListe");
 			
 			File f = new File("SerializationContact");
 			String paths[] = f.list();
@@ -300,14 +297,14 @@ public class AppliContact extends JPanel{
 			String[] recupLibelle = new String[longueurListe]; 
 			
 			for(int i=0; i<paths.length; i++) {
-				System.out.println("Deserialization"+i);
+				//System.out.println("Deserialization"+i);
 				Contact c = MyDeserialization(paths[i]); 
 				tab[i] = c; 
-				System.out.println(tab[i].toString());
+				//System.out.println(tab[i].toString());
 				recupLibelle[i] = tab[i].toString(); 
 			}
 			
-			System.out.println("Appel fonction");
+			//System.out.println("Appel fonction");
 			creationContactListe(recupLibelle, longueurListe);
 			
 		}
@@ -328,6 +325,25 @@ public class AppliContact extends JPanel{
 				cl.show(cards, "NouveauContact");
 			}
 		}
+		
+		class OuvrirDetailContact extends MouseAdapter
+		{
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				cl.show(cards, "DetailContact");
+			}
+		}
+	}
+	
+	class ficheContact extends JPanel{
+		
+		public ficheContact() {
+			
+			//Faire la fiche d'infos du contact ici 
+			
+		}
+		
 	}
 	
 	class Contact implements Serializable {
@@ -336,12 +352,15 @@ public class AppliContact extends JPanel{
 		private String prenom; 
 		private String numTelephone; 
 		private String mail; 
+		private String pathPhoto; 
 		
-		public Contact(String nom, String prenom, String numTelephone, String mail) {
+		public Contact(String nom, String prenom, String numTelephone, String mail,
+				String pathPhoto) {
 			this.nom = nom; 
 			this.prenom = prenom; 
 			this.numTelephone = numTelephone;
 			this.mail = mail; 
+			this.pathPhoto = pathPhoto; 
 		}
 
 		public String getNom() {
