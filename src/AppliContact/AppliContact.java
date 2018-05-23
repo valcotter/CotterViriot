@@ -9,6 +9,7 @@ package AppliContact;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,6 +23,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -213,6 +215,7 @@ public class AppliContact extends JPanel{
 				
 				//Le contact est cours de création 
 				System.out.println("1. Création contact");
+				
 				Contact tempo = new Contact(nomT.getText(), prenomT.getText(), 
 						numTelT.getText(), mailT.getText()); 
 				
@@ -220,9 +223,6 @@ public class AppliContact extends JPanel{
 				System.out.println("2. Serialization");
 				MySerialization(tempo);
 				
-				//On vide la liste 
-				System.out.println("5*.On vide la liste");
-				lc.getListeDeroulante().removeAll(); 
 				
 				//On déserialize et on gère la liste 
 				System.out.println("3. Appel déserialization + init liste");
@@ -256,21 +256,43 @@ public class AppliContact extends JPanel{
 			this.setLayout(new BorderLayout(1,0));
 			addContact.addMouseListener(new NouveauContact());
 			this.add(addContact, BorderLayout.NORTH); 
-
+			
 			majListe();
+			
 			
 		}
 		
 		private void creationContactListe(String[] tab, int nbContact) {
-		
-			System.out.println("boucle ajout élément liste");
+			
+			Font fontListe = new Font("Arial", 0, 30);
+			
+			
+			
+			
 			listeDeroulante = new JList<String>(tab); 
-			this.add(listeDeroulante);
+			
+			this.add(listeDeroulante, BorderLayout.CENTER);
+			
+			listeDeroulante.repaint();
+			listeDeroulante.setFont(fontListe);
+			listeDeroulante.setOpaque(false);
+			
+			
+			for(int i = 0; i < tab.length; i++) {
+				System.out.println("Nous sommes dans la boucle");
+				System.out.println(tab[i].toString());
+			}
+			
+			System.out.println("boucle ajout élément liste");
+			
+			
+			
 		}
 		
 		public void majListe() {
 			
 			System.out.println("4. majListe");
+			
 			File f = new File("SerializationContact");
 			String paths[] = f.list();
 			int longueurListe = paths.length; 
@@ -281,6 +303,7 @@ public class AppliContact extends JPanel{
 				System.out.println("Deserialization"+i);
 				Contact c = MyDeserialization(paths[i]); 
 				tab[i] = c; 
+				System.out.println(tab[i].toString());
 				recupLibelle[i] = tab[i].toString(); 
 			}
 			
