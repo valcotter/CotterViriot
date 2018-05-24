@@ -89,6 +89,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 			//Serialization 
 			MySerialization(tempo);
 			
+			lc.getListeBoutonContact().removeAll();
 			lc.majListe();
 			
 			//On revient ici 

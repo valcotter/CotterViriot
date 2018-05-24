@@ -9,7 +9,9 @@ package AppliContact;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -24,10 +26,9 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
 	//File -- A REVOIR -- Test 1 fonctionne
 	private File f = new File("SerializationContact");
-	private String paths[] = f.list();
-	private int longueurListe = paths.length;
-	private Contact[] tab = new Contact[longueurListe];
-	private String[] recupLibelle = new String[longueurListe];
+	private String paths[];
+//	private Contact[] tab = new Contact[longueurListe];
+//	private String[] recupLibelle = new String[longueurListe];
 	//--------------------------------------------------------
 	
 	//Test 2 --------------------------------------------------
@@ -38,6 +39,9 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 
 	// Liste
 	private JList<String> listeDeroulante;
+	
+	//Panel 
+	JPanel listeBoutonContact = new JPanel(); 
 	
 	public ListeContact(CardLayout cl, JPanel cards) {
 		super(cl, cards); 
@@ -50,12 +54,13 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		this.add(addContact, BorderLayout.NORTH);
 
 		majListe();
+		this.add(listeBoutonContact);
 
-		listeDeroulante.addMouseListener(new OuvrirDetailContact());
+		//listeDeroulante.addMouseListener(new OuvrirDetailContact());
 
 	}
 
-	private void creationContactListe(String[] tab, int nbContact) {
+	/*private void creationContactListe(String[] tab, int nbContact) {
 
 		Font fontListe = new Font("Arial", 0, 30);
 
@@ -67,29 +72,47 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		listeDeroulante.setFont(fontListe);
 		listeDeroulante.setOpaque(false);
 
-		/*
-		 * for(int i = 0; i < tab.length; i++) {
-		 * System.out.println("Nous sommes dans la boucle");
-		 * System.out.println(tab[i].toString()); }
-		 * 
-		 * System.out.println("boucle ajout élément liste");
-		 */
-	}
+	}*/
 
 	public void majListe() {
-
-		// System.out.println("4. majListe");
-
-		for (int i = 0; i < paths.length; i++) {
-			// System.out.println("Deserialization"+i);
-			Contact c2 = MyDeserialization(paths[i]);
-			
-			arrayContact.add(c2);
+		
+		listeBoutonContact.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		paths = f.list(); 
+		
+		for(int i=0; i<paths.length; i++) {
+			paths = f.list(); 
+			Contact c = MyDeserialization(paths[i]); 
+			arrayContact.add(c);
 		}
+		
+		for(int j=0; j<paths.length; j++) {
+			JButton boutonContact = new JButton(arrayContact.get(j).toString()); 
+			boutonContact.setSize(10, 20);
+			boutonContact.setMaximumSize(boutonContact.getSize());
+			listeBoutonContact.add(boutonContact);
+		}
+		
+//		// System.out.println("4. majListe");
+//
+//		for (int i = 0; i < paths.length; i++) {
+//			// System.out.println("Deserialization"+i);
+//			Contact c2 = MyDeserialization(paths[i]);
+//			
+//			arrayContact.add(c2);
+//		}
+//
+//		// System.out.println("Appel fonction");
+//		creationContactListe(recupLibelle, longueurListe);
 
-		// System.out.println("Appel fonction");
-		creationContactListe(recupLibelle, longueurListe);
+	}
 
+	public JPanel getListeBoutonContact() {
+		return listeBoutonContact;
+	}
+
+	public void setListeBoutonContact(JPanel listeBoutonContact) {
+		this.listeBoutonContact = listeBoutonContact;
 	}
 
 	public JList<String> getListeDeroulante() {

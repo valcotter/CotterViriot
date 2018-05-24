@@ -24,8 +24,5 @@ public class FormulaireCreation extends BaseFicheContact {
 		barreSup.getSupprimer().setVisible(false);
 		
 	}
-	
-	
-	
 
 }
