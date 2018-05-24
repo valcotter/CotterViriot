@@ -13,19 +13,25 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
-	//File -- A REVOIR 
+	//File -- A REVOIR -- Test 1 fonctionne
 	private File f = new File("SerializationContact");
 	private String paths[] = f.list();
 	private int longueurListe = paths.length;
 	private Contact[] tab = new Contact[longueurListe];
 	private String[] recupLibelle = new String[longueurListe];
+	//--------------------------------------------------------
+	
+	//Test 2 --------------------------------------------------
+	private ArrayList<Contact> arrayContact = new ArrayList<>();
 	
 	// Bouton d'ajout d'un contact
 	private JButton addContact = new JButton("Ajouter un nouveau contact");
@@ -76,10 +82,9 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 
 		for (int i = 0; i < paths.length; i++) {
 			// System.out.println("Deserialization"+i);
-			Contact c = MyDeserialization(paths[i]);
-			tab[i] = c;
-			// System.out.println(tab[i].toString());
-			recupLibelle[i] = tab[i].toString();
+			Contact c2 = MyDeserialization(paths[i]);
+			
+			arrayContact.add(c2);
 		}
 
 		// System.out.println("Appel fonction");

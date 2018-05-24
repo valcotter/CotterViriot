@@ -79,25 +79,19 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		@Override
 		public void mouseClicked(MouseEvent arg0)
 		{	
-			//Accès classe voisine 
+			
 			ListeContact lc = new ListeContact(cl, cards); 
 			
-			//Le contact est cours de création 
-			//System.out.println("1. Création contact");
-			
+			//Récupération contact en cours de création 
 			Contact tempo = new Contact(nomT.getText(), prenomT.getText(), 
 					numTelT.getText(), mailT.getText(), "contactDefaut.png"); 
 			
-			//On sérialize le contact 
-			//System.out.println("2. Serialization");
+			//Serialization 
 			MySerialization(tempo);
 			
-			
-			//On déserialize et on gère la liste 
-			//System.out.println("3. Appel déserialization + init liste");
 			lc.majListe();
 			
-			//On revient sur le panel liste
+			//On revient ici 
 			cl.show(cards, "Liste");
 			
 			//On vide le formulaire
