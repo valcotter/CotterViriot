@@ -19,11 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-public class FormulaireCreation extends JPanel implements Serializ {
-
-	//Récupération
-	CardLayout cl = new CardLayout();
-	JPanel cards = new JPanel(); 
+public class FormulaireCreation extends PanelConstructDefaut implements Serializ {
 
 	// Les différents panels
 	private JPanel photo = new JPanel();
@@ -49,9 +45,7 @@ public class FormulaireCreation extends JPanel implements Serializ {
 	private JLabel sauvegarder = new JLabel(save);
 	
 	public FormulaireCreation(CardLayout cl, JPanel cards) {
-		
-		this.cl = cl; 
-		this.cards = cards; 
+		super(cl, cards); 
 
 		// Listener
 		sauvegarder.addMouseListener(new SaveContact());

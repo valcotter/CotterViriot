@@ -18,22 +18,16 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-public class ListeContact extends JPanel implements Serializ {
+public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
 	// Bouton d'ajout d'un contact
 	private JButton addContact = new JButton("Ajouter un nouveau contact");
 
 	// Liste
 	private JList<String> listeDeroulante;
-
-	//Récupération
-	CardLayout cl = new CardLayout();
-	JPanel cards = new JPanel(); 
 	
 	public ListeContact(CardLayout cl, JPanel cards) {
-		
-		this.cl = cl; 
-		this.cards = cards; 
+		super(cl, cards); 
 
 		addContact.addMouseListener(new NouveauContact());
 		

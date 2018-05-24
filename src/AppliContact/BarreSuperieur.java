@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class BarreSuperieur extends JPanel{
+public class BarreSuperieur extends PanelConstructDefaut{
 	
 	//Icone 
 	private ImageIcon retour = new ImageIcon("retour.png");
@@ -25,15 +25,9 @@ public class BarreSuperieur extends JPanel{
 	private JLabel modifier = new JLabel(edit);
 	private ImageIcon poubelle = new ImageIcon("poubelle.png");
 	private JLabel supprimer = new JLabel(poubelle);
-	
-	//Récupération
-	CardLayout cl = new CardLayout();
-	JPanel cards = new JPanel(); 
 
 	public BarreSuperieur(CardLayout cl, JPanel cards) {
-		
-		this.cl = cl; 
-		this.cards = cards; 
+		super(cl, cards); 
 
 		this.setLayout(new GridLayout(1, 3, 130, 0));
 		this.add(precedent);

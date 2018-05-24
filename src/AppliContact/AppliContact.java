@@ -17,9 +17,9 @@ public class AppliContact extends JPanel{
 	private JPanel cards = new JPanel(); 
 	
 	//Les différents panels
-	private ListeContact liste = new ListeContact (cl, cards); 
+	private PanelConstructDefaut liste = new ListeContact (cl, cards); 
 	private JPanel detailContact = new JPanel(); 
-	private FormulaireCreation formNewContact = new FormulaireCreation(cl, cards); 
+	private PanelConstructDefaut formNewContact = new FormulaireCreation(cl, cards); 
 	
 	public AppliContact() {
 	
