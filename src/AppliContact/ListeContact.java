@@ -20,6 +20,13 @@ import javax.swing.JPanel;
 
 public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
+	//File -- A REVOIR 
+	private File f = new File("SerializationContact");
+	private String paths[] = f.list();
+	private int longueurListe = paths.length;
+	private Contact[] tab = new Contact[longueurListe];
+	private String[] recupLibelle = new String[longueurListe];
+	
 	// Bouton d'ajout d'un contact
 	private JButton addContact = new JButton("Ajouter un nouveau contact");
 
@@ -66,12 +73,6 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	public void majListe() {
 
 		// System.out.println("4. majListe");
-
-		File f = new File("SerializationContact");
-		String paths[] = f.list();
-		int longueurListe = paths.length;
-		Contact[] tab = new Contact[longueurListe];
-		String[] recupLibelle = new String[longueurListe];
 
 		for (int i = 0; i < paths.length; i++) {
 			// System.out.println("Deserialization"+i);
