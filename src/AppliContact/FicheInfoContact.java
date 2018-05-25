@@ -66,7 +66,8 @@ public class FicheInfoContact extends BaseFicheContact {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			
-			File f = new File("SerializationContact/contact"+contact.getNumTelephone()+".serial"); 
+			File f = new File("SerializationContact/contact"+contact.getPrenom()
+			+contact.getNom()+contact.getNumTelephone()+".serial"); 
 			f.delete(); 
 			ListeContact lc = new ListeContact(cl, cards);  
 			

@@ -18,7 +18,7 @@ public interface Serializ {
 	
 	public default void MySerialization(Contact c) {
 		
-		String path = "SerializationContact/contact"+c.getNumTelephone()+".serial"; 
+		String path = "SerializationContact/contact"+c.getPrenom()+c.getNom()+c.getNumTelephone()+".serial"; 
 		
 		try {
 			

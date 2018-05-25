@@ -9,11 +9,9 @@ package AppliContact;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +21,7 @@ import javax.swing.JTextField;
 public abstract class BaseFicheContact extends PanelConstructDefaut implements Serializ{
 
 	// Les différents panels
+	private BorderLayout bl = new BorderLayout(10, 10); 
 	protected JPanel photo = new JPanel();
 	protected JPanel formulaire = new JPanel();
 	protected BarreSuperieur barreSup = new BarreSuperieur(cl, cards);
@@ -49,7 +48,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		super(cl, cards);
 
 		// Partie Photo
-		photo.setLayout(new BorderLayout());
+		photo.setLayout(bl);
 		photo.add(barreSup, BorderLayout.NORTH);
 		photo.add(phtContact, BorderLayout.CENTER);
 
