@@ -74,8 +74,6 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 
 	}
 	
-	
-	
 	class SaveContact extends MouseAdapter
 	{	
 		@Override

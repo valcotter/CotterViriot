@@ -17,8 +17,15 @@ public class FicheInfoContact extends BaseFicheContact {
 	
 	private Contact contact;
 	
-	public FicheInfoContact(CardLayout cl, JPanel cards) {
+	public FicheInfoContact(CardLayout cl, JPanel cards, Contact c) {
 		super(cl, cards);
+		this.contact = c; 
+		
+		nomT.setText(contact.getNom());
+		prenomT.setText(contact.getPrenom());
+		numTelT.setText(contact.getNumTelephone());
+		mailT.setText(contact.getMail());
+		photoContact.setDescription(contact.getPathPhoto()); 
 		
 		//On empêche d'éditer les contacts 
 		nomT.setEditable(false);
@@ -32,18 +39,6 @@ public class FicheInfoContact extends BaseFicheContact {
 		//Ajout listener 
 		barreSup.getModifier().addMouseListener(new ActiverModif());
 		
-	}
-	
-	public void recuperationInfoContact(Contact c) {
-		
-		nomT.setText(c.getNom());
-		System.out.println(c.getNom());
-		prenomT.setText(c.getPrenom());
-		System.out.println(c.getPrenom());
-		numTelT.setText(c.getNumTelephone());
-		System.out.println(c.getNumTelephone());
-		mailT.setText(c.getMail());
-		photoContact.setDescription(c.getPathPhoto());
 	}
 	
 	class ActiverModif extends MouseAdapter{

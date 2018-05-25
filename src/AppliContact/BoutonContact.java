@@ -23,6 +23,8 @@ public class BoutonContact extends JButton{
 	private CardLayout cl; 
 	private JPanel cards; 
 	
+	private FicheInfoContact fic;
+	
 	public BoutonContact(Contact c, CardLayout cl, JPanel cards) {
 		this.c = c; 
 		this.nomBouton = c.toString(); 
@@ -43,8 +45,9 @@ public class BoutonContact extends JButton{
 	class OuvrirDetailContact extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			
-			cl.show(cards, "DetailContact");
+			fic = new FicheInfoContact(cl, cards, c); 
+			cards.add(fic, c.toString()); 
+			cl.show(cards, c.toString());
 		}
 	}
 	
