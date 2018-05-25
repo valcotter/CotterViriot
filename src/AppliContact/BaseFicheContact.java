@@ -79,8 +79,6 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		public void mouseClicked(MouseEvent arg0)
 		{	
 			
-			ListeContact lc = new ListeContact(cl, cards); 
-			
 			//Récupération contact en cours de création 
 			Contact tempo = new Contact(nomT.getText(), prenomT.getText(), 
 					numTelT.getText(), mailT.getText(), "contactDefaut.png"); 
@@ -88,10 +86,8 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 			//Serialization 
 			MySerialization(tempo);
 			
-			lc.getListeBoutonContact().removeAll();
-			lc.majListe();
-			
-			//On revient ici 
+			ListeContact lc = new ListeContact(cl, cards);  
+			cards.add(lc, "Liste"); 
 			cl.show(cards, "Liste");
 			
 			//On vide le formulaire
