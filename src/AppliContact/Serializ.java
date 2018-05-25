@@ -64,8 +64,6 @@ public interface Serializ {
 					fis.close();
 				}
 			}
-
-			System.out.println("C'est ok D");
 			
 		} catch (IOException e) {
 			e.printStackTrace();

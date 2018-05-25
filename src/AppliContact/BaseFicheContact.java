@@ -9,6 +9,7 @@ package AppliContact;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -27,10 +28,10 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	protected BarreSuperieur barreSup = new BarreSuperieur(cl, cards);
 
 	// Les labels du formulaire
-	protected JLabel nomL = new JLabel("Nom : ");
-	protected JLabel prenomL = new JLabel("Prénom : ");
-	protected JLabel numtelL = new JLabel("Numéro de téléphone : ");
-	protected JLabel mailL = new JLabel("Mail : ");
+	protected MonJLabel nomL = new MonJLabel("Nom : ");
+	protected MonJLabel prenomL = new MonJLabel("Prénom : ");
+	protected MonJLabel numtelL = new MonJLabel("Numéro de téléphone : ");
+	protected MonJLabel mailL = new MonJLabel("Mail : ");
 
 	// Les textField du formulaire
 	protected JTextField nomT = new JTextField(20);
@@ -53,7 +54,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		photo.add(phtContact, BorderLayout.CENTER);
 
 		// Partie formulaire
-		formulaire.setLayout(new GridLayout(4, 2, -50, 0));
+		formulaire.setLayout(new GridLayout(4, 2, -40, 0));
 		formulaire.add(nomL);
 		formulaire.add(nomT);
 		formulaire.add(prenomL);
@@ -64,7 +65,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		formulaire.add(mailT);
 
 		// Tous le panel
-		this.setLayout(new GridLayout(3, 1, 0, 30));
+		this.setLayout(new GridLayout(3, 1, 0, 35));
 		this.add(photo);
 		this.add(formulaire);
 		

@@ -8,9 +8,12 @@
 package AppliContact;
 
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -25,6 +28,9 @@ public class BoutonContact extends JButton{
 	
 	private FicheInfoContact fic;
 	
+	//Police
+	private Font policeNormal = new Font("Arial", 25, 25); 
+	
 	public BoutonContact(Contact c, CardLayout cl, JPanel cards) {
 		this.c = c; 
 		this.nomBouton = c.toString(); 
@@ -32,8 +38,10 @@ public class BoutonContact extends JButton{
 		this.cl = cl; 
 		this.cards = cards; 
 		
+		this.setFont(policeNormal);
+		this.setBackground(Color.WHITE);
 		this.setText(nomBouton);
-		this.setSize(360, 50);
+		this.setSize(370, 40);
 		this.setMaximumSize(this.getSize());
 		this.addMouseListener(new OuvrirDetailContact());
 	}

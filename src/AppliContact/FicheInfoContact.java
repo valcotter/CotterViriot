@@ -8,6 +8,7 @@
 package AppliContact;
 
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -68,6 +69,7 @@ public class FicheInfoContact extends BaseFicheContact {
 			File f = new File("SerializationContact/contact"+contact.getNumTelephone()+".serial"); 
 			f.delete(); 
 			ListeContact lc = new ListeContact(cl, cards);  
+			
 			cards.add(lc, "Liste"); 
 			cl.show(cards, "Liste");
 
