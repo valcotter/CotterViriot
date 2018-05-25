@@ -7,6 +7,8 @@
 
 package AppliContact;
 import java.awt.CardLayout;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
@@ -18,10 +20,22 @@ public class AppliContact extends JPanel{
 	
 	//Les différents panels
 	private PanelConstructDefaut liste = new ListeContact (cl, cards); 
-	private FicheInfoContact detailContact = new FicheInfoContact(cl, cards); 
+	private FicheInfoContact detailContactBase = new FicheInfoContact(cl, cards); 
+
 	private PanelConstructDefaut formNewContact = new FormulaireCreation(cl, cards); 
 	
 	public AppliContact() {
+		
+		cards.setLayout(cl);
+		cards.add(liste, "Liste"); 
+		cards.add(detailContactBase, "DetailContact");
+		cards.add(formNewContact, "NouveauContact");
+		
+		this.add(cards);
+	
+	}
+	
+	public AppliContact(FicheInfoContact detailContact) {
 	
 		cards.setLayout(cl);
 		cards.add(liste, "Liste"); 
@@ -38,6 +52,6 @@ public class AppliContact extends JPanel{
 
 	public JPanel getCards() {
 		return cards;
-	}		
+	}	
 }
 	

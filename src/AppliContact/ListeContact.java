@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -24,24 +25,16 @@ import javax.swing.JTable;
 
 public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
-	//File -- A REVOIR -- Test 1 fonctionne
 	private File f = new File("SerializationContact");
 	private String paths[];
-//	private Contact[] tab = new Contact[longueurListe];
-//	private String[] recupLibelle = new String[longueurListe];
-	//--------------------------------------------------------
-	
-	//Test 2 --------------------------------------------------
-	private ArrayList<Contact> arrayContact = new ArrayList<>();
 	
 	// Bouton d'ajout d'un contact
 	private JButton addContact = new JButton("Ajouter un nouveau contact");
-
-	// Liste
-	private JList<String> listeDeroulante;
+	private BoutonContact btnContact; 
 	
 	//Panel 
 	JPanel listeBoutonContact = new JPanel(); 
+
 	
 	public ListeContact(CardLayout cl, JPanel cards) {
 		super(cl, cards); 
@@ -56,55 +49,24 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		majListe();
 		this.add(listeBoutonContact);
 
-		//listeDeroulante.addMouseListener(new OuvrirDetailContact());
-
 	}
-
-	/*private void creationContactListe(String[] tab, int nbContact) {
-
-		Font fontListe = new Font("Arial", 0, 30);
-
-		listeDeroulante = new JList<String>(tab);
-
-		this.add(listeDeroulante, BorderLayout.CENTER);
-
-		listeDeroulante.repaint();
-		listeDeroulante.setFont(fontListe);
-		listeDeroulante.setOpaque(false);
-
-	}*/
 
 	public void majListe() {
 		
-		listeBoutonContact.setLayout(new GridLayout(0, 1, 0, 0));
-		
 		paths = f.list(); 
+		listeBoutonContact.setLayout(new BoxLayout(listeBoutonContact, BoxLayout.Y_AXIS));
 		
 		for(int i=0; i<paths.length; i++) {
 			paths = f.list(); 
 			Contact c = MyDeserialization(paths[i]); 
-			arrayContact.add(c);
+			btnContact = new BoutonContact(c, cl, cards); 
+			listeBoutonContact.add(btnContact, BorderLayout.CENTER);
 		}
-		
-		for(int j=0; j<paths.length; j++) {
-			JButton boutonContact = new JButton(arrayContact.get(j).toString()); 
-			boutonContact.setSize(10, 20);
-			boutonContact.setMaximumSize(boutonContact.getSize());
-			listeBoutonContact.add(boutonContact);
-		}
-		
-//		// System.out.println("4. majListe");
-//
-//		for (int i = 0; i < paths.length; i++) {
-//			// System.out.println("Deserialization"+i);
-//			Contact c2 = MyDeserialization(paths[i]);
-//			
-//			arrayContact.add(c2);
-//		}
-//
-//		// System.out.println("Appel fonction");
-//		creationContactListe(recupLibelle, longueurListe);
+	
+	}
 
+	public BoutonContact getBtnContact() {
+		return btnContact;
 	}
 
 	public JPanel getListeBoutonContact() {
@@ -115,25 +77,12 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		this.listeBoutonContact = listeBoutonContact;
 	}
 
-	public JList<String> getListeDeroulante() {
-		return listeDeroulante;
-	}
-
-	public void setListeDeroulante(JList<String> listeDeroulante) {
-		this.listeDeroulante = listeDeroulante;
-	}
-
 	class NouveauContact extends MouseAdapter {
+		
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
+			
 			cl.show(cards, "NouveauContact");
-		}
-	}
-
-	class OuvrirDetailContact extends MouseAdapter {
-		@Override
-		public void mouseClicked(MouseEvent arg0) {
-			cl.show(cards, "DetailContact");
 		}
 	}
 

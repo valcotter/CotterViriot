@@ -14,7 +14,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 public class FicheInfoContact extends BaseFicheContact {
-
+	
+	private Contact contact;
+	
 	public FicheInfoContact(CardLayout cl, JPanel cards) {
 		super(cl, cards);
 		
@@ -30,6 +32,18 @@ public class FicheInfoContact extends BaseFicheContact {
 		//Ajout listener 
 		barreSup.getModifier().addMouseListener(new ActiverModif());
 		
+	}
+	
+	public void recuperationInfoContact(Contact c) {
+		
+		nomT.setText(c.getNom());
+		System.out.println(c.getNom());
+		prenomT.setText(c.getPrenom());
+		System.out.println(c.getPrenom());
+		numTelT.setText(c.getNumTelephone());
+		System.out.println(c.getNumTelephone());
+		mailT.setText(c.getMail());
+		photoContact.setDescription(c.getPathPhoto());
 	}
 	
 	class ActiverModif extends MouseAdapter{

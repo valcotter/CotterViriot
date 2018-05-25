@@ -8,14 +8,17 @@
 package AppliContact;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Contact implements Serializable {
 	
+	private int idContact; 
 	private String nom; 
 	private String prenom; 
 	private String numTelephone; 
 	private String mail; 
 	private String pathPhoto; 
+	private ArrayList<Contact> arrayContact = new ArrayList<>(); 
 	
 	public Contact(String nom, String prenom, String numTelephone, String mail,
 			String pathPhoto) {
@@ -24,6 +27,46 @@ public class Contact implements Serializable {
 		this.numTelephone = numTelephone;
 		this.mail = mail; 
 		this.pathPhoto = pathPhoto; 
+		
+		arrayContact.add(this); 
+		idContact = arrayContact.indexOf(this); 
+	}
+
+	
+	public ArrayList<Contact> getArrayContact() {
+		return arrayContact;
+	}
+
+
+	public void setArrayContact(ArrayList<Contact> arrayContact) {
+		this.arrayContact = arrayContact;
+	}
+
+
+	public int getIdContact() {
+		return idContact;
+	}
+
+
+	public void setIdContact(int idContact) {
+		this.idContact = idContact;
+	}
+
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getPathPhoto() {
+		return pathPhoto;
+	}
+
+	public void setPathPhoto(String pathPhoto) {
+		this.pathPhoto = pathPhoto;
 	}
 
 	public String getNom() {
@@ -53,6 +96,15 @@ public class Contact implements Serializable {
 	public String toString() {
 		String s = prenom+" "+nom; 
 		return s; 
+	}
+	
+	public boolean equals(Contact c) {
+		if(this.idContact == c.getIdContact()) {
+			if(this.numTelephone.equals(c.getNumTelephone())) {
+				return true; 
+			}
+		}
+		return false; 
 	}
 	
 }
