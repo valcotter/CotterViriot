@@ -16,7 +16,7 @@ public class BoutonSuivant extends JButton{
 	
 	public BoutonSuivant() {
 		
-		this.setSize(370, 70);
+		this.setSize(370, 60);
 		this.setMaximumSize(this.getSize());
 		this.setIcon(next);
 		this.setText("Suivant");
