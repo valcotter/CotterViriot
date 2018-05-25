@@ -71,7 +71,6 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		// Listener
 		sauvegarder.addMouseListener(new SaveContact());
 		this.add(sauvegarder);
-
 	}
 	
 	class SaveContact extends MouseAdapter
