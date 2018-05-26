@@ -58,7 +58,6 @@ public class FicheInfoContact extends BaseFicheContact {
 			sauvegarder.setVisible(true);
 			
 		}
-		
 	}
 	
 	class SupprimerContact extends MouseAdapter{
@@ -69,13 +68,15 @@ public class FicheInfoContact extends BaseFicheContact {
 			File f = new File("SerializationContact/contact"+contact.getPrenom()
 			+contact.getNom()+contact.getNumTelephone()+".serial"); 
 			f.delete(); 
+			
+			System.out.println("Contact supprimé.");
+			
 			ListeContact lc = new ListeContact(cl, cards);  
 			
 			cards.add(lc, "Liste"); 
 			cl.show(cards, "Liste");
 
 		}
-		
 	}
 	
 }

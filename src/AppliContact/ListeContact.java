@@ -47,8 +47,10 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	//Partie bouton de contact 
 	private CardLayout cl2 = new CardLayout(); 
 	private JPanel cardsListe = new JPanel(); 
-	JPanel myPanel = new JPanel(); 
-	private BoutonSuivant btnNext = new BoutonSuivant(cl2,cardsListe); 
+	private JPanel myPanel = new JPanel(); 
+	//private BoutonSuivant btnNext = new BoutonSuivant(cl2,cardsListe); 
+	
+	private BoutonDefilementListe btnRightLeft = new BoutonDefilementListe(cl2, cardsListe);
 
 	public ListeContact(CardLayout cl, JPanel cards) {
 		super(cl, cards); 
@@ -73,13 +75,11 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		majListe();
 		
 		//Ajout panel général 
-		this.setLayout(new BorderLayout());
-		this.setSize(400,726);
-		this.add(panelNord, BorderLayout.NORTH); 
-		this.add(cardsListe, BorderLayout.CENTER); 
-		this.add(btnNext, BorderLayout.SOUTH); 
-
-		
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.add(panelNord); 
+		this.add(btnRightLeft);
+		this.add(cardsListe);
+	
 	}
 
 	public void majListe() {
@@ -93,15 +93,16 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		
 		for(int i=0; i<nbPageListe; i++) {
 			
-			myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
+			JPanel test = new JPanel(); 
+			test.setLayout(new BoxLayout(test, BoxLayout.Y_AXIS));
 			
 			for(positionContact=0; positionContact<10; positionContact++) {
 				Contact c = MyDeserialization(paths[positionContact]); 
 				btnContact = new BoutonContact(c, cl, cards); 
-				myPanel.add(btnContact);
+				test.add(btnContact);
 			}
 			
-			cardsListe.add(myPanel, "Liste"+i); 
+			cardsListe.add(test, "Liste"+i); 
 		}
 		
 		if(nbContact%10 != 0) {

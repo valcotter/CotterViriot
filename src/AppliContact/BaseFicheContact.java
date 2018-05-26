@@ -73,6 +73,17 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		this.add(sauvegarder);
 	}
 	
+	private boolean verificationEntree() {
+		
+		if(nomT.getText().equals("") && prenomT.getText().equals("")) {
+			nomT.setText("Erreur");
+			prenomT.setText("Erreur");
+			return false;
+		}
+		
+		return true; 
+	}
+	
 	class SaveContact extends MouseAdapter
 	{	
 		@Override
