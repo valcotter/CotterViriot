@@ -76,9 +76,24 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	private boolean verificationEntree() {
 		
 		if(nomT.getText().equals("") && prenomT.getText().equals("")) {
-			nomT.setText("Erreur");
-			prenomT.setText("Erreur");
+			nomT.setText("Erreur - Aucune identité");
+			prenomT.setText("Erreur - Aucune identité");
 			return false;
+		}
+		
+		//Format +41 non pris en compte 
+		if(numTelT.getText().length()<10) {
+			numTelT.setText("Format numéro incorrect");
+			return false; 	
+		}
+		if(numTelT.getText().length()>11) {
+			numTelT.setText("Format numéro incorrect");
+			return false; 
+		}
+		
+		if(numTelT.getText().equals("")) {
+			numTelT.setText("Erreur - Aucun numéro rentré");
+			return false; 
 		}
 		
 		return true; 
@@ -90,23 +105,28 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		public void mouseClicked(MouseEvent arg0)
 		{	
 			
-			//Récupération contact en cours de création 
-			Contact tempo = new Contact(nomT.getText(), prenomT.getText(), 
-					numTelT.getText(), mailT.getText(), "contactDefaut.png"); 
+			boolean ok = verificationEntree(); 
 			
-			//Serialization 
-			MySerialization(tempo);
+			if(ok==true) {
 			
-			ListeContact lc = new ListeContact(cl, cards);  
-			cards.add(lc, "Liste"); 
-			cl.show(cards, "Liste");
-			
-			//On vide le formulaire
-			nomT.setText("");
-			prenomT.setText("");
-			numTelT.setText(""); 
-			mailT.setText("");
-			
+				//Récupération contact en cours de création 
+				Contact tempo = new Contact(nomT.getText(), prenomT.getText(), 
+						numTelT.getText(), mailT.getText(), "contactDefaut.png"); 
+				
+				//Serialization 
+				MySerialization(tempo);
+				
+				ListeContact lc = new ListeContact(cl, cards);  
+				cards.add(lc, "Liste"); 
+				cl.show(cards, "Liste");
+				
+				//On vide le formulaire
+				nomT.setText("");
+				prenomT.setText("");
+				numTelT.setText(""); 
+				mailT.setText("");
+				
+			}
 		}
 	}
 	
