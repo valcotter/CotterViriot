@@ -64,7 +64,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		formulaire.add(mailT);
 
 		// Tous le panel
-		this.setLayout(new GridLayout(3, 1, 0, 35));
+		this.setLayout(new GridLayout(3, 1, 0, 20));
 		this.add(photo);
 		this.add(formulaire);
 		

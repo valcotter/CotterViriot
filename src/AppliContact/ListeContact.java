@@ -10,22 +10,17 @@ package AppliContact;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
@@ -33,19 +28,12 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	private File f = new File("SerializationContact");
 	private String paths[];
 	
-	//BorderLayout 
-	private BorderLayout bl = new BorderLayout(5, 5);
-	private CardLayout cl2 = new CardLayout(); 
-	
 	// Bouton d'ajout d'un contact
 	private JButton addContact = new JButton("Nouveau contact");
 	private BoutonContact btnContact; 
-	private BoutonSuivant btnNext = new BoutonSuivant(); 
 	
 	//Panel 
-	private JPanel listeBoutonContact = new JPanel(); 
 	private JPanel panelNord = new JPanel(); 
-	private JPanel cardsListe = new JPanel(); 
 	
 	//Titre
 	private JLabel titre = new JLabel("Contact"); 
@@ -53,10 +41,14 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	//Police
 	private Font policeNormal = new Font("Arial", 25, 25); 
 	
-	//Icone 
+	//Icone ajout 
 	private ImageIcon iconAjout = new ImageIcon("addcontact.png"); 
 	
-	BoutonSuivant btnSuivant = new BoutonSuivant(); 
+	//Partie bouton de contact 
+	private CardLayout cl2 = new CardLayout(); 
+	private JPanel cardsListe = new JPanel(); 
+	JPanel myPanel = new JPanel(); 
+	private BoutonSuivant btnNext = new BoutonSuivant(cl2,cardsListe); 
 
 	public ListeContact(CardLayout cl, JPanel cards) {
 		super(cl, cards); 
@@ -81,19 +73,19 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		majListe();
 		
 		//Ajout panel général 
-		this.setLayout(bl);
+		this.setLayout(new BorderLayout());
+		this.setSize(400,726);
 		this.add(panelNord, BorderLayout.NORTH); 
 		this.add(cardsListe, BorderLayout.CENTER); 
 		this.add(btnNext, BorderLayout.SOUTH); 
+
 		
 	}
 
 	public void majListe() {
 		
 		paths = f.list(); 
-		
 		int nbContact = paths.length; 
-		
 		cardsListe.setLayout(cl2);
 		int nbPageListe = nbContact/10; 
 		int restContact;
@@ -101,7 +93,6 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		
 		for(int i=0; i<nbPageListe; i++) {
 			
-			JPanel myPanel = new JPanel(); 
 			myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
 			
 			for(positionContact=0; positionContact<10; positionContact++) {
@@ -116,31 +107,23 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		if(nbContact%10 != 0) {
 			restContact = nbContact%10; 
 			
-			JPanel myPanel = new JPanel(); 
-			myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.Y_AXIS));
+			JPanel myPanel2 = new JPanel(); 
+			myPanel2.setLayout(new BoxLayout(myPanel2, BoxLayout.Y_AXIS));
 			
-			for(int j=positionContact; j<restContact; j++) {
+			for(int j=positionContact; j<positionContact+restContact; j++) {
 				Contact c = MyDeserialization(paths[j]); 
 				btnContact = new BoutonContact(c, cl, cards); 
-				myPanel.add(btnContact);
+				myPanel2.add(btnContact);
 			}
 			
-			cardsListe.add(myPanel, "Liste"+(nbPageListe+1)); 
+			cardsListe.add(myPanel2, "Liste"+(nbPageListe+1)); 
 			
 		}
 		
 	}
-
+	
 	public BoutonContact getBtnContact() {
 		return btnContact;
-	}
-
-	public JPanel getListeBoutonContact() {
-		return listeBoutonContact;
-	}
-
-	public void setListeBoutonContact(JPanel listeBoutonContact) {
-		this.listeBoutonContact = listeBoutonContact;
 	}
 
 	class NouveauContact extends MouseAdapter {
