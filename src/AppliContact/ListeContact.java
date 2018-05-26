@@ -81,7 +81,8 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		this.add(cardsListe);
 	
 	}
-
+	
+	//Problème, ne marche que pour 2 panels de 10. Nombre de contact maximum = 20 /!\
 	public void majListe() {
 		
 		paths = f.list(); 
