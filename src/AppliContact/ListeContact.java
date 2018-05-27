@@ -89,36 +89,46 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		int nbContact = paths.length; 
 		cardsListe.setLayout(cl2);
 		int nbPageListe = nbContact/10; 
+		System.out.println("Nb page liste : "+nbPageListe);
 		int restContact;
 		int positionContact = 0;
+		int cpt = 0;
+		int intervalleContact = 10; 
+		JPanel[] tableauPanel = new JPanel[nbPageListe]; 
 		
 		for(int i=0; i<nbPageListe; i++) {
 			
-			JPanel test = new JPanel(); 
-			test.setLayout(new BoxLayout(test, BoxLayout.Y_AXIS));
+			String nom = "Liste"+i; 
+			System.out.println(nom);
 			
-			for(positionContact=0; positionContact<10; positionContact++) {
+			tableauPanel[i] = new JPanel(); 
+			tableauPanel[i].setLayout(new BoxLayout(tableauPanel[i], BoxLayout.Y_AXIS));
+			
+			for(positionContact=cpt; positionContact<intervalleContact; positionContact++) {
 				Contact c = MyDeserialization(paths[positionContact]); 
+				System.out.println(c.toString()+" "+positionContact);
 				btnContact = new BoutonContact(c, cl, cards); 
-				test.add(btnContact);
+				tableauPanel[i].add(btnContact);
+				cpt++;
 			}
 			
-			cardsListe.add(test, "Liste"+i); 
+			intervalleContact += 10;  
+			cardsListe.add(tableauPanel[i], nom); 
 		}
 		
 		if(nbContact%10 != 0) {
 			restContact = nbContact%10; 
 			
-			JPanel myPanel2 = new JPanel(); 
-			myPanel2.setLayout(new BoxLayout(myPanel2, BoxLayout.Y_AXIS));
+			JPanel myPanel = new JPanel();
+			myPanel.setLayout(new BoxLayout(myPanel,BoxLayout.Y_AXIS));
 			
 			for(int j=positionContact; j<positionContact+restContact; j++) {
 				Contact c = MyDeserialization(paths[j]); 
 				btnContact = new BoutonContact(c, cl, cards); 
-				myPanel2.add(btnContact);
+				myPanel.add(btnContact);
 			}
 			
-			cardsListe.add(myPanel2, "Liste"+(nbPageListe+1)); 
+			cardsListe.add(myPanel, "Liste"+(nbPageListe+1)); 
 			
 		}
 		

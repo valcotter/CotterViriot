@@ -40,7 +40,7 @@ public class BoutonDefilementListe extends JPanel {
 		public void mouseClicked(MouseEvent arg0) {
 
 			cl2.next(cardsListe);
-
+			//cl2.show(cardsListe, "Liste1");
 		}
 	}
 
@@ -49,6 +49,7 @@ public class BoutonDefilementListe extends JPanel {
 		public void mouseClicked(MouseEvent arg0) {
 
 			cl2.last(cardsListe);
+			//cl2.show(cardsListe, "Liste0");
 
 		}
 
