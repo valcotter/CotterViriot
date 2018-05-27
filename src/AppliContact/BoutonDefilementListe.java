@@ -34,7 +34,8 @@ public class BoutonDefilementListe extends JPanel {
 		this.add(btnNext);
 
 	}
-
+	
+	//S'arranger pour que le suivant et le précèdent marche correctement 
 	class DefilerRight extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
