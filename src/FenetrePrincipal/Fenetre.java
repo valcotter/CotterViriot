@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import AppliContact.AppliContact;
+import AppliGalerie.AppliGalerie;
 import Main.Test;
 
 /**************************************************
@@ -32,7 +33,6 @@ public class Fenetre extends JFrame
 {
 	//CrÃ©ation bouton
 	//Image de fond
-	//private AfficheImage imageFond = new AfficheImage();
 	private AfficheImage accueil = new AfficheImage();
     
 	//Boutons avec images en fond
@@ -49,15 +49,15 @@ public class Fenetre extends JFrame
     private ImageIcon close = new ImageIcon("power.png"); 
     private JLabel btnClose = new JLabel(close); 
     
-    //Panel "Définitif" -> Reste toujours sur l'écran 
+    //Panel "Dï¿½finitif" -> Reste toujours sur l'ï¿½cran 
     private JPanel_BordureNoire panelNord = new JPanel_BordureNoire(); 
     private JPanel_BordureNoire panelSud = new JPanel_BordureNoire(); 
     
     //Panel des applications  
     protected CardLayout cl = new CardLayout();
     protected JPanel cards = new JPanel(); //On a besoin de cards dans les listeners
-    private AppliContact contactApp = new AppliContact(); 
-    private JPanel galerieApp = new JPanel();
+    private AppliContact contactApp = new AppliContact();
+    private AppliGalerie galerieApp = new AppliGalerie(1);
 	
 	public Fenetre()
 	{
@@ -71,7 +71,7 @@ public class Fenetre extends JFrame
 		this.setBackground(Color.BLACK);									//Couleur de fond
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				//Ferme correctement la fenÃªtre
 		
-		//Panel définitif 
+		//Panel dï¿½finitif 
 		btnClose.addMouseListener(new changerSouris());
 		btnClose.addMouseListener(new fermerFenetre());
 		btnHome.addMouseListener(new changerSouris());
@@ -92,10 +92,6 @@ public class Fenetre extends JFrame
 		accueil.setOpaque(false);
 		accueil.add(appContact);
 		accueil.add(appGalerie);
-		
-		//Test 
-		//contactApp.setBackground(Color.PINK);
-		galerieApp.setBackground(Color.YELLOW);
 		
 		//Test CardLayout; 
 		cards.setLayout(cl);
@@ -159,6 +155,7 @@ public class Fenetre extends JFrame
 			dispose(); 
 		}
 	}
+	
 	
 }
 
