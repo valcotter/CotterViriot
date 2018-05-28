@@ -47,8 +47,6 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	//Partie bouton de contact 
 	private CardLayout cl2 = new CardLayout(); 
 	private JPanel cardsListe = new JPanel(); 
-	private JPanel myPanel = new JPanel(); 
-	//private BoutonSuivant btnNext = new BoutonSuivant(cl2,cardsListe); 
 	
 	private BoutonDefilementListe btnRightLeft = new BoutonDefilementListe(cl2, cardsListe);
 
@@ -89,25 +87,23 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		int nbContact = paths.length; 
 		cardsListe.setLayout(cl2);
 		int nbPageListe = nbContact/10; 
-		System.out.println("Nb page liste : "+nbPageListe);
 		int restContact;
 		int positionContact = 0;
 		int cpt = 0;
 		int intervalleContact = 10; 
 		JPanel[] tableauPanel = new JPanel[nbPageListe]; 
+		BoutonContact[] tabBtn = new BoutonContact[nbContact]; 
 		
 		for(int i=0; i<nbPageListe; i++) {
 			
 			String nom = "Liste"+i; 
-			System.out.println(nom);
 			
 			tableauPanel[i] = new JPanel(); 
 			tableauPanel[i].setLayout(new BoxLayout(tableauPanel[i], BoxLayout.Y_AXIS));
 			
 			for(positionContact=cpt; positionContact<intervalleContact; positionContact++) {
 				Contact c = MyDeserialization(paths[positionContact]); 
-				System.out.println(c.toString()+" "+positionContact);
-				btnContact = new BoutonContact(c, cl, cards); 
+				btnContact = new BoutonContact(c, cl, cards);
 				tableauPanel[i].add(btnContact);
 				cpt++;
 			}
@@ -124,7 +120,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 			
 			for(int j=positionContact; j<positionContact+restContact; j++) {
 				Contact c = MyDeserialization(paths[j]); 
-				btnContact = new BoutonContact(c, cl, cards); 
+				btnContact = new BoutonContact(c, cl, cards);
 				myPanel.add(btnContact);
 			}
 			

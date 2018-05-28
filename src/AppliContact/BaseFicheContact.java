@@ -67,13 +67,10 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		this.setLayout(new GridLayout(3, 1, 0, 20));
 		this.add(photo);
 		this.add(formulaire);
-		
-		// Listener
-		sauvegarder.addMouseListener(new SaveContact());
 		this.add(sauvegarder);
 	}
 	
-	private boolean verificationEntree() {
+	protected boolean verificationEntree() {
 		
 		if(nomT.getText().equals("") && prenomT.getText().equals("")) {
 			nomT.setText("Erreur - Aucune identité");
@@ -98,38 +95,5 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		
 		return true; 
 	}
-	
-	class SaveContact extends MouseAdapter
-	{	
-		@Override
-		public void mouseClicked(MouseEvent arg0)
-		{	
-			
-			boolean ok = verificationEntree(); 
-			
-			if(ok==true) {
-			
-				//Récupération contact en cours de création 
-				Contact tempo = new Contact(nomT.getText(), prenomT.getText(), 
-						numTelT.getText(), mailT.getText(), "contactDefaut.png"); 
-				
-				//Serialization 
-				MySerialization(tempo);
-				
-				ListeContact lc = new ListeContact(cl, cards);  
-				cards.add(lc, "Liste"); 
-				cl.show(cards, "Liste");
-				
-				//On vide le formulaire
-				nomT.setText("");
-				prenomT.setText("");
-				numTelT.setText(""); 
-				mailT.setText("");
-				
-			}
-		}
-	}
-	
-	
 
 }

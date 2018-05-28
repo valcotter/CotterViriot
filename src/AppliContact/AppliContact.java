@@ -1,8 +1,11 @@
 /**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 16 mai 2018
+* AppliContact est la classe principal de l'application contact. Elle contient les panels 
+* principaux.
+* 
+* 
+* 
+* @author Audrey Viriot
+* @author Valentine Cotter
 */
 
 package AppliContact;
@@ -20,8 +23,6 @@ public class AppliContact extends JPanel{
 	
 	//Les différents panels
 	private ListeContact liste = new ListeContact (cl, cards); 
-	//private FicheInfoContact detailContactBase = new FicheInfoContact(cl, cards); 
-
 	private PanelConstructDefaut formNewContact = new FormulaireCreation(cl, cards); 
 	
 	public AppliContact() {
@@ -29,7 +30,6 @@ public class AppliContact extends JPanel{
 		cards.setLayout(cl);
 		cards.add(liste, "Liste"); 
 		cards.add(formNewContact, "NouveauContact");
-		
 		this.add(cards);
 	
 	}

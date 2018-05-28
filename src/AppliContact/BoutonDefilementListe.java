@@ -35,16 +35,16 @@ public class BoutonDefilementListe extends JPanel {
 
 	}
 	
-	//S'arranger pour que le suivant et le précèdent marche correctement 
 	class DefilerRight extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 
 			cl2.next(cardsListe);
-			//cl2.show(cardsListe, "Liste1");
+			
 		}
 	}
 
+	//Ne défile pas correctement vers la gauche, à voir si temps 
 	class DefilerLeft extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {

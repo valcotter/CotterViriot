@@ -28,16 +28,6 @@ public class Contact implements Serializable {
 		this.pathPhoto = pathPhoto; 
 	}
 
-	public int getIdContact() {
-		return idContact;
-	}
-
-
-	public void setIdContact(int idContact) {
-		this.idContact = idContact;
-	}
-
-
 	public String getMail() {
 		return mail;
 	}

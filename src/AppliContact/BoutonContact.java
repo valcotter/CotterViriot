@@ -20,7 +20,6 @@ import javax.swing.JPanel;
 public class BoutonContact extends JButton{
 
 	private String nomBouton; 
-	private int idBouton; 
 	private Contact c; 
 	
 	private CardLayout cl; 
@@ -34,7 +33,6 @@ public class BoutonContact extends JButton{
 	public BoutonContact(Contact c, CardLayout cl, JPanel cards) {
 		this.c = c; 
 		this.nomBouton = c.toString(); 
-		this.idBouton = c.getIdContact();
 		this.cl = cl; 
 		this.cards = cards; 
 		
@@ -48,6 +46,10 @@ public class BoutonContact extends JButton{
 	
 	public Contact getC() {
 		return c;
+	}
+	
+	public void setC(Contact c) {
+		this.c = c;
 	}
 
 	class OuvrirDetailContact extends MouseAdapter {
