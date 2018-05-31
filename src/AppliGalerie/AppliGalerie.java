@@ -22,6 +22,7 @@ public class AppliGalerie extends JPanel
 	public JLabel labelTitre;
 	
 	
+	
 	public AppliGalerie()
 	{
 		labelTitre = new JLabel("Galerie");						//Création du PanelTitre
