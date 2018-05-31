@@ -1,171 +1,89 @@
 package AppliGalerie;
 
-import java.awt.CardLayout;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.Vector;
 
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
-public class AppliGalerie extends PanelDefault
+public class AppliGalerie extends JPanel
 {
-	//Stocker le nbre de photos
-	private int nbrePhotos;
-	private File folder = new File("./ImagesGalerie/");
-	private int index;
-
-	//Boutons next + previous
-	private JButton next = new JButton(new ImageIcon("next.png"));
-	private JButton previous = new JButton(new ImageIcon("previous.png"));
+	public JLabel labelTitre;
 	
-	//Création panel galerie
-	private JPanel galerie = new JPanel();
-	
-	private ArrayList<JButton> listePhoto = new ArrayList<JButton>();
-	
-	private int noPage;
-	private int nbrePage;
-	
-	//Constructeur AppliGalerie
-	
-	public AppliGalerie(int noPage)
+	public AppliGalerie()
 	{
-		this.noPage = noPage;
-		add(galerie);
-		galerie.setLayout(null);
-		galerie.setBounds(40, 40, 350, 550);
-		
-		//Compte le nbre de photos qui se trouve dans la galerie
-		File[] list = folder.listFiles();
-		nbrePhotos = list.length;
-		
-		//Ajout listeneurs
-		Listeneurs listeneur = new Listeneurs();
-		getBoutonHome().addActionListener(listeneur);
-		getBoutonOff().addActionListener(listeneur);
-		
-		//nbre de page (9 photos maximum par page)
-		nbrePage = nbrePhotos / 9;
-		
-		//On ajoute le bouton suivant si les pages sont complètes
-		if(nbrePage * 9 != nbrePhotos)
-		{
-			if(noPage < nbrePage + 1)
-			{
-				add(next);
-				next.setContentAreaFilled(false);
-				next.setBorder(null);
-				next.addActionListener(listeneur);
-				next.setBounds(300, 590, 70, 40);
-			}
-			
-			if(noPage != 1)
-			{
-				add(previous);
-				previous.setContentAreaFilled(false);
-				previous.setBorder(null);
-				previous.addActionListener(listeneur);
-				previous.setBounds(30, 590, 70, 40);
-			}
-		}
-		
-		//Positionne les photos dans la grille
-		int x = (noPage - 1) * 9;
-		int y = 0;
-		
-		for(int j = 0; j< 5 ;j++)
-		{
-			  for (int i = 0; i < 3; i++) 
-			  {
-				  if(x < nbrePhotos)
-				  {
-					  JButton pic = new JButton(new ImageIcon(new ImageIcon(list[x].getPath()).getImage().getScaledInstance(-1, 110, Image.SCALE_FAST)));
-					  pic.setPreferredSize(new Dimension(150 ,150));
-					  pic.setOpaque(false);
-					  pic.setContentAreaFilled(false);
-					  pic.setBorderPainted(false);
-					  listePhoto.add(pic);
-					  listePhoto.get(y).setBounds(5+i*105, 5+j*105, 100, 100);
-					  Listeneur listeneur_photo = new Listeneur(list, x, nbrePhotos, noPage);
-					  listePhoto.get(y).addActionListener(listeneur_photo);
-					  galerie.add(listePhoto.get(y));
-					  x++;
-					  y++;
-				  }
-			  }
-		}
-	}
-	
-	public class Listeneurs implements ActionListener
-	{
-
-		@Override
-		public void actionPerformed(ActionEvent e) 
-		{
-			if(e.getSource() == next)
-			{
-				AppliGalerie galerie = new AppliGalerie(noPage + 1);
-				galerie.setVisible(true);
-				dispose();
-			}
-			
-			if(e.getSource() == previous)
-			{
-				AppliGalerie galerie = new AppliGalerie(noPage - 1);
-				galerie.setVisible(true);
-				dispose();
-
-			}
-			
-			if(e.getSource() == getBoutonHome())
-			{
-				//instantiation nouvelle fenêtre
-				PanelDefault fenetrePrincipal = new PanelDefault();
-				fenetrePrincipal.setVisible(true);
-				
-				dispose();	//Ferme fenêtre
-			}
-			
-			if (e.getSource()==getBoutonOff())	//Eteinds téléphone
-			{
-				dispose();	//Ferme fenêtre
-			}
-			
-			
-		}
-		
-	}
-	
-	public class Listeneur implements ActionListener
-	{
-		File[] list;
-		int x;
-		int nbrePhotos;
-		
-		public Listeneur(File[] list, int x, int nbrePhotos, int noPage)
-		{
-			this.list = list;
-			this.x = x;
-			this.nbrePhotos = nbrePhotos;
-		}
-		
-		@Override
-		public void actionPerformed(ActionEvent e) 
-		{
-			Defilements defilement = new Defilements(list, x, nbrePhotos, noPage);
-			defilement.setVisible(true);
-			dispose();
-		}
-		
+		labelTitre = new JLabel("Galerie");						//Création du PanelTitre
+		this.setLayout(new BorderLayout());							//Création BorderLayout
+		this.add(labelTitre, BorderLayout.NORTH);					//Placement du titre au nord
+		Font policeNormal = new Font("Arial", 45, 45);
+		labelTitre.setFont(policeNormal);
+		labelTitre.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+		this.add(new GrilleCentre(), BorderLayout.CENTER);
 	}
 	
 	
-	
-	
+}
 
+class GrilleCentre extends JPanel
+{
+	Vector <String> url = new Vector();		//Tableau dynamique
+	
+	public GrilleCentre()
+	{
+		this.setLayout(new GridLayout(3,3));
+		
+		//Remplissage tableau défaut
+		for(int i = 0; i < 9; i++)
+		{
+			url.add("ImagesGalerie/" + (i+1) + ".jpg"); 	
+		}
+		
+		//Ajoute tableau au gridLayout
+		for(int i = 0; i != url.size(); i++)
+		{
+			this.add(new ImageBouton("ImagesGalerie/" + (i+1) + ".jpg"));
+		}
+		
+		for(int i = 0; i != url.size(); i++)
+		{
+			System.out.println(url.elementAt(i));
+		}
+	}
+}
+
+class ImageBouton extends JButton
+{
+	String url="ImagesGalerie/7.jpg";
+	Border bordureVide = BorderFactory.createEmptyBorder();
+	
+	public ImageBouton(String url)		//paramètre
+	{
+		this.url = url;
+		this.setPreferredSize(new Dimension(70,70));
+		this.setBorder(bordureVide);
+		
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		try 
+	    {
+	      Image img = ImageIO.read(new File(this.url));
+	      g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+	    } catch (IOException e) 
+		{
+	     System.out.println("ERROR");
+	    }                
+	}
 }

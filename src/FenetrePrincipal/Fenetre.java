@@ -39,15 +39,19 @@ public class Fenetre extends JFrame
     //Application contact
     private ImageIcon contact = new ImageIcon("contacts.png");
     private JLabel appContact = new JLabel(contact);
+    
     //Application Galerie
     private ImageIcon galerie = new ImageIcon("gallery.png");
     private JLabel appGalerie = new JLabel(galerie);
+    
     //Bouton home 
     private ImageIcon home = new ImageIcon("menu.png");
     private JLabel btnHome = new JLabel(home);
+    
     //Bouton eteindre 
     private ImageIcon close = new ImageIcon("power.png"); 
-    private JLabel btnClose = new JLabel(close); 
+    private JLabel btnClose = new JLabel(close);
+    
     
     //Panel "D�finitif" -> Reste toujours sur l'�cran 
     private JPanel_BordureNoire panelNord = new JPanel_BordureNoire(); 
@@ -57,7 +61,7 @@ public class Fenetre extends JFrame
     protected CardLayout cl = new CardLayout();
     protected JPanel cards = new JPanel(); //On a besoin de cards dans les listeners
     private AppliContact contactApp = new AppliContact();
-    private AppliGalerie galerieApp = new AppliGalerie(1);
+    private AppliGalerie galerieApp = new AppliGalerie();
 	
 	public Fenetre()
 	{
@@ -66,12 +70,12 @@ public class Fenetre extends JFrame
 		this.setLocationRelativeTo(null);									//Centre la fenetre sur l'écran
 		this.setResizable(false);											//Empêche le redimensionnement de la fenêtre
 		this.setUndecorated(true);											//Enlever les bordures
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout());									//Création borderLayout
 		this.setShape(new RoundRectangle2D.Double(0,0,400,726,100,100));	//Bordure ronde
 		this.setBackground(Color.BLACK);									//Couleur de fond
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				//Ferme correctement la fenêtre
 		
-		//Panel d�finitif 
+		//Panel définitif 
 		btnClose.addMouseListener(new changerSouris());
 		btnClose.addMouseListener(new fermerFenetre());
 		btnHome.addMouseListener(new changerSouris());
