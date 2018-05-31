@@ -102,7 +102,7 @@ public class Fenetre extends JFrame
 		appMemory.addMouseListener(new ouvrirMemory());
 		
 		//Panel d'accueil
-		accueil.setLayout(new FlowLayout(10, 25, 25));
+		accueil.setLayout(new GridLayout(1, 3));
 		accueil.setOpaque(false);
 		accueil.add(appContact);
 		accueil.add(appGalerie);
