@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -17,6 +18,7 @@ import javax.swing.JPanel;
 
 import AppliContact.AppliContact;
 import AppliGalerie.AppliGalerie;
+import AppliMemory.AppMemory;
 import Main.Test;
 
 /**************************************************
@@ -45,6 +47,10 @@ public class Fenetre extends JFrame
     private ImageIcon galerie = new ImageIcon("gallery.png");
     private JLabel appGalerie = new JLabel(galerie);
     
+    //Application jeux 
+    private ImageIcon memory = new ImageIcon("memory.png"); 
+    private JLabel appMemory = new JLabel(memory); 
+    
     //Bouton home 
     private ImageIcon home = new ImageIcon("menu.png");
     private JLabel btnHome = new JLabel(home);
@@ -63,6 +69,7 @@ public class Fenetre extends JFrame
     protected JPanel cards = new JPanel(); //On a besoin de cards dans les listeners
     private AppliContact contactApp = new AppliContact();
     private AppliGalerie galerieApp = new AppliGalerie();
+    private AppMemory memoryApp = new AppMemory(); 
 	
 	public Fenetre()
 	{
@@ -91,18 +98,22 @@ public class Fenetre extends JFrame
 		appContact.addMouseListener(new ouvrirContact());
 		appGalerie.addMouseListener(new changerSouris());
 		appGalerie.addMouseListener(new ouvrirGalerie());
+		appMemory.addMouseListener(new changerSouris());
+		appMemory.addMouseListener(new ouvrirMemory());
 		
 		//Panel d'accueil
-		accueil.setLayout(new FlowLayout(10,25,25));
+		accueil.setLayout(new FlowLayout(10, 25, 25));
 		accueil.setOpaque(false);
 		accueil.add(appContact);
 		accueil.add(appGalerie);
+		accueil.add(appMemory); 
 		
 		//Test CardLayout; 
 		cards.setLayout(cl);
 		cards.add(accueil, "Accueil");
 		cards.add(contactApp, "Contact");
 		cards.add(galerieApp, "Galerie");
+		cards.add(memoryApp, "Memory");
 		this.add(cards, BorderLayout.CENTER); 
 		
 		//this.setContentPane(cards);
@@ -140,6 +151,15 @@ public class Fenetre extends JFrame
 		public void mouseClicked(MouseEvent arg0)
 		{
 			cl.show(cards, "Galerie");
+		}
+	}
+	
+	public class ouvrirMemory extends MouseAdapter
+	{
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{
+			cl.show(cards, "Memory");
 		}
 	}
 	
