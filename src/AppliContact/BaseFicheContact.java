@@ -12,6 +12,8 @@ import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -51,9 +53,10 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		photo.setLayout(bl);
 		photo.add(barreSup, BorderLayout.NORTH);
 		photo.add(phtContact, BorderLayout.CENTER);
+		
 
 		// Partie formulaire
-		formulaire.setLayout(new GridLayout(4, 2, -40, 0));
+		formulaire.setLayout(new GridLayout(4, 2, -90, 0));
 		formulaire.add(nomL);
 		formulaire.add(nomT);
 		formulaire.add(prenomL);
@@ -64,7 +67,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		formulaire.add(mailT);
 
 		// Tous le panel
-		this.setLayout(new GridLayout(3, 1, 0, 20));
+		this.setLayout(new GridLayout(3, 1, 0, 0));
 		this.add(photo);
 		this.add(formulaire);
 		this.add(sauvegarder);

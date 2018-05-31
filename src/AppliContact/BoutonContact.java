@@ -39,7 +39,7 @@ public class BoutonContact extends JButton{
 		this.setFont(policeNormal);
 		this.setBackground(Color.WHITE);
 		this.setText(nomBouton);
-		this.setSize(370, 40);
+		this.setSize(405, 40);
 		this.setMaximumSize(this.getSize());
 		this.addMouseListener(new OuvrirDetailContact());
 	}

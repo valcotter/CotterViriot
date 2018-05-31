@@ -25,7 +25,7 @@ public class BoutonDefilementListe extends JPanel {
 	public BoutonDefilementListe(CardLayout cl2, JPanel cardsList) {
 
 		btnPrecede.addMouseListener(new DefilerRight());
-		btnNext.addMouseListener(new DefilerRight());
+		btnNext.addMouseListener(new DefilerLeft());
 
 		this.cl2 = cl2;
 		this.cardsListe = cardsList;

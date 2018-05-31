@@ -53,7 +53,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	public ListeContact(CardLayout cl, JPanel cards) {
 		super(cl, cards); 
 		
-		panelNord.setLayout(new GridLayout(2, 1));
+		panelNord.setLayout(new GridLayout(3, 1));
 		
 		//Bouton ajout contact 
 		addContact.addMouseListener(new NouveauContact());
@@ -69,18 +69,17 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		//Panel nord 
 		panelNord.add(titre); 
 		panelNord.add(addContact); 
+		panelNord.add(btnRightLeft); 
 		
 		majListe();
 		
 		//Ajout panel général 
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.add(panelNord); 
-		this.add(btnRightLeft);
-		this.add(cardsListe);
+		this.setLayout(new BorderLayout());
+		this.add(panelNord, BorderLayout.NORTH); 
+		this.add(cardsListe, BorderLayout.CENTER);
 	
 	}
 	
-	//Problème, ne marche que pour 2 panels de 10. Nombre de contact maximum = 20 /!\
 	public void majListe() {
 		
 		paths = f.list(); 
@@ -91,8 +90,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		int positionContact = 0;
 		int cpt = 0;
 		int intervalleContact = 10; 
-		JPanel[] tableauPanel = new JPanel[nbPageListe]; 
-		BoutonContact[] tabBtn = new BoutonContact[nbContact]; 
+		JPanel[] tableauPanel = new JPanel[nbPageListe];  
 		
 		for(int i=0; i<nbPageListe; i++) {
 			
@@ -113,6 +111,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		}
 		
 		if(nbContact%10 != 0) {
+			
 			restContact = nbContact%10; 
 			
 			JPanel myPanel = new JPanel();
