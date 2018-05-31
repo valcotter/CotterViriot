@@ -55,6 +55,7 @@ class GrilleCentre extends JPanel
 			this.add(new ImageBouton("ImagesGalerie/" + (i+1) + ".jpg"));
 		}
 		
+		
 	}
 }
 
