@@ -21,8 +21,6 @@ public class AppliGalerie extends JPanel
 {
 	public JLabel labelTitre;
 	
-	
-	
 	public AppliGalerie()
 	{
 		labelTitre = new JLabel("Galerie");						//Création du PanelTitre
@@ -55,11 +53,6 @@ class GrilleCentre extends JPanel
 		for(int i = 0; i != url.size(); i++)
 		{
 			this.add(new ImageBouton("ImagesGalerie/" + (i+1) + ".jpg"));
-		}
-		
-		for(int i = 0; i != url.size(); i++)
-		{
-			System.out.println(url.elementAt(i));
 		}
 	}
 }
