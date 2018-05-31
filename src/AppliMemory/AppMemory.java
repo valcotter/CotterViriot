@@ -7,21 +7,28 @@
 
 package AppliMemory;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JLabel;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
-import javafx.scene.text.Font;
 
 public class AppMemory extends JPanel {
-
-	//JLabel titre 
-	private JLabel titre = new JLabel("Memory"); 
+	
+	//CardLyout 
+	private CardLayout clMemo = new CardLayout(); 
+	private JPanel cardMemo = new JPanel(); 
+	
+	//JPanel composant l'application 
+	private EspaceJeu plateauJeu = new EspaceJeu(clMemo, cardMemo); 
+	private MenuJeu menu = new MenuJeu(clMemo, cardMemo); 
 	
 	public AppMemory() {
 		
-		//Titre 
-		this.add(titre, BorderLayout.NORTH);
+		cardMemo.setLayout(clMemo);
+		//Les différents panel du memory 
+		cardMemo.add(menu, "Menu"); 
+		cardMemo.add(plateauJeu, "Jeu"); 
+		
+		this.add(cardMemo);
+		
 	}
 	
 }
