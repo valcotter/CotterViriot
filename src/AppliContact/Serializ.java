@@ -1,10 +1,3 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 24 mai 2018
-*/
-
 package AppliContact;
 
 import java.io.File;
@@ -14,8 +7,18 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter 
+ */
 public interface Serializ {
 	
+	/**
+	 * Cette méthode sérialize un contact 
+	 * 
+	 * @param c, contact à serializé 
+	 */
 	public default void MySerialization(Contact c) {
 		
 		String path = "SerializationContact/contact"+c.getPrenom()+c.getNom()+c.getNumTelephone()+".serial"; 
@@ -44,6 +47,12 @@ public interface Serializ {
 		}
 	}
 	
+	/**
+	 * Cette méthode déserialize un contact
+	 * 
+	 * @param path, chemin du fichier ou est serializé le contact 
+	 * @return le contact déserializé 
+	 */
 	public default Contact MyDeserialization(String path) {
 		
 		String pathComplet = "SerializationContact/"+path; 

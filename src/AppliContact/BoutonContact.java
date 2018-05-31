@@ -1,10 +1,3 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 25 mai 2018
-*/
-
 package AppliContact;
 
 import java.awt.CardLayout;
@@ -12,11 +5,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * BoutonContact est une classe qui permet de créer les boutons dans la liste de 
+ * contact. 
+ * 
+ * @author Audrey Viriot
+ * @author Valentine Cotter 
+ */
 public class BoutonContact extends JButton{
 
 	private String nomBouton; 
@@ -30,6 +28,12 @@ public class BoutonContact extends JButton{
 	//Police
 	private Font policeNormal = new Font("Arial", 25, 25); 
 	
+	/**
+	 * 
+	 * @param c, contact associé au bouton 
+	 * @param cl, le layout du panel de toute l'application contact 
+	 * @param cards, les panels contenu dans le layout 
+	 */
 	public BoutonContact(Contact c, CardLayout cl, JPanel cards) {
 		this.c = c; 
 		this.nomBouton = c.toString(); 
@@ -44,14 +48,12 @@ public class BoutonContact extends JButton{
 		this.addMouseListener(new OuvrirDetailContact());
 	}
 	
-	public Contact getC() {
-		return c;
-	}
-	
-	public void setC(Contact c) {
-		this.c = c;
-	}
-
+	/**
+	 * Cette classe permet d'ouvrir la fiche associé au contact sur la liste de contact. 
+	 * 
+	 * @author Audrey Viriot 
+	 * @author Valentine Cotter 
+	 */
 	class OuvrirDetailContact extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {

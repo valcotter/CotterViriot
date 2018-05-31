@@ -1,26 +1,29 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 24 mai 2018
-*/
-
 package AppliContact;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
 import javax.swing.JPanel;
 
+/**
+ * Cette classe réprésente la fiche contenant toute les informations de contcat 
+ * 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter 
+ */
 public class FicheInfoContact extends BaseFicheContact {
 
 	private Contact contact;
-	private String path = "SerializationContact";
 
+	/**
+	 * 
+	 * @param c, contact associé à la fiche 
+	 * @param cl, le layout du panel de toute l'application contact 
+	 * @param cards, les panels contenu dans le layout 
+	 */
 	public FicheInfoContact(CardLayout cl, JPanel cards, Contact c) {
 		super(cl, cards);
 		this.contact = c;
@@ -52,15 +55,24 @@ public class FicheInfoContact extends BaseFicheContact {
 		sauvegarder.addMouseListener(new SaveContactModif());
 
 	}
-
-	public void SupprimerContactF() {
+	
+	/**
+	 * Cette méthode supprime le contact dans le dossier des fichier serializé 
+	 */
+	private void SupprimerContactF() {
 
 		File f = new File("SerializationContact/contact" + contact.getPrenom() + contact.getNom()
 				+ contact.getNumTelephone() + ".serial");
 		f.delete();
 
 	}
-
+	
+	/**
+	 * Active la modification des JTextFields lors du clic sur le bouton 
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	class ActiverModif extends MouseAdapter {
 
 		@Override
@@ -75,7 +87,13 @@ public class FicheInfoContact extends BaseFicheContact {
 
 		}
 	}
-
+	
+	/**
+	 * Supprime le contact au clic sur le bouton 
+	 * 
+	 * @author Audrey Viriot 
+	 * @author Valentine Cotter 
+	 */
 	class SupprimerContact extends MouseAdapter {
 
 		@Override
@@ -91,7 +109,15 @@ public class FicheInfoContact extends BaseFicheContact {
 
 		}
 	}
-
+	
+	/**
+	 * Lorsqu'on sauvegarde un contact modifié on vérifie les entrées, 
+	 * on modifie les paramètres du contact, on sérialize le contact, on empêche de modifier 
+	 * les JTextField, on met à jour la liste. 
+	 * 
+	 * @author Audrey Viriot 
+	 * @author Valentine Cotter
+	 */
 	class SaveContactModif extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {

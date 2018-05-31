@@ -1,10 +1,3 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 24 mai 2018
-*/
-
 package AppliContact;
 
 import java.awt.BorderLayout;
@@ -22,6 +15,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * ListeContact est le panel qui contient la liste de contact; 
+ * 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter 
+ */
 public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
 	//Accès contact serializé 
@@ -49,7 +48,12 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	private JPanel cardsListe = new JPanel(); 
 	
 	private BoutonDefilementListe btnRightLeft = new BoutonDefilementListe(cl2, cardsListe);
-
+	
+	/**
+	 * 
+	 * @param cl, le layout du panel de toute l'application contact 
+	 * @param cards, les panels contenu dans le layout 
+	 */
 	public ListeContact(CardLayout cl, JPanel cards) {
 		super(cl, cards); 
 		
@@ -80,6 +84,9 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
 	}
 	
+	/**
+	 * Cette méthode met à jour la liste. Elle crée un nouveau panel tous les 10 contacts. 
+	 */
 	public void majListe() {
 		
 		paths = f.list(); 
@@ -129,10 +136,13 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		
 	}
 	
-	public BoutonContact getBtnContact() {
-		return btnContact;
-	}
-
+	/**
+	 * 
+	 * Pemet d'afficher le formulaire de création lors du clic sur le bouton 
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	class NouveauContact extends MouseAdapter {
 		
 		@Override

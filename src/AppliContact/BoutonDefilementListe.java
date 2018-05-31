@@ -1,19 +1,17 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 26 mai 2018
-*/
-
 package AppliContact;
 
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.JPanel;
+
+/**
+ * Cette classe contient les 2 boutons permettant de défiler sur la liste. 
+ * 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter 
+ */
 
 public class BoutonDefilementListe extends JPanel {
 
@@ -22,6 +20,11 @@ public class BoutonDefilementListe extends JPanel {
 	private CardLayout cl2;
 	private JPanel cardsListe;
 
+	/**
+	 * 
+	 * @param cl2, CardLayout de la liste contact 
+	 * @param cardsList, toute les pages de liste de contact 
+	 */
 	public BoutonDefilementListe(CardLayout cl2, JPanel cardsList) {
 
 		btnPrecede.addMouseListener(new DefilerRight());
@@ -35,6 +38,12 @@ public class BoutonDefilementListe extends JPanel {
 
 	}
 	
+	/**
+	 * Affiche la liste de contact suivante au clic sur le bouton 
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	class DefilerRight extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
@@ -44,13 +53,18 @@ public class BoutonDefilementListe extends JPanel {
 		}
 	}
 
-	//Ne défile pas correctement vers la gauche, à voir si temps 
+	/**
+	 * Affiche le liste de contact précèdente au clic sur le bouton 
+	 * (ne fonctionne pas) 
+	 * 
+	 * @author Audrey Viriot 
+	 * @author Valentine Cotter 
+	 */
 	class DefilerLeft extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 
 			cl2.last(cardsListe);
-			//cl2.show(cardsListe, "Liste0");
 
 		}
 

@@ -1,21 +1,20 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 24 mai 2018
-*/
-
 package AppliContact;
 
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * BarrreSuperieur représente le panel contenant les fonctionnalités "précèdent",
+ * "modifier" et "supprimer"
+ * 
+ * @author Audrey Viriot
+ * @author Valentine Cotter
+ */
 public class BarreSuperieur extends PanelConstructDefaut{
 	
 	//Icone 
@@ -25,7 +24,12 @@ public class BarreSuperieur extends PanelConstructDefaut{
 	private JLabel modifier = new JLabel(edit);
 	private ImageIcon poubelle = new ImageIcon("poubelle.png");
 	private JLabel supprimer = new JLabel(poubelle);
-
+	
+	/**
+	 * 
+	 * @param cl, le layout du panel de toute l'application contact 
+	 * @param cards, les panels contenu dans le layout 
+	 */
 	public BarreSuperieur(CardLayout cl, JPanel cards) {
 		super(cl, cards); 
 
@@ -50,7 +54,13 @@ public class BarreSuperieur extends PanelConstructDefaut{
 	public JLabel getSupprimer() {
 		return supprimer;
 	}
-
+	
+	/**
+	 * Cette classe contient le listener qui permet de retourner à la liste de contact 
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter
+	 */
 	class RetourListeContat extends MouseAdapter
 	{
 		@Override

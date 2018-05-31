@@ -1,25 +1,20 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 24 mai 2018
-*/
-
 package AppliContact;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+/**
+ * Cette classe définit  l'esthétique et les comportements communs du formulaire de création
+ * de contact ainsi que les fiches de chaque contact; 
+ * 
+ * @author Audrey Viriot
+ * @author Valentine Cotter
+ */
 public abstract class BaseFicheContact extends PanelConstructDefaut implements Serializ{
 
 	// Les différents panels
@@ -46,6 +41,11 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	protected ImageIcon save = new ImageIcon("save.png");
 	protected JLabel sauvegarder = new JLabel(save);
 
+	/**
+	 * 
+	 * @param cl, le layout du panel de toute l'application contact 
+	 * @param cards, les panels contenu dans le layout 
+	 */
 	public BaseFicheContact(CardLayout cl, JPanel cards) {
 		super(cl, cards);
 
@@ -54,7 +54,6 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		photo.add(barreSup, BorderLayout.NORTH);
 		photo.add(phtContact, BorderLayout.CENTER);
 		
-
 		// Partie formulaire
 		formulaire.setLayout(new GridLayout(4, 2, -90, 0));
 		formulaire.add(nomL);
@@ -73,6 +72,12 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		this.add(sauvegarder);
 	}
 	
+	/**
+	 * Cette méthode permet de vérifier si les entrées de l'utilisateur sont bonnes dans le 
+	 * formulaire contact.
+	 * 
+	 * @return true si les infos sont correct, sinon false. 
+	 */
 	protected boolean verificationEntree() {
 		
 		if(nomT.getText().equals("") && prenomT.getText().equals("")) {

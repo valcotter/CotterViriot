@@ -1,24 +1,29 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 24 mai 2018
-*/
-
 package AppliContact;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
+/**
+ * Classe permettant la création d'un objet contact 
+ * 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter  
+ */
 public class Contact implements Serializable {
 	
-	private int idContact; 
 	private String nom; 
 	private String prenom; 
 	private String numTelephone; 
 	private String mail; 
 	private String pathPhoto; 
 	
+	/**
+	 * 
+	 * @param nom, nom du contact 
+	 * @param prenom, prenom du contact 
+	 * @param numTelephone, numéro de téléphone du contact 
+	 * @param mail, mail du contact 
+	 * @param pathPhoto, l'emplacement de la photo du contact 
+	 */
 	public Contact(String nom, String prenom, String numTelephone, String mail,
 			String pathPhoto) {
 		this.nom = nom; 
