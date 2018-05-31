@@ -32,6 +32,7 @@ import Main.Test;
 public class Fenetre extends JFrame
 {
 	//Création bouton
+	
 	//Image de fond
 	private AfficheImage accueil = new AfficheImage();
     
