@@ -33,66 +33,32 @@ public class EspaceJeu extends JPanel {
 		//Barre superieur 
 		this.add(btnPause, BorderLayout.NORTH);
 		
-		//Plateau 
+		//Plateau - Remplissage du gridlayout 
 		plateau.setLayout(new GridLayout(6, 5));
-		int cptTest = 0; 
-		for(int i = 0; i<6; i++) {
-			for(int j=0; j<5; j++) {
-				attributionPaysCarte();
-				plateau.add(tabCarte[cptTest]); 
-				if(cptTest==14) {
-					cptTest = 0; 
-				}
-			}
+		attributionPaysCarte();
+		for(int i=0; i<tabCarte.length; i++) {
+			plateau.add(tabCarte[i]);
 		}
-		
 		this.add(plateau, BorderLayout.CENTER);
 		
 	}
 	
-	public void attributionPaysCarte() {
+	public Carte[] attributionPaysCarte() {
 		
 		//Le fichier ou se trouve les img
 		File pays = new File("ImageMemory/Pays"); 
+		
 		//Les tableaux 
 		String[] tabPays = pays.list(); 
-
+		//int[] tabNombre = initTabAlea(); 
+		
 		for(int i=0; i<tabCarte.length; i++) {
-			
-			//On tire un nb aleatoire entre 0 et 14
-			int nbAlea = tirageAlea(); 
-			
 			//On attribue une image à la carte 
-			ImageIcon paysChoisi = new ImageIcon(tabPays[nbAlea]); 
-			tabCarte[i] = new Carte(paysChoisi); 
-			
+			ImageIcon paysChoisi = new ImageIcon("ImageMemory/Pays/"+tabPays[i]); 
+			tabCarte[i] = new Carte(paysChoisi, new Carte(paysChoisi, tabCarte[i])); 
 		}
-	}
-	
-	public int tirageAlea() { 
 		
-		//On rempli un tableau de int de 0 à 14
-		int[] tabNb = new int[15]; 
-		for(int i = 0; i<tabNb.length; i++) {
-			tabNb[i] = i; 
-		}
-		int nbAlea;
-		int nbSauver = 21; //Valeur pour initialiser, ne peut pas être 0 
-		
-		do {
-			
-			//On tire un nb au hasard 
-			nbAlea = (int)(Math.random()*14);
-			
-			//On voit si on l'a déjà choisi, si non on le récup et on le remplace par 20
-			if(tabNb[nbAlea]!=20) {
-				nbSauver = nbAlea; 
-				tabNb[nbAlea] = 20; 
-			}
-			
-		}while(tabNb[nbAlea]!=20); //20 car on est entre 0 et 14
-		
-		return nbSauver; 
+		return tabCarte; 
 	}
 	
 }
