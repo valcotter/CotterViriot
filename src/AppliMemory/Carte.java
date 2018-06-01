@@ -21,9 +21,9 @@ public class Carte extends JButton{
 	private Carte paire; 
 	private ImageIcon couverture = new ImageIcon("ImageMemory/japan.png");
 	
-	public Carte(ImageIcon pays, Carte paire) {
+	public Carte(ImageIcon pays) {
 		this.pays = pays;  
-		this.paire = paire; 
+		//this.paire = paire; 
 		
 		this.setSize(couverture.getIconWidth(), couverture.getIconWidth());
 		this.setPreferredSize(this.getSize());
@@ -34,6 +34,11 @@ public class Carte extends JButton{
 	private void changerCouleurCarte() {
 		this.setIcon(pays);
 		
+	}
+	
+	public String toString() {
+		String s = pays.toString(); 
+		return s; 
 	}
 
 	class RetournerCarte extends MouseAdapter {

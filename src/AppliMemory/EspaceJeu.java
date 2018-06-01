@@ -22,7 +22,7 @@ public class EspaceJeu extends JPanel {
 	private JPanel plateau = new JPanel(); 
 	
 	//Tableau de carte 
-	Carte[] tabCarte = new Carte[15]; 
+	Carte[] tabCarte = new Carte[30]; 
 	
 	public EspaceJeu(CardLayout clMemo, JPanel cardMemo) {
 		this.clMemo = clMemo; 
@@ -35,14 +35,19 @@ public class EspaceJeu extends JPanel {
 		
 		//Plateau - Remplissage du gridlayout 
 		plateau.setLayout(new GridLayout(6, 5));
+		
 		attributionPaysCarte();
+		MelangerCarte();
+		
 		for(int i=0; i<tabCarte.length; i++) {
 			plateau.add(tabCarte[i]);
 		}
+		
 		this.add(plateau, BorderLayout.CENTER);
 		
 	}
 	
+	//Crée les cartes en leurs associant un pays. 
 	public Carte[] attributionPaysCarte() {
 		
 		//Le fichier ou se trouve les img
@@ -51,14 +56,33 @@ public class EspaceJeu extends JPanel {
 		//Les tableaux 
 		String[] tabPays = pays.list(); 
 		//int[] tabNombre = initTabAlea(); 
+		int cpt = 0;
 		
-		for(int i=0; i<tabCarte.length; i++) {
+		for(int i=0; i<30; i=i+2) {
 			//On attribue une image à la carte 
-			ImageIcon paysChoisi = new ImageIcon("ImageMemory/Pays/"+tabPays[i]); 
-			tabCarte[i] = new Carte(paysChoisi, new Carte(paysChoisi, tabCarte[i])); 
+			ImageIcon paysChoisi = new ImageIcon("ImageMemory/Pays/"+tabPays[cpt]); 
+			tabCarte[i] = new Carte(paysChoisi); 
+			tabCarte[i+1] = new Carte(paysChoisi);
+			cpt++; 
 		}
 		
 		return tabCarte; 
+	}
+	
+	public void MelangerCarte() {
+		
+		int nb1; 
+		int nb2; 
+		Carte carteTempo; 
+		
+		for(int i= 0; i<1000; i++) {
+			nb1 = (int)(Math.random()*30); 
+			nb2 = (int)(Math.random()*30); 
+			carteTempo = tabCarte[nb1]; 
+			tabCarte[nb1] = tabCarte[nb2]; 
+			tabCarte[nb2] = carteTempo; 
+		}
+		
 	}
 	
 }
