@@ -7,16 +7,11 @@
 
 package AppliMemory;
 
-import java.awt.Color;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-
-import AppliContact.FicheInfoContact;
 
 public class Carte extends JLabel{
 	
@@ -34,8 +29,9 @@ public class Carte extends JLabel{
 	
 	private void changerCouleurCarte() {
 		this.setIcon(pays);
+		this.repaint();
 	}
-	
+
 	class RetournerCarte extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
