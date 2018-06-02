@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 /**
  * Cette classe définit  l'esthétique et les comportements communs du formulaire de création
@@ -26,7 +27,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	// Les labels du formulaire
 	protected MonJLabel nomL = new MonJLabel("Nom : ");
 	protected MonJLabel prenomL = new MonJLabel("Prénom : ");
-	protected MonJLabel numtelL = new MonJLabel("Numéro de téléphone : ");
+	protected MonJLabel numtelL = new MonJLabel("Téléphone : ");
 	protected MonJLabel mailL = new MonJLabel("Mail : ");
 
 	// Les textField du formulaire
@@ -56,6 +57,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		
 		// Partie formulaire
 		formulaire.setLayout(new GridLayout(4, 2, -90, 0));
+		formulaire.setBorder(new EmptyBorder(20, 20, 20, 20));
 		formulaire.add(nomL);
 		formulaire.add(nomT);
 		formulaire.add(prenomL);

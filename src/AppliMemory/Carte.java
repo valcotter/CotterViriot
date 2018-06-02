@@ -19,18 +19,14 @@ import javax.swing.JPanel;
 public class Carte extends JButton{
 	
 	private int cptClic = 0; 
-	private int idCarte; 
-	private int idCartePartenaire; 
 	private ImageIcon pays;  
 	private ImageIcon couverture = new ImageIcon("ImageMemory/japan.png");
 	private CardLayout cl; 
 	private JPanel card; 
 	private MouseListener retournerCrt = new RetournerCarte(); 
 	
-	public Carte(ImageIcon pays, int idCarte, int idCartePartenaire) {
+	public Carte(ImageIcon pays) {
 		this.pays = pays;  
-		this.idCarte = idCarte; 
-		this.idCartePartenaire = idCartePartenaire; 
 		
 		this.setSize(couverture.getIconWidth(), couverture.getIconWidth());
 		this.setPreferredSize(this.getSize());
@@ -42,7 +38,7 @@ public class Carte extends JButton{
 		return retournerCrt;
 	}
 
-	private void changerCouleurCarte() {
+	public void changerCouleurCarte() {
 		cptClic++; 
 		if (cptClic == 1) {
 			this.setIcon(pays);
@@ -51,10 +47,6 @@ public class Carte extends JButton{
 			cptClic = 0;
 		}
 	}
-	
-	public int getIdCartePartenaire() {
-		return idCartePartenaire;
-	}
 
 	public ImageIcon getPays() {
 		return pays;
@@ -62,7 +54,7 @@ public class Carte extends JButton{
 
 	public boolean equals(Carte crt) {
 		
-		if( (pays.toString()).equals(crt.getPays().toString()) ) {
+		if( (pays.toString()).equals(crt.getPays().toString()) == true ) {
 			return true; 
 		}
 		
