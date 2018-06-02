@@ -41,8 +41,10 @@ public class MenuJeu extends JPanel {
 	{
 		@Override
 		public void mouseClicked(MouseEvent arg0)
-		{
-			clMemo.show(cardMemo, "Jeu");
+		{	
+			EspaceJeu ej = new EspaceJeu(clMemo, cardMemo); 
+			cardMemo.add(ej, "Nouveau jeu"); 
+			clMemo.show(cardMemo, "Nouveau jeu");
 		}
 	}
 

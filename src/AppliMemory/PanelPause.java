@@ -9,10 +9,10 @@ package AppliMemory;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 public class PanelPause extends JPanel {
@@ -26,12 +26,10 @@ public class PanelPause extends JPanel {
 	//Panel centrale 
 	private JPanel panelCentral = new JPanel(); 
 	
-	//Différentes rubriques du menu pause 
-	//Play 
-	private ImageIcon play = new ImageIcon("ImageMemory/playgame.png");
-	private JLabel btnPlay = new JLabel(play);
-	//Quitter la partie 
-	private JLabelMenu quitter = new JLabelMenu("Quitter la partie"); 
+	private BtnPanelPause play = new BtnPanelPause(clMemo, cardMemo, "Play");
+	private BtnPanelPause restart = new BtnPanelPause(clMemo, cardMemo, "Recommencer la partie");
+	private BtnPanelPause quitter = new BtnPanelPause(clMemo, cardMemo, "Quitter la partie"); 
+	
 	
 	public PanelPause(CardLayout clMemo, JPanel cardMemo) {
 		this.clMemo = clMemo; 
@@ -40,12 +38,43 @@ public class PanelPause extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.add(titrePause, BorderLayout.NORTH); 
 		
-		panelCentral.setLayout(new GridLayout(2, 1));
-		panelCentral.add(btnPlay); 
+		play.addMouseListener(new ReprendreJeu());
+		restart.addMouseListener(new Restart());
+		quitter.addMouseListener(new RetourMenu());
+		
+		panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
+		panelCentral.add(play); 
+		panelCentral.add(restart);
 		panelCentral.add(quitter); 
 		
-		this.add(panelCentral);
+		this.add(panelCentral, BorderLayout.CENTER);
 		
+	}
+	
+	class ReprendreJeu extends MouseAdapter{
+		public void mouseClicked(MouseEvent arg0) {
+			
+			clMemo.show(cardMemo, "Jeu");
+			
+		}
+	}
+	
+	class Restart extends MouseAdapter{
+		public void mouseClicked(MouseEvent arg0) {
+			
+			EspaceJeu ej = new EspaceJeu(clMemo, cardMemo); 
+			cardMemo.add(ej, "Nouveau jeu"); 
+			clMemo.show(cardMemo, "Nouveau jeu");
+			
+		}
+	}
+	
+	class RetourMenu extends MouseAdapter{
+		public void mouseClicked(MouseEvent arg0) {
+			
+			clMemo.show(cardMemo, "Menu");
+			
+		}
 	}
 	
 }
