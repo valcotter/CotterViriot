@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -15,6 +16,8 @@ public class EspaceJeu extends JPanel {
 
 	private CardLayout clMemo; 
 	private JPanel cardMemo; 
+	
+	private MouseListener enregistreClic = new EnregistrerClic(); 
 	
 	//Pour empecher les null dans le listener 
 	private Carte carte1 = null; 
@@ -53,7 +56,7 @@ public class EspaceJeu extends JPanel {
 		
 		//On remplis le plateau 
 		for(int i=0; i<tabCarte.length; i++) {
-			tabCarte[i].addMouseListener(new EnregistrerClic());
+			tabCarte[i].addMouseListener(enregistreClic);
 			plateau.add(tabCarte[i]);
 		}
 
@@ -142,7 +145,9 @@ public class EspaceJeu extends JPanel {
 				if(carte1.equals(carte2) == true) {
 					System.out.println("Je suis la");
 					carte1.removeMouseListener(carte1.getRetournerCrt());
+					carte1.removeMouseListener(enregistreClic);
 					carte2.removeMouseListener(carte2.getRetournerCrt());
+					carte2.removeMouseListener(enregistreClic);
 				}
 				
 				//retour à 0 
