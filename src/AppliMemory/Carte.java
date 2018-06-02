@@ -14,9 +14,10 @@ import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Carte extends JButton{
+public class Carte extends JLabel{
 	
 	private int cptClic = 0; 
 	private ImageIcon pays;  

@@ -2,6 +2,7 @@ package AppliMemory;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -45,9 +46,10 @@ public class EspaceJeu extends JPanel {
 		
 		//Barre superieur 
 		this.add(btnPause, BorderLayout.NORTH);
+		this.addMouseListener(new ouvrirPause());
 		
 		//Plateau - Remplissage du gridlayout 
-		plateau.setLayout(new GridLayout(6, 5));
+		plateau.setLayout(new GridLayout(6, 5, 10, 0));
 		
 		//Initialisation des cartes 
 		attributionPaysCarte();
@@ -62,14 +64,6 @@ public class EspaceJeu extends JPanel {
 
 		this.add(plateau, BorderLayout.CENTER);
 		
-	}
-	
-	public int getCompteurClic() {
-		return compteurClic;
-	}
-
-	public void setCompteurClic(int compteurClic) {
-		this.compteurClic = compteurClic;
 	}
 	
 	//Crée les cartes en leurs associant un pays et les met dans un tab dans l'ordre 
@@ -123,7 +117,6 @@ public class EspaceJeu extends JPanel {
 				//Faire cette action mais pas au premier tour 
 				if(premierTour == false) {
 					if(carte1.equals(carte2) == false) {
-						System.out.println("Je suis la");
 						carte1.changerCouleurCarte();
 						carte2.changerCouleurCarte();
 					}
@@ -131,19 +124,14 @@ public class EspaceJeu extends JPanel {
 				
 				//Récupération de la carte sur laquelle on clic en 1er 
 				carte1 = (Carte) arg0.getSource();
-				System.out.println("Carte 1 : "+carte1.getPays().toString());
-				System.out.println("Cpt clic : "+compteurClic);
 				compteurClic++; 
 				break;
 				
 			case 1:
 				//Récup de la carte sur laquelle on clic en 2eme 
 				carte2 = (Carte) arg0.getSource(); 
-				System.out.println("Carte 2 : "+carte2.getPays().toString());
-				System.out.println("Cpt clic : "+compteurClic);
 				//Si carte = on enleve le listener 
 				if(carte1.equals(carte2) == true) {
-					System.out.println("Je suis la");
 					carte1.removeMouseListener(carte1.getRetournerCrt());
 					carte1.removeMouseListener(enregistreClic);
 					carte2.removeMouseListener(carte2.getRetournerCrt());
@@ -157,6 +145,14 @@ public class EspaceJeu extends JPanel {
 				premierTour = false; 
 				break; 
 			}
+			
+		}
+	}
+	
+	class ouvrirPause extends MouseAdapter{
+		public void mouseClicked(MouseEvent arg0) {
+			
+			clMemo.show(cardMemo, "Pause");
 			
 		}
 	}

@@ -9,9 +9,6 @@ import javax.swing.JPanel;
 
 public class MenuJeu extends JPanel {
 	
-	//Fond écran 
-	private FondEcranMenu fond = new FondEcranMenu(); 
-	
 	//Récupération de toutes les cartes de l'application
 	private CardLayout clMemo; 
 	private JPanel cardMemo; 

@@ -19,6 +19,7 @@ public class AppMemory extends JPanel {
 	//JPanel composant l'application 
 	private EspaceJeu plateauJeu = new EspaceJeu(clMemo, cardMemo); 
 	private MenuJeu menu = new MenuJeu(clMemo, cardMemo); 
+	private PanelPause pause = new PanelPause(clMemo, cardMemo); 
 	
 	public AppMemory() {
 		
@@ -26,6 +27,7 @@ public class AppMemory extends JPanel {
 		//Les différents panel du memory 
 		cardMemo.add(menu, "Menu"); 
 		cardMemo.add(plateauJeu, "Jeu"); 
+		cardMemo.add(pause, "Pause");
 		
 		this.add(cardMemo);
 		
