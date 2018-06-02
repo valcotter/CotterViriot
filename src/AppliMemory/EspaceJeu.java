@@ -20,6 +20,9 @@ public class EspaceJeu extends JPanel {
 	
 	private MouseListener enregistreClic = new EnregistrerClic(); 
 	
+	//Chronometre 
+	private Chronometre chrono = new Chronometre(); 
+	
 	//Pour empecher les null dans le listener 
 	private Carte carte1 = null; 
 	private Carte carte2 = null; 
@@ -37,6 +40,7 @@ public class EspaceJeu extends JPanel {
 	
 	//Compteur 
 	private int compteurClic = 0; 
+	private int cptDerouleJeu = 0; 
 
 	public EspaceJeu(CardLayout clMemo, JPanel cardMemo) {
 		this.clMemo = clMemo; 
@@ -45,8 +49,9 @@ public class EspaceJeu extends JPanel {
 		this.setLayout(new BorderLayout());
 		
 		//Barre superieur 
+		btnPause.setBackground(Color.PINK);
+		btnPause.addMouseListener(new ouvrirPause());
 		this.add(btnPause, BorderLayout.NORTH);
-		this.addMouseListener(new ouvrirPause());
 		
 		//Plateau - Remplissage du gridlayout 
 		plateau.setLayout(new GridLayout(6, 5, 10, 0));
@@ -63,9 +68,16 @@ public class EspaceJeu extends JPanel {
 		}
 
 		this.add(plateau, BorderLayout.CENTER);
+		this.add(chrono, BorderLayout.SOUTH); 
 		
 	}
 	
+	public Chronometre getChrono() {
+		return chrono;
+	}
+
+
+
 	//Crée les cartes en leurs associant un pays et les met dans un tab dans l'ordre 
 	public Carte[] attributionPaysCarte() {
 		
@@ -113,7 +125,6 @@ public class EspaceJeu extends JPanel {
 			
 			switch(compteurClic) {
 			case 0:
-				
 				//Faire cette action mais pas au premier tour 
 				if(premierTour == false) {
 					if(carte1.equals(carte2) == false) {
@@ -136,6 +147,12 @@ public class EspaceJeu extends JPanel {
 					carte1.removeMouseListener(enregistreClic);
 					carte2.removeMouseListener(carte2.getRetournerCrt());
 					carte2.removeMouseListener(enregistreClic);
+					
+					cptDerouleJeu++; 
+					
+					if(cptDerouleJeu==15) {
+						chrono.getTimer().stop();
+					}
 				}
 				
 				//retour à 0 
@@ -151,6 +168,15 @@ public class EspaceJeu extends JPanel {
 	
 	class ouvrirPause extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
+			
+			//Réussir à mettre pause au timer + prochain étape récupérer timer et associer ça 
+			//à des joueurs. 
+			
+			/*try {
+				chrono.getTimer().wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}*/
 			
 			clMemo.show(cardMemo, "Pause");
 			
