@@ -18,8 +18,8 @@ public class AppMemory extends JPanel {
 	
 	//JPanel composant l'application 
 	private EspaceJeu plateauJeu = new EspaceJeu(clMemo, cardMemo); 
-	private MenuJeu menu = new MenuJeu(clMemo, cardMemo); 
-	private PanelPause pause = new PanelPause(clMemo, cardMemo); 
+	private PanelPause pause = new PanelPause(clMemo, cardMemo, plateauJeu);
+	private MenuJeu menu = new MenuJeu(clMemo, cardMemo);  
 	
 	public AppMemory() {
 		

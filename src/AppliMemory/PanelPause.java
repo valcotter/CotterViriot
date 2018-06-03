@@ -19,6 +19,7 @@ public class PanelPause extends JPanel {
 
 	private CardLayout clMemo; 
 	private JPanel cardMemo; 
+	private EspaceJeu ej; 
 	
 	//Titre 
 	private JLabelMenu titrePause = new JLabelMenu("PAUSE");
@@ -26,14 +27,18 @@ public class PanelPause extends JPanel {
 	//Panel centrale 
 	private JPanel panelCentral = new JPanel(); 
 	
+	//Pour nouvelle partie 
+	
+	
 	private BtnPanelPause play = new BtnPanelPause(clMemo, cardMemo, "Play");
 	private BtnPanelPause restart = new BtnPanelPause(clMemo, cardMemo, "Recommencer la partie");
 	private BtnPanelPause quitter = new BtnPanelPause(clMemo, cardMemo, "Quitter la partie"); 
 	
 	
-	public PanelPause(CardLayout clMemo, JPanel cardMemo) {
+	public PanelPause(CardLayout clMemo, JPanel cardMemo, EspaceJeu ej) {
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo; 
+		this.ej = ej;  
 		
 		this.setLayout(new BorderLayout());
 		this.add(titrePause, BorderLayout.NORTH); 
@@ -55,7 +60,8 @@ public class PanelPause extends JPanel {
 		public void mouseClicked(MouseEvent arg0) {
 			
 			clMemo.show(cardMemo, "Jeu");
-			
+			System.out.println("Play");
+			ej.setPauseTimer(false);
 		}
 	}
 	

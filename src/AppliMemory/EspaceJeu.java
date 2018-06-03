@@ -1,6 +1,7 @@
 package AppliMemory;
 
 import java.awt.BorderLayout;
+import javax.swing.Timer;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -18,6 +19,8 @@ public class EspaceJeu extends JPanel {
 
 	private CardLayout clMemo; 
 	private JPanel cardMemo; 
+	
+	private boolean pauseTimer = false; 
 	
 	private MouseListener enregistreClic = new EnregistrerClic(); 
 	
@@ -47,7 +50,7 @@ public class EspaceJeu extends JPanel {
 
 	public EspaceJeu(CardLayout clMemo, JPanel cardMemo) {
 		this.clMemo = clMemo; 
-		this.cardMemo = cardMemo; 
+		this.cardMemo = cardMemo;  
 		
 		this.setLayout(new BorderLayout());
 		
@@ -78,7 +81,13 @@ public class EspaceJeu extends JPanel {
 		return chrono;
 	}
 
+	public boolean isPauseTimer() {
+		return pauseTimer;
+	}
 
+	public void setPauseTimer(boolean pauseTimer) {
+		this.pauseTimer = pauseTimer;
+	}
 
 	//Crée les cartes en leurs associant un pays et les met dans un tab dans l'ordre 
 	public Carte[] attributionPaysCarte() {
@@ -174,11 +183,21 @@ public class EspaceJeu extends JPanel {
 			//Réussir à mettre pause au timer + prochain étape récupérer timer et associer ça 
 			//à des joueurs. 
 			
-			/*try {
-				chrono.getTimer().wait();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}*/
+			Timer t = chrono.getTimer(); 
+			
+			setPauseTimer(true);
+			
+			synchronized (t) {
+				while(pauseTimer==true) {
+					try {
+						t.wait();
+						System.out.println("Pause");
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				
+			}
 			
 			clMemo.show(cardMemo, "Pause");
 			
