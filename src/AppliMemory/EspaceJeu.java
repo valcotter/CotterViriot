@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -32,6 +33,8 @@ public class EspaceJeu extends JPanel {
 	private ImageIcon pause = new ImageIcon("ImageMemory/pause.png");
 	private JLabel btnPause = new JLabel(pause); 
 	
+	private JButton btnPause2 = new JButton(pause); 
+	
 	//Espace plateau de jeu
 	private JPanel plateau = new JPanel(); 
 	
@@ -49,9 +52,8 @@ public class EspaceJeu extends JPanel {
 		this.setLayout(new BorderLayout());
 		
 		//Barre superieur 
-		btnPause.setBackground(Color.PINK);
-		btnPause.addMouseListener(new ouvrirPause());
-		this.add(btnPause, BorderLayout.NORTH);
+		btnPause2.addMouseListener(new ouvrirPause());
+		this.add(btnPause2, BorderLayout.NORTH);
 		
 		//Plateau - Remplissage du gridlayout 
 		plateau.setLayout(new GridLayout(6, 5, 10, 0));
