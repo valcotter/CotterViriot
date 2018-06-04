@@ -55,7 +55,7 @@ public class BoutonDefilementListe extends JPanel {
 
 	/**
 	 * Affiche le liste de contact précèdente au clic sur le bouton 
-	 * (ne fonctionne pas) 
+	 * 
 	 * 
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
@@ -64,7 +64,7 @@ public class BoutonDefilementListe extends JPanel {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 
-			cl2.last(cardsListe);
+			cl2.previous(cardsListe);
 
 		}
 

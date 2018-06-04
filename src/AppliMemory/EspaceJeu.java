@@ -173,7 +173,7 @@ public class EspaceJeu extends JPanel {
 					
 					if(cptDerouleJeu==15) {
 						chrono.getTimer().stop();
-						FinDuJeu fdj = new FinDuJeu(chrono); 
+						FinDuJeu fdj = new FinDuJeu(chrono, clMemo, cardMemo); 
 						cardMemo.add(fdj, "Fin"); 
 						clMemo.show(cardMemo, "Fin");
 					}
@@ -202,7 +202,7 @@ public class EspaceJeu extends JPanel {
 		public void mouseClicked(MouseEvent arg0) {
 
 			chrono.getTimer().stop();
-			fdj = new FinDuJeu(chrono); 
+			fdj = new FinDuJeu(chrono, clMemo, cardMemo); 
 			cardMemo.add(fdj, "Fin"); 
 			clMemo.show(cardMemo, "Fin");
 		}

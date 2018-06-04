@@ -84,6 +84,10 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
 	}
 	
+	public JButton getAddContact() {
+		return addContact;
+	}
+
 	/**
 	 * Cette méthode met à jour la liste. Elle crée un nouveau panel tous les 10 contacts. 
 	 */
