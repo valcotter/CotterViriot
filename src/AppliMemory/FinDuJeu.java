@@ -78,6 +78,8 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 			
 			ListeContact lc = new ListeContact(clMemo, cardMemo); 
 			lc.getAddContact().setVisible(false);
+			
+			
 			cardMemo.add(lc, "liste"); 
 			clMemo.show(cardMemo, "liste");
 			
