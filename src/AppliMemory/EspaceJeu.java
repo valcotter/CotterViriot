@@ -18,14 +18,14 @@ import javax.swing.JPanel;
 public class EspaceJeu extends JPanel {
 
 	private CardLayout clMemo; 
-	private JPanel cardMemo; 
-	
-	private boolean pauseTimer = false; 
+	private JPanel cardMemo;  
 	
 	private MouseListener enregistreClic = new EnregistrerClic(); 
 	
 	//Chronometre 
-	private Chronometre chrono = new Chronometre(); 
+	private Chronometre chrono = new Chronometre(0, 0, 0); 
+	
+	PanelPause pp;  
 	
 	//Pour empecher les null dans le listener 
 	private Carte carte1 = null; 
@@ -51,6 +51,9 @@ public class EspaceJeu extends JPanel {
 	public EspaceJeu(CardLayout clMemo, JPanel cardMemo) {
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo;  
+		
+		pp = new PanelPause(clMemo, cardMemo, this); 
+		cardMemo.add(pp, "Pause");
 		
 		this.setLayout(new BorderLayout());
 		
@@ -81,12 +84,8 @@ public class EspaceJeu extends JPanel {
 		return chrono;
 	}
 
-	public boolean isPauseTimer() {
-		return pauseTimer;
-	}
-
-	public void setPauseTimer(boolean pauseTimer) {
-		this.pauseTimer = pauseTimer;
+	public void setChrono(Chronometre chrono) {
+		this.chrono = chrono;
 	}
 
 	//Crée les cartes en leurs associant un pays et les met dans un tab dans l'ordre 
@@ -179,28 +178,9 @@ public class EspaceJeu extends JPanel {
 	
 	class ouvrirPause extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
-			
-			//Réussir à mettre pause au timer + prochain étape récupérer timer et associer ça 
-			//à des joueurs. 
-			
-			Timer t = chrono.getTimer(); 
-			
-			setPauseTimer(true);
-			
-			synchronized (t) {
-				while(pauseTimer==true) {
-					try {
-						t.wait();
-						System.out.println("Pause");
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-				
-			}
-			
+
 			clMemo.show(cardMemo, "Pause");
-			
+			chrono.getTimer().stop();
 		}
 	}
 	

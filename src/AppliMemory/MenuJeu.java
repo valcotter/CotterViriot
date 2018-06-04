@@ -2,6 +2,7 @@ package AppliMemory;
 
 import java.awt.CardLayout;
 import java.awt.GridLayout;
+import java.awt.Panel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -44,11 +45,11 @@ public class MenuJeu extends JPanel {
 		{	
 			
 			EspaceJeu ej = new EspaceJeu(clMemo, cardMemo); 
-			cardMemo.add(ej, "Nouveau jeu"); 
+			cardMemo.add(ej, "Jeu"); 
 			
 			ej.getChrono().getTimer().start();
 			
-			clMemo.show(cardMemo, "Nouveau jeu");
+			clMemo.show(cardMemo, "Jeu");
 		}
 	}
 

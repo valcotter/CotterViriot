@@ -27,9 +27,6 @@ public class PanelPause extends JPanel {
 	//Panel centrale 
 	private JPanel panelCentral = new JPanel(); 
 	
-	//Pour nouvelle partie 
-	
-	
 	private BtnPanelPause play = new BtnPanelPause(clMemo, cardMemo, "Play");
 	private BtnPanelPause restart = new BtnPanelPause(clMemo, cardMemo, "Recommencer la partie");
 	private BtnPanelPause quitter = new BtnPanelPause(clMemo, cardMemo, "Quitter la partie"); 
@@ -37,8 +34,8 @@ public class PanelPause extends JPanel {
 	
 	public PanelPause(CardLayout clMemo, JPanel cardMemo, EspaceJeu ej) {
 		this.clMemo = clMemo; 
-		this.cardMemo = cardMemo; 
-		this.ej = ej;  
+		this.cardMemo = cardMemo;  
+		this.ej = ej; 
 		
 		this.setLayout(new BorderLayout());
 		this.add(titrePause, BorderLayout.NORTH); 
@@ -59,9 +56,21 @@ public class PanelPause extends JPanel {
 	class ReprendreJeu extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
+			/*int heure = ej.getChrono().getHeure(); 
+			int minute = ej.getChrono().getMinute(); 
+			int seconde = ej.getChrono().getSeconde(); 
+			
+			Chronometre chrono2 = new Chronometre(heure, minute, seconde); 
+			
+			ej.setChrono(chrono2);
+			chrono2.getTimer().start(); 
+			System.out.println(heure+" "+minute+" "+seconde);
+			//ej.add(chrono2, BorderLayout.SOUTH);*/
+			ej.getChrono().getTimer().start();
+			
 			clMemo.show(cardMemo, "Jeu");
 			System.out.println("Play");
-			ej.setPauseTimer(false);
+			
 		}
 	}
 	
@@ -69,8 +78,11 @@ public class PanelPause extends JPanel {
 		public void mouseClicked(MouseEvent arg0) {
 			
 			EspaceJeu ej = new EspaceJeu(clMemo, cardMemo); 
-			cardMemo.add(ej, "Nouveau jeu"); 
-			clMemo.show(cardMemo, "Nouveau jeu");
+			cardMemo.add(ej, "Jeu"); 
+			
+			ej.getChrono().getTimer().start();	
+			
+			clMemo.show(cardMemo, "Jeu");
 			
 		}
 	}

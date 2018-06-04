@@ -15,9 +15,9 @@ import javax.swing.Timer;
 
 public class Chronometre extends JPanel{
 
-	private int heure = 0; 
-	private int minute = 0; 
-	private int seconde = 0; 
+	private int heure; 
+	private int minute; 
+	private int seconde; 
 	
 	private int delais = 1000; 
 	private ActionListener tacheTimer = new ActionDuCrono(); 
@@ -26,7 +26,10 @@ public class Chronometre extends JPanel{
 	
 	private Timer timer = new Timer(delais, tacheTimer); 
 	
-	public Chronometre() {
+	public Chronometre(int heure, int minute, int seconde) {
+		this.heure = heure; 
+		this.minute = minute; 
+		this.seconde = seconde; 
 		
 		this.setLayout(new GridLayout(1, 1));
 		this.add(labelChrono); 
@@ -36,6 +39,24 @@ public class Chronometre extends JPanel{
 	public Timer getTimer() {
 		return timer;
 	}
+
+	public int getHeure() {
+		return heure;
+	}
+
+	public int getMinute() {
+		return minute;
+	}
+
+	public int getSeconde() {
+		return seconde;
+	}
+
+	public void setLabelChrono(JLabelMenu labelChrono) {
+		this.labelChrono = labelChrono;
+	}
+
+
 
 	class ActionDuCrono implements ActionListener {
 
