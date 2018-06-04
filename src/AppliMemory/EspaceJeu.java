@@ -162,6 +162,9 @@ public class EspaceJeu extends JPanel {
 					
 					if(cptDerouleJeu==15) {
 						chrono.getTimer().stop();
+						FinDuJeu fdj = new FinDuJeu(); 
+						cardMemo.add(fdj, "Fin"); 
+						clMemo.show(cardMemo, "Fin");
 					}
 				}
 				

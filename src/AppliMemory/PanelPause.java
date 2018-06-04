@@ -56,20 +56,8 @@ public class PanelPause extends JPanel {
 	class ReprendreJeu extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
-			/*int heure = ej.getChrono().getHeure(); 
-			int minute = ej.getChrono().getMinute(); 
-			int seconde = ej.getChrono().getSeconde(); 
-			
-			Chronometre chrono2 = new Chronometre(heure, minute, seconde); 
-			
-			ej.setChrono(chrono2);
-			chrono2.getTimer().start(); 
-			System.out.println(heure+" "+minute+" "+seconde);
-			//ej.add(chrono2, BorderLayout.SOUTH);*/
 			ej.getChrono().getTimer().start();
-			
 			clMemo.show(cardMemo, "Jeu");
-			System.out.println("Play");
 			
 		}
 	}
