@@ -20,12 +20,15 @@ public class EspaceJeu extends JPanel {
 	private CardLayout clMemo; 
 	private JPanel cardMemo;  
 	
+	private JPanel test = new JPanel(); 
+	
 	private MouseListener enregistreClic = new EnregistrerClic(); 
 	
 	//Chronometre 
 	private Chronometre chrono = new Chronometre(0, 0, 0); 
 	
 	PanelPause pp;  
+	FinDuJeu fdj; 
 	
 	//Pour empecher les null dans le listener 
 	private Carte carte1 = null; 
@@ -34,9 +37,10 @@ public class EspaceJeu extends JPanel {
 	
 	//Btn pause 
 	private ImageIcon pause = new ImageIcon("ImageMemory/pause.png");
-	private JLabel btnPause = new JLabel(pause); 
+	//private JLabel btnPause = new JLabel(pause); 
 	
 	private JButton btnPause2 = new JButton(pause); 
+	private JButton btnTestFin = new JButton("Fin"); 
 	
 	//Espace plateau de jeu
 	private JPanel plateau = new JPanel(); 
@@ -57,9 +61,15 @@ public class EspaceJeu extends JPanel {
 		
 		this.setLayout(new BorderLayout());
 		
+		test.setLayout(new GridLayout(1, 2));
+		
+		
 		//Barre superieur 
 		btnPause2.addMouseListener(new ouvrirPause());
-		this.add(btnPause2, BorderLayout.NORTH);
+		//this.add(btnPause2, BorderLayout.NORTH);
+		btnTestFin.addMouseListener(new ouvrirFin());
+		test.add(btnPause2); 
+		test.add(btnTestFin); 
 		
 		//Plateau - Remplissage du gridlayout 
 		plateau.setLayout(new GridLayout(6, 5, 10, 0));
@@ -75,6 +85,7 @@ public class EspaceJeu extends JPanel {
 			plateau.add(tabCarte[i]);
 		}
 
+		this.add(test, BorderLayout.NORTH);
 		this.add(plateau, BorderLayout.CENTER);
 		this.add(chrono, BorderLayout.SOUTH); 
 		
@@ -162,7 +173,7 @@ public class EspaceJeu extends JPanel {
 					
 					if(cptDerouleJeu==15) {
 						chrono.getTimer().stop();
-						FinDuJeu fdj = new FinDuJeu(); 
+						FinDuJeu fdj = new FinDuJeu(chrono); 
 						cardMemo.add(fdj, "Fin"); 
 						clMemo.show(cardMemo, "Fin");
 					}
@@ -184,6 +195,16 @@ public class EspaceJeu extends JPanel {
 
 			clMemo.show(cardMemo, "Pause");
 			chrono.getTimer().stop();
+		}
+	}
+	
+	class ouvrirFin extends MouseAdapter{
+		public void mouseClicked(MouseEvent arg0) {
+
+			chrono.getTimer().stop();
+			fdj = new FinDuJeu(chrono); 
+			cardMemo.add(fdj, "Fin"); 
+			clMemo.show(cardMemo, "Fin");
 		}
 	}
 	

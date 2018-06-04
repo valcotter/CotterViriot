@@ -7,35 +7,57 @@
 
 package AppliMemory;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class FinDuJeu extends JPanel {
-
-	private EspaceJeu ej; 
+public class FinDuJeu extends JPanel implements SerializMemo{ 
 	
 	private JPanel formJoueur = new JPanel(); 
+	private JPanel chronoPanel = new JPanel(); 
+	
+	private Chronometre chrono; 
+	
+	private JButton valider = new JButton("Valider"); 
 	
 	private JLabelMenu fini = new JLabelMenu("Partie terminée"); 
 	
 	private JLabel joueur = new JLabel("Joueur : "); 
 	private JTextField nomJoueur = new JTextField(); 
 	
-	public FinDuJeu() {
-		this.ej = ej; 
+	public FinDuJeu(Chronometre chrono) {
+		this.chrono = chrono; 
 		
-		this.setLayout(new BorderLayout());
-		this.add(fini, BorderLayout.NORTH); 
+		this.setLayout(new GridLayout(4, 1));
+		this.add(fini); 
+		
+		chronoPanel.setLayout(new GridLayout(1, 1));
+		chronoPanel.add(chrono); 
 		
 		formJoueur.setLayout(new GridLayout(1, 2));
 		formJoueur.add(joueur); 
 		formJoueur.add(nomJoueur); 
 		
-		this.add(formJoueur, BorderLayout.CENTER);
+		valider.addMouseListener(new sauverResultat());
+		
+		this.add(chronoPanel);
+		this.add(formJoueur);
+		this.add(valider); 
+		
+	}
+	
+	class sauverResultat extends MouseAdapter{
+		public void mouseClicked(MouseEvent arg0) {
+			
+			Joueur joueur = new Joueur(nomJoueur.getText(), chrono.toString()); 
+			MySerializationMemo(joueur);
+			
+		}
 	}
 	
 }

@@ -51,13 +51,11 @@ public class Chronometre extends JPanel{
 	public int getSeconde() {
 		return seconde;
 	}
-
-	public void setLabelChrono(JLabelMenu labelChrono) {
-		this.labelChrono = labelChrono;
+	
+	public String toString() {
+		return heure+"."+minute+"."+seconde; 
 	}
-
-
-
+	
 	class ActionDuCrono implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
