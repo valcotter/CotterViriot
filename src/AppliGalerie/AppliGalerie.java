@@ -1,7 +1,9 @@
 package AppliGalerie;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -24,10 +26,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 public class AppliGalerie extends JPanel
 {
 	public JLabel labelTitre;
+	private JPanel backPanel = new JPanel();
 	
 	public AppliGalerie()
 	{
@@ -37,7 +41,16 @@ public class AppliGalerie extends JPanel
 		Font policeNormal = new Font("Arial", 45, 45);
 		labelTitre.setFont(policeNormal);
 		labelTitre.setHorizontalAlignment((int) CENTER_ALIGNMENT);
-		this.add(new GrilleCentre(1), BorderLayout.CENTER);
+		
+		backPanel.setLayout(new FlowLayout());
+		GrilleCentre gc = new GrilleCentre();
+		backPanel.add(gc);
+		add(backPanel);
+		
+		JScrollPane scroll = new JScrollPane(gc);
+		this.add(scroll, BorderLayout.CENTER);
+				
+		backPanel.setBorder(new EmptyBorder(0,0,0,0));
 	}	
 }
 
@@ -47,48 +60,27 @@ class GrilleCentre extends JPanel
 	private File folder = new File("./ImagesGalerie/");
 	private int nbrePhotos;
 	
-	//Boutton changement page
-	JButton next = new JButton(new ImageIcon("next.png"));
-	JButton previous = new JButton(new ImageIcon("precede.png"));
-	JButton corbeille = new JButton(new ImageIcon("poubelle.png"));
-	
-	private int noPage;
-	private int x;
-	private int nbreLigne;
-	
-	
-	public GrilleCentre(int noPage)
-	{
-		this.noPage = noPage;
-		
-		
+	public GrilleCentre()
+	{		
 		//Compte le nbre de photos dans la galerie
 		File[] listPhotos = folder.listFiles();
 		nbrePhotos = listPhotos.length;
 		
-		//Determine le nbre de ligne
-		nbreLigne = (int) Math.ceil(nbrePhotos/3.0);
-		System.out.println("Nbre de ligne: " + nbreLigne);
-		
-		
 		//Création GridLayout avec nbre de ligne
-		this.setLayout(new GridLayout(nbreLigne,3));
+		this.setLayout(new GridLayout(0,3,5,5));
 		
 		//Remplissage tableau défaut
 		for(int i = 0; i < nbrePhotos; i++)
 		{
-			url.add("ImagesGalerie/" + (i+1) + ".jpg"); 	
+			url.add("ImagesGalerie/" + (i+1) + ".jpg");
 		}
 		
 		//Ajoute tableau au gridLayout
 		for(int i = 0; i != url.size(); i++)
 		{
 			this.add(new ImageBouton("ImagesGalerie/" + (i+1) + ".jpg"));
-		}
-		
+		}	
 	}
-	
-
 }
 
 class ImageBouton extends JButton
@@ -99,31 +91,32 @@ class ImageBouton extends JButton
 	public ImageBouton(String url)		//paramètre
 	{
 		this.url = url;
-		this.setPreferredSize(new Dimension(70,70));
+		this.setPreferredSize(new Dimension(120,120));
 		this.setBorder(bordureVide);
-		
 	}
 	
 	public void paintComponent(Graphics g)
 	{
 		try 
 	    {
-	      Image img = ImageIO.read(new File(this.url));
-	      g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-	    } catch (IOException e) 
+		      Image img = ImageIO.read(new File(this.url));
+		      g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+	    } catch (IOException e)
+		
 		{
-	     System.out.println("ERROR");
+	    	System.out.println("ERROR");
 	    }                
 	}
+	
+	class Ecouteur implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0) 
+		{
+			
+			
+		}
+	}
+
 }
 
-
-/*class ScrollBar extends JFrame
-{
-	private JScrollPane scroll = new JScrollPane();
-	
-	//On ajoute l'objet au content pane de notre fenêtre
-	this.getContentPane().add(scroll, BorderLayout.CENTER);
-	
-	
-}*/
