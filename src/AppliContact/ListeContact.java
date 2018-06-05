@@ -167,6 +167,8 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 			
 			//Trouver solution pour relier contact et memory 
 			
+			
+			
 			cl.previous(cards);
 		}
 	}
