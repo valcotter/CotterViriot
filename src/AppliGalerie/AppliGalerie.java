@@ -78,11 +78,21 @@ class GrilleCentre extends JPanel
 		//Ajoute tableau au gridLayout
 		for(int i = 0; i != url.size(); i++)
 		{
-			this.add(new ImageBouton("ImagesGalerie/" + (i+1) + ".jpg"));
-			
+			ImageBouton temp = new ImageBouton("ImagesGalerie/" + (i+1) + ".jpg");
+			this.add(temp);
+			temp.addActionListener(new Ecouteur());
 		}	
 	}
+	
+	class Ecouteur implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e) 
+		{
+				AfficheImage ai = new AfficheImage();
+		}
+	}
 }
+
 
 class ImageBouton extends JButton
 {
@@ -109,15 +119,7 @@ class ImageBouton extends JButton
 	    }                
 	}
 	
-	class Ecouteur implements ActionListener
-	{
-		@Override
-		public void actionPerformed(ActionEvent arg0) 
-		{
-			
-			
-		}
-	}
+	
 
 }
 
