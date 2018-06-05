@@ -70,6 +70,8 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 			Joueur joueur = new Joueur(nomJoueur.getText(), chrono.toString()); 
 			MySerializationMemo(joueur);
 			
+			clMemo.show(cardMemo, "Menu");
+			
 		}
 	}
 	

@@ -26,13 +26,17 @@ public class Joueur implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
+	
 	public String getChrono() {
 		return chrono;
 	}
 
 	public void setChrono(String chrono) {
 		this.chrono = chrono;
+	}
+
+	public String toString() {
+		return nom+" - "+chrono.toString(); 
 	}
 	
 }

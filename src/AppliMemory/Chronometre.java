@@ -10,10 +10,12 @@ package AppliMemory;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Chronometre extends JPanel{
+public class Chronometre extends JPanel implements Serializable{
 
 	private int heure; 
 	private int minute; 

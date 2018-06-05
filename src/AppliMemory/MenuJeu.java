@@ -26,6 +26,7 @@ public class MenuJeu extends JPanel {
 		
 		//Ajout des listeners 
 		newPartie.addMouseListener(new ouvrirJeu());
+		score.addMouseListener(new ouvrirScore());
 		
 		//Différentes rubriques du menu 
 		//PB TAILLE IMAGE FOND A CHANGER 
@@ -50,6 +51,19 @@ public class MenuJeu extends JPanel {
 			ej.getChrono().getTimer().start();
 			
 			clMemo.show(cardMemo, "Jeu");
+		}
+	}
+	
+	public class ouvrirScore extends MouseAdapter
+	{
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{	
+			
+			MeilleurScore meilleurScore = new MeilleurScore(); 
+			cardMemo.add(meilleurScore, "Score"); 
+			
+			clMemo.show(cardMemo, "Score");
 		}
 	}
 

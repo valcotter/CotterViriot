@@ -25,7 +25,7 @@ public interface SerializMemo {
 	 */
 	public default void MySerializationMemo(Joueur joueur) {
 		
-		String path = "SerializMemory/"+joueur.getNom()+joueur.getChrono(); 
+		String path = "SerializMemory/"+joueur.getNom()+joueur.getChrono().toString(); 
 		
 		try {
 			
