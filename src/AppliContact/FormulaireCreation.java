@@ -53,7 +53,7 @@ public class FormulaireCreation extends BaseFicheContact {
 				// Serialization
 				MySerialization(tempo);
 
-				ListeContact lc = new ListeContact(cl, cards);
+				ListeContact lc = new ListeContact(cl, cards, false);
 				cards.add(lc, "Liste");
 				cl.show(cards, "Liste");
 

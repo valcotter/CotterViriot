@@ -103,7 +103,7 @@ public class FicheInfoContact extends BaseFicheContact {
 
 			System.out.println("Contact supprimé.");
 
-			ListeContact lc = new ListeContact(cl, cards);
+			ListeContact lc = new ListeContact(cl, cards, false);
 			cards.add(lc, "Liste");
 			cl.show(cards, "Liste");
 
@@ -160,7 +160,7 @@ public class FicheInfoContact extends BaseFicheContact {
 				sauvegarder.setVisible(false);
 				
 				//On refait une liste modifié
-				ListeContact lc = new ListeContact(cl, cards);
+				ListeContact lc = new ListeContact(cl, cards, false);
 				cards.add(lc, "Liste");
 				
 			}

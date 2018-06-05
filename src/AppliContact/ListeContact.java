@@ -49,13 +49,17 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
 	private BoutonDefilementListe btnRightLeft = new BoutonDefilementListe(cl2, cardsListe);
 	
+	private boolean isInMemo; 
+	
 	/**
 	 * 
 	 * @param cl, le layout du panel de toute l'application contact 
 	 * @param cards, les panels contenu dans le layout 
+	 * @param isInMemo, est-ce que la liste est appelée dans l'application memory ou pas
 	 */
-	public ListeContact(CardLayout cl, JPanel cards) {
+	public ListeContact(CardLayout cl, JPanel cards, boolean isInMemo) {
 		super(cl, cards); 
+		this.isInMemo = isInMemo; 
 		
 		panelNord.setLayout(new GridLayout(3, 1));
 		
@@ -75,7 +79,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		panelNord.add(addContact); 
 		panelNord.add(btnRightLeft); 
 		
-		majListe();
+		majListe(isInMemo);
 		
 		//Ajout panel général 
 		this.setLayout(new BorderLayout());
@@ -91,7 +95,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	/**
 	 * Cette méthode met à jour la liste. Elle crée un nouveau panel tous les 10 contacts. 
 	 */
-	public void majListe() {
+	public void majListe(boolean isInMemo) {
 		
 		paths = f.list(); 
 		int nbContact = paths.length; 
@@ -112,7 +116,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 			
 			for(positionContact=cpt; positionContact<intervalleContact; positionContact++) {
 				Contact c = MyDeserialization(paths[positionContact]); 
-				btnContact = new BoutonContact(c, cl, cards);
+				btnContact = new BoutonContact(c, cl, cards, isInMemo);
 				tableauPanel[i].add(btnContact);
 				cpt++;
 			}
@@ -130,7 +134,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 			
 			for(int j=positionContact; j<positionContact+restContact; j++) {
 				Contact c = MyDeserialization(paths[j]); 
-				btnContact = new BoutonContact(c, cl, cards);
+				btnContact = new BoutonContact(c, cl, cards, isInMemo);
 				myPanel.add(btnContact);
 			}
 			
@@ -153,6 +157,17 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		public void mouseClicked(MouseEvent arg0) {
 			
 			cl.show(cards, "NouveauContact");
+		}
+	}
+	
+	class RecupererContactPourJoueur extends MouseAdapter {
+		
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			
+			//Trouver solution pour relier contact et memory 
+			
+			cl.previous(cards);
 		}
 	}
 

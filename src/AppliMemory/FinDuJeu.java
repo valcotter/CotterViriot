@@ -76,9 +76,8 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	class ouvrirListeContact extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
-			ListeContact lc = new ListeContact(clMemo, cardMemo); 
+			ListeContact lc = new ListeContact(clMemo, cardMemo, true); 
 			lc.getAddContact().setVisible(false);
-			
 			
 			cardMemo.add(lc, "liste"); 
 			clMemo.show(cardMemo, "liste");

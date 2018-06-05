@@ -2,11 +2,15 @@ package AppliContact;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import AppliMemory.FinDuJeu;
 
 /**
  * BoutonContact est une classe qui permet de créer les boutons dans la liste de 
@@ -34,7 +38,7 @@ public class BoutonContact extends JButton{
 	 * @param cl, le layout du panel de toute l'application contact 
 	 * @param cards, les panels contenu dans le layout 
 	 */
-	public BoutonContact(Contact c, CardLayout cl, JPanel cards) {
+	public BoutonContact(Contact c, CardLayout cl, JPanel cards, boolean isInMemo) {
 		this.c = c; 
 		this.nomBouton = c.toString(); 
 		this.cl = cl; 
@@ -45,7 +49,11 @@ public class BoutonContact extends JButton{
 		this.setText(nomBouton);
 		this.setSize(405, 40);
 		this.setMaximumSize(this.getSize());
-		this.addMouseListener(new OuvrirDetailContact());
+		
+		if(isInMemo==false) {
+			this.addMouseListener(new OuvrirDetailContact());
+		}
+		
 	}
 	
 	/**
