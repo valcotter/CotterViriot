@@ -70,6 +70,7 @@ class GrilleCentre extends JPanel
 		nbreLigne = (int) Math.ceil(nbrePhotos/3.0);
 		System.out.println("Nbre de ligne: " + nbreLigne);
 		
+		
 		//Création GridLayout avec nbre de ligne
 		this.setLayout(new GridLayout(nbreLigne,3));
 		
