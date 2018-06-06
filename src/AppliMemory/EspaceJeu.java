@@ -89,7 +89,7 @@ public class EspaceJeu extends JPanel {
 		this.add(plateau, BorderLayout.CENTER);
 		this.add(chrono, BorderLayout.SOUTH); 
 	
-		
+		this.updateUI();
 	}
 	
 	public FinDuJeu getFdj() {

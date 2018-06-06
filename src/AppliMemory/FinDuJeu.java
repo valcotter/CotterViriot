@@ -67,6 +67,8 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 		
 		fdj = this; 
 		
+		this.updateUI();
+		
 	}
 	
 	public JTextField getNomJoueur() {
