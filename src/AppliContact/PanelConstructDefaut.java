@@ -1,6 +1,8 @@
 package AppliContact;
 
 import java.awt.CardLayout;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -12,8 +14,8 @@ import javax.swing.JPanel;
  */
 public abstract class PanelConstructDefaut extends JPanel{
 	
-	CardLayout cl = new CardLayout();
-	JPanel cards = new JPanel(); 
+	protected CardLayout cl = new CardLayout();
+	protected JPanel cards = new JPanel();  
 	
 	/**
 	 * 
@@ -21,7 +23,6 @@ public abstract class PanelConstructDefaut extends JPanel{
 	 *  @param cards, les panels contenu dans le layout 
 	 */
 	public PanelConstructDefaut(CardLayout cl, JPanel cards) {
-		
 		this.cl = cl; 
 		this.cards = cards;
 		

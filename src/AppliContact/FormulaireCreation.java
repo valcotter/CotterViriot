@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -53,7 +54,7 @@ public class FormulaireCreation extends BaseFicheContact {
 				// Serialization
 				MySerialization(tempo);
 
-				ListeContact lc = new ListeContact(cl, cards, false);
+				ListeContact lc = new ListeContact(cl, cards, false, null);
 				cards.add(lc, "Liste");
 				cl.show(cards, "Liste");
 

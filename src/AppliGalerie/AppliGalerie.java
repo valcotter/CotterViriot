@@ -34,11 +34,13 @@ public class AppliGalerie extends JPanel
 	public JLabel labelTitre;
 	private JPanel backPanel = new JPanel();
 	
+	private CardLayout clGalerie = new CardLayout(); 
+	private JPanel cardsGalerie = new JPanel();
+	
 	public AppliGalerie()
 	{
 		//Cardlayout pour les differentes pages
-		private CardLayout clGalerie = new CardLayout(); 
-		private JPanel cardsGalerie = new JPanel(); 
+		 
 		
 		
 		labelTitre = new JLabel("Galerie");						//Création du PanelTitre

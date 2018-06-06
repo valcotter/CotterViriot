@@ -107,6 +107,4 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		
 	}
 	
-	
-	
 }

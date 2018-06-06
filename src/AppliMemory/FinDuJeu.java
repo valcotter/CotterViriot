@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -24,6 +25,7 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	
 	private CardLayout clMemo; 
 	private JPanel cardMemo; 
+	private JFrame fenetre; 
 	
 	private JPanel formJoueur = new JPanel(); 
 	private JPanel chronoPanel = new JPanel(); 
@@ -37,6 +39,8 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	
 	private JLabel joueur = new JLabel("Joueur : "); 
 	private JTextField nomJoueur = new JTextField(); 
+	
+	private FinDuJeu fdj; 
 	
 	public FinDuJeu(Chronometre chrono, CardLayout clMemo, JPanel cardMemo) {
 		this.chrono = chrono; 
@@ -61,8 +65,14 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 		this.add(formJoueur);
 		this.add(valider); 
 		
+		fdj = this; 
+		
 	}
 	
+	public JTextField getNomJoueur() {
+		return nomJoueur;
+	}
+
 	class sauverResultat extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
@@ -77,7 +87,7 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	class ouvrirListeContact extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
-			ListeContact lc = new ListeContact(clMemo, cardMemo, true); 
+			ListeContact lc = new ListeContact(clMemo, cardMemo, true, fdj); 
 			lc.getAddContact().setVisible(false);
 			
 			cardMemo.add(lc, "liste"); 

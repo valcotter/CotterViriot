@@ -24,7 +24,6 @@ public class JLabelScore extends JLabel {
 		
 		this.setText(classement+". "+j.toString());
 		this.setFont(font);
-		//this.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 		
 	}
 	

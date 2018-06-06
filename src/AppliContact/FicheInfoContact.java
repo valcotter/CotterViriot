@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -103,7 +104,7 @@ public class FicheInfoContact extends BaseFicheContact {
 
 			System.out.println("Contact supprimé.");
 
-			ListeContact lc = new ListeContact(cl, cards, false);
+			ListeContact lc = new ListeContact(cl, cards, false, null);
 			cards.add(lc, "Liste");
 			cl.show(cards, "Liste");
 
@@ -160,7 +161,7 @@ public class FicheInfoContact extends BaseFicheContact {
 				sauvegarder.setVisible(false);
 				
 				//On refait une liste modifié
-				ListeContact lc = new ListeContact(cl, cards, false);
+				ListeContact lc = new ListeContact(cl, cards, false, null);
 				cards.add(lc, "Liste");
 				
 			}

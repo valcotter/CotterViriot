@@ -12,8 +12,11 @@ import java.io.File;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import AppliMemory.FinDuJeu;
 
 /**
  * ListeContact est le panel qui contient la liste de contact; 
@@ -50,6 +53,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	private BoutonDefilementListe btnRightLeft = new BoutonDefilementListe(cl2, cardsListe);
 	
 	private boolean isInMemo; 
+	private FinDuJeu fdj; 
 	
 	/**
 	 * 
@@ -57,9 +61,11 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	 * @param cards, les panels contenu dans le layout 
 	 * @param isInMemo, est-ce que la liste est appelée dans l'application memory ou pas
 	 */
-	public ListeContact(CardLayout cl, JPanel cards, boolean isInMemo) {
+	
+	public ListeContact(CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) {
 		super(cl, cards); 
 		this.isInMemo = isInMemo; 
+		this.fdj = fdj; 
 		
 		panelNord.setLayout(new GridLayout(3, 1));
 		
@@ -85,6 +91,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		this.setLayout(new BorderLayout());
 		this.add(panelNord, BorderLayout.NORTH); 
 		this.add(cardsListe, BorderLayout.CENTER);
+		
 	
 	}
 	
@@ -116,7 +123,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 			
 			for(positionContact=cpt; positionContact<intervalleContact; positionContact++) {
 				Contact c = MyDeserialization(paths[positionContact]); 
-				btnContact = new BoutonContact(c, cl, cards, isInMemo);
+				btnContact = new BoutonContact(c, cl, cards, isInMemo, fdj);
 				tableauPanel[i].add(btnContact);
 				cpt++;
 			}
@@ -134,7 +141,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 			
 			for(int j=positionContact; j<positionContact+restContact; j++) {
 				Contact c = MyDeserialization(paths[j]); 
-				btnContact = new BoutonContact(c, cl, cards, isInMemo);
+				btnContact = new BoutonContact(c, cl, cards, isInMemo, fdj);
 				myPanel.add(btnContact);
 			}
 			
@@ -160,17 +167,5 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		}
 	}
 	
-	class RecupererContactPourJoueur extends MouseAdapter {
-		
-		@Override
-		public void mouseClicked(MouseEvent arg0) {
-			
-			//Trouver solution pour relier contact et memory 
-			
-			
-			
-			cl.previous(cards);
-		}
-	}
 
 }

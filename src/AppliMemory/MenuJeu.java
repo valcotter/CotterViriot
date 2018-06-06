@@ -6,6 +6,7 @@ import java.awt.Panel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MenuJeu extends JPanel {
@@ -15,10 +16,11 @@ public class MenuJeu extends JPanel {
 	private JPanel cardMemo; 
 	
 	//Différentes rubriques 
-	private JLabelMenu titre = new JLabelMenu("Menu"); 
+	private JLabelMenu titre = new JLabelMenu("MEMORY"); 
 	private JLabelMenu newPartie = new JLabelMenu("Nouvelle partie");
 	private JLabelMenu score = new JLabelMenu("Score"); 
-	private JLabelMenu reglage = new JLabelMenu("Réglages"); 
+	
+	private EspaceJeu ej; 
 	
 	public MenuJeu(CardLayout clMemo, JPanel cardMemo) {
 		this.clMemo = clMemo; 
@@ -30,28 +32,35 @@ public class MenuJeu extends JPanel {
 		
 		//Différentes rubriques du menu 
 		//PB TAILLE IMAGE FOND A CHANGER 
-		this.setLayout(new GridLayout(4, 1, 0, 115));
+		this.setLayout(new GridLayout(3, 1, 0, 115));
 		this.add(titre); 
 		this.add(newPartie); 
 		this.add(score); 
-		this.add(reglage); 
 		
 		//this.add(fond);
+		
+	
 	}
 	
+	public EspaceJeu getEj() {
+		return ej;
+	}
+
+
 	public class ouvrirJeu extends MouseAdapter
 	{
 		@Override
 		public void mouseClicked(MouseEvent arg0)
 		{	
 			
-			EspaceJeu ej = new EspaceJeu(clMemo, cardMemo); 
+			ej = new EspaceJeu(clMemo, cardMemo); 
 			cardMemo.add(ej, "Jeu"); 
 			
 			ej.getChrono().getTimer().start();
 			
 			clMemo.show(cardMemo, "Jeu");
 		}
+		
 	}
 	
 	public class ouvrirScore extends MouseAdapter

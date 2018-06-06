@@ -67,12 +67,14 @@ public class Fenetre extends JFrame
     //Panel des applications  
     protected CardLayout cl = new CardLayout();
     protected JPanel cards = new JPanel(); //On a besoin de cards dans les listeners
-    private AppliContact contactApp = new AppliContact();
+    private AppliContact contactApp= new AppliContact();
     private AppliGalerie galerieApp = new AppliGalerie();
-    private AppMemory memoryApp = new AppMemory(); 
+    private AppMemory memoryApp = new AppMemory();
+
 	
 	public Fenetre()
 	{
+		
 		//Paramètres fenètres
 		this.setSize(400, 726);												//Definir la taille (taille de l'image dans notre cas)
 		this.setLocationRelativeTo(null);									//Centre la fenetre sur l'écran
@@ -99,7 +101,7 @@ public class Fenetre extends JFrame
 		appGalerie.addMouseListener(new changerSouris());
 		appGalerie.addMouseListener(new ouvrirGalerie());
 		appMemory.addMouseListener(new changerSouris());
-		appMemory.addMouseListener(new ouvrirMemory());
+		appMemory.addMouseListener(new ouvrirMemory()); 
 		
 		//Panel d'accueil
 		accueil.setLayout(new GridLayout(1, 3));
@@ -120,7 +122,7 @@ public class Fenetre extends JFrame
 		
 		this.setVisible(true);
 	}
-	
+
 	private class changerSouris extends MouseAdapter
 	{
 		@Override

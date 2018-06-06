@@ -8,6 +8,8 @@
 package AppliMemory;
 
 import java.awt.CardLayout;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class AppMemory extends JPanel {
@@ -17,9 +19,11 @@ public class AppMemory extends JPanel {
 	private JPanel cardMemo = new JPanel(); 
 	
 	//JPanel composant l'application
-	private MenuJeu menu = new MenuJeu(clMemo, cardMemo);  
+	private MenuJeu menu;  
 	
 	public AppMemory() {
+		
+		menu = new MenuJeu(clMemo, cardMemo);
 		
 		cardMemo.setLayout(clMemo);
 		//Les différents panel du memory 
@@ -27,6 +31,10 @@ public class AppMemory extends JPanel {
 		
 		this.add(cardMemo);
 		
+	}
+
+	public MenuJeu getMenu() {
+		return menu;
 	}
 	
 }

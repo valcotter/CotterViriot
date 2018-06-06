@@ -12,6 +12,7 @@ import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -27,8 +28,8 @@ public class EspaceJeu extends JPanel {
 	//Chronometre 
 	private Chronometre chrono = new Chronometre(0, 0, 0); 
 	
-	PanelPause pp;  
-	FinDuJeu fdj; 
+	private PanelPause pp;  
+	private FinDuJeu fdj; 
 	
 	//Pour empecher les null dans le listener 
 	private Carte carte1 = null; 
@@ -63,7 +64,6 @@ public class EspaceJeu extends JPanel {
 		
 		test.setLayout(new GridLayout(1, 2));
 		
-		
 		//Barre superieur 
 		btnPause2.addMouseListener(new ouvrirPause());
 		//this.add(btnPause2, BorderLayout.NORTH);
@@ -88,9 +88,14 @@ public class EspaceJeu extends JPanel {
 		this.add(test, BorderLayout.NORTH);
 		this.add(plateau, BorderLayout.CENTER);
 		this.add(chrono, BorderLayout.SOUTH); 
+	
 		
 	}
 	
+	public FinDuJeu getFdj() {
+		return fdj;
+	}
+
 	public Chronometre getChrono() {
 		return chrono;
 	}

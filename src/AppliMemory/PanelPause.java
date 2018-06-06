@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class PanelPause extends JPanel {
@@ -35,7 +36,7 @@ public class PanelPause extends JPanel {
 	public PanelPause(CardLayout clMemo, JPanel cardMemo, EspaceJeu ej) {
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo;  
-		this.ej = ej; 
+		this.ej = ej;  
 		
 		this.setLayout(new BorderLayout());
 		this.add(titrePause, BorderLayout.NORTH); 
