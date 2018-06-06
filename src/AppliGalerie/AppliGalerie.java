@@ -1,6 +1,7 @@
 package AppliGalerie;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -35,6 +36,11 @@ public class AppliGalerie extends JPanel
 	
 	public AppliGalerie()
 	{
+		//Cardlayout pour les differentes pages
+		private CardLayout clGalerie = new CardLayout(); 
+		private JPanel cardsGalerie = new JPanel(); 
+		
+		
 		labelTitre = new JLabel("Galerie");						//Création du PanelTitre
 		this.setLayout(new BorderLayout());							//Création BorderLayout
 		this.add(labelTitre, BorderLayout.NORTH);					//Placement du titre au nord
