@@ -5,31 +5,30 @@ import javax.swing.JPanel;
 
 /**
 * AppliContact est la classe principal de l'application contact. Elle contient les panels 
-* principaux qui contiennent les autres fonctionnalités. 
+* principaux qui contiennent les autres fonctionnalitï¿½s. 
 *
 * @author Audrey Viriot
 * @author Valentine Cotter
 */
 public class AppliContact extends JPanel{
 
-	//Cardlayout pour les différentes pages 
+	//Cardlayout pour les diffï¿½rentes pages 
 	private CardLayout cl = new CardLayout(); 
 	private JPanel cards = new JPanel(); 
 	
-	//Les différents panels
+	//Les diffï¿½rents panels
 	private ListeContact liste = new ListeContact (cl, cards, false); 
 	private PanelConstructDefaut formNewContact = new FormulaireCreation(cl, cards); 
 	
 	/**
 	 * Constructeur de la classe AppliContact()
 	 */
-	public AppliContact() {
-		
+	public AppliContact() 
+	{	
 		cards.setLayout(cl);
 		cards.add(liste, "Liste"); 
 		cards.add(formNewContact, "NouveauContact");
 		this.add(cards);
-	
 	}
 	
 }

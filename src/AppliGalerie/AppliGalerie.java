@@ -1,6 +1,7 @@
 package AppliGalerie;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -35,6 +36,11 @@ public class AppliGalerie extends JPanel
 	
 	public AppliGalerie()
 	{
+		//Cardlayout pour les differentes pages
+		private CardLayout clGalerie = new CardLayout(); 
+		private JPanel cardsGalerie = new JPanel(); 
+		
+		
 		labelTitre = new JLabel("Galerie");						//Création du PanelTitre
 		this.setLayout(new BorderLayout());							//Création BorderLayout
 		this.add(labelTitre, BorderLayout.NORTH);					//Placement du titre au nord
@@ -78,11 +84,21 @@ class GrilleCentre extends JPanel
 		//Ajoute tableau au gridLayout
 		for(int i = 0; i != url.size(); i++)
 		{
-			this.add(new ImageBouton("ImagesGalerie/" + (i+1) + ".jpg"));
-			
+			ImageBouton temp = new ImageBouton("ImagesGalerie/" + (i+1) + ".jpg");
+			this.add(temp);
+			temp.addActionListener(new Ecouteur());
 		}	
 	}
+	
+	class Ecouteur implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e) 
+		{
+				AfficheImage ai = new AfficheImage();
+		}
+	}
 }
+
 
 class ImageBouton extends JButton
 {
@@ -109,15 +125,7 @@ class ImageBouton extends JButton
 	    }                
 	}
 	
-	class Ecouteur implements ActionListener
-	{
-		@Override
-		public void actionPerformed(ActionEvent arg0) 
-		{
-			
-			
-		}
-	}
+	
 
 }
 
