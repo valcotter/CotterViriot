@@ -35,7 +35,7 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		for(int i=0; i<joueurTrie.length; i++) {
 			
 			tabScore.add(new JLabelScore(i, joueurTrie[i])); 
-			System.out.println(i+" "+joueurTrie[i].toString());
+			System.out.println(i+" "+joueurTrie[i+1].toString());
 			
 		}
 		
