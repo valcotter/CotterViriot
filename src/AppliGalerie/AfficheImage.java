@@ -12,5 +12,6 @@ public class AfficheImage extends JPanel
 	{
 		p1.setBackground(Color.BLACK);
 		add(p1);
+		
 	}
 }
