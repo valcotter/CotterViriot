@@ -55,7 +55,12 @@ public class Chronometre extends JPanel implements Serializable{
 	}
 	
 	public String toString() {
-		return heure+"."+minute+"."+seconde; 
+		if(seconde>9) {
+			return heure+0+"."+0+minute+"."+seconde;
+			//On considère qu'une partie ne peut pas être plus longue que 10 minutes 
+		}
+		return heure+0+"."+0+minute+"."+0+seconde;
+		 
 	}
 	
 	class ActionDuCrono implements ActionListener {

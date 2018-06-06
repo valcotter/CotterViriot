@@ -30,7 +30,6 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	
 	private Chronometre chrono; 
 	
-	
 	private JButton valider = new JButton("Valider");
 	private JButton chercherListe = new JButton("Liste de contact");
 	

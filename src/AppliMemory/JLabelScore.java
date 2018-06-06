@@ -7,6 +7,7 @@
 
 package AppliMemory;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JLabel;
@@ -15,7 +16,7 @@ public class JLabelScore extends JLabel {
 
 	private Joueur j;
 	private int classement; 
-	private Font font = new Font("Arial",Font.BOLD,40);
+	private Font font = new Font("Arial",Font.BOLD,30);
 	
 	public JLabelScore(int classement, Joueur j) {
 		this.j = j; 
@@ -23,7 +24,7 @@ public class JLabelScore extends JLabel {
 		
 		this.setText(classement+". "+j.toString());
 		this.setFont(font);
-		this.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+		//this.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 		
 	}
 	
