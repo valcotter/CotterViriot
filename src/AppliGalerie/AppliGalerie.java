@@ -103,7 +103,7 @@ class AfficheImage extends JPanel
 			e.printStackTrace();
 		}
 		
-		dimg = img.getScaledInstance(300,300,Image.SCALE_SMOOTH);
+		dimg = img.getScaledInstance(350,350,Image.SCALE_SMOOTH);
 		icon = new ImageIcon(dimg);
 		labelImage = new JLabel(icon);
 		
