@@ -74,7 +74,6 @@ public class Fenetre extends JFrame
 	
 	public Fenetre()
 	{
-		
 		//Paramètres fenètres
 		this.setSize(400, 726);												//Definir la taille (taille de l'image dans notre cas)
 		this.setLocationRelativeTo(null);									//Centre la fenetre sur l'écran
