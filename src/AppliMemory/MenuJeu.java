@@ -6,7 +6,9 @@ import java.awt.Panel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MenuJeu extends JPanel {
@@ -16,7 +18,10 @@ public class MenuJeu extends JPanel {
 	private JPanel cardMemo; 
 	
 	//Différentes rubriques 
-	private JLabelMenu titre = new JLabelMenu("MEMORY"); 
+	private ImageIcon logoMemo = new ImageIcon("ImageMemory/logoMemory.png");
+	private JLabel titre = new JLabel(logoMemo); 
+	
+	//private JLabelMenu titre = new JLabelMenu("MEMORY"); 
 	private JLabelMenu newPartie = new JLabelMenu("Nouvelle partie");
 	private JLabelMenu score = new JLabelMenu("Score"); 
 	
