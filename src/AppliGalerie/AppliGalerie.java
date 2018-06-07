@@ -47,6 +47,7 @@ public class AppliGalerie extends JPanel
 
 	public AppliGalerie()
 	{		
+		
 		//Titre de la galerie
 		labelTitre = new JLabel("Galerie");							//Création du PanelTitre
 		this.setLayout(new BorderLayout());							//Création BorderLayout
