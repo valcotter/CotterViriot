@@ -16,13 +16,15 @@ import javax.swing.JLabel;
 
 public class Carte extends JLabel{
 	
+	private int idCarte; 
 	private int cptClic = 0; 
 	private ImageIcon pays;  
 	private ImageIcon couverture = new ImageIcon("ImageMemory/japan.png");
 	private MouseListener retournerCrt = new RetournerCarte(); 
 	
-	public Carte(ImageIcon pays) {
+	public Carte(ImageIcon pays, int idCarte) {
 		this.pays = pays;  
+		this.idCarte = idCarte; 
 		
 		this.setSize(couverture.getIconWidth(), couverture.getIconWidth());
 		this.setPreferredSize(this.getSize());
@@ -32,6 +34,10 @@ public class Carte extends JLabel{
 	
 	public MouseListener getRetournerCrt() {
 		return retournerCrt; 
+	}
+
+	public int getIdCarte() {
+		return idCarte;
 	}
 
 	public void changerCouleurCarte() {

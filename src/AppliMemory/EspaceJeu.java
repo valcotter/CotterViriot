@@ -126,8 +126,8 @@ public class EspaceJeu extends JPanel {
 		for(int i=0; i<30; i=i+2) {
 			//On attribue une image à la carte et à celle d'après pour constituer des paires 
 			ImageIcon paysChoisi = new ImageIcon("ImageMemory/Pays/"+tabPays[cpt]); 
-			tabCarte[i] = new Carte(paysChoisi); 
-			tabCarte[i+1] = new Carte(paysChoisi);
+			tabCarte[i] = new Carte(paysChoisi, i); 
+			tabCarte[i+1] = new Carte(paysChoisi, (i+1));
 			cpt++; 
 		}
 		
@@ -176,7 +176,7 @@ public class EspaceJeu extends JPanel {
 				//Récup de la carte sur laquelle on clic en 2eme 
 				carte2 = (Carte) arg0.getSource(); 
 				//Si carte = on enleve le listener 
-				if(carte1.equals(carte2) == true) {
+				if(carte1.equals(carte2) == true && carte1.getIdCarte() != carte2.getIdCarte()) {
 					carte1.removeMouseListener(carte1.getRetournerCrt());
 					carte1.removeMouseListener(enregistreClic);
 					carte2.removeMouseListener(carte2.getRetournerCrt());

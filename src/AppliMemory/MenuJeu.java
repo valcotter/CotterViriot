@@ -49,6 +49,10 @@ public class MenuJeu extends JPanel {
 		newPartie.addMouseListener(new ouvrirJeu());
 		score.addMouseListener(new ouvrirScore());
 		
+		//Couleur 
+		newPartie.setForeground(Color.YELLOW);
+		score.setForeground(Color.YELLOW);
+		
 		//Différentes rubriques du menu 
 		menuCtn.setLayout(new GridLayout(3, 1, 0, 0));
 		menuCtn.add(titre); 

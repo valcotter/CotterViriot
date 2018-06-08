@@ -9,12 +9,18 @@ package AppliMemory;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import javax.swing.JPanel;
 
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import AppliContact.BarreSuperieur;
 import AppliContact.ListeContact;
@@ -36,7 +42,8 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 	//Jpanel gridlayout contenant les scores 
 	private JPanel tabScore = new JPanel(); 
 	
-	private JLabelMenu titre = new JLabelMenu("Meilleurs scores"); 
+	private ImageIcon highScore = new ImageIcon("ImageMemory/HighScore.png"); 
+	private JLabel titre = new JLabel(highScore); 
 	
 	//Panel supérieur 
 	private JPanel partieSup = new JPanel(); 
@@ -49,15 +56,20 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		this.cardMemo = cardMemo;
 		
 		barreSup = new BarreSuperieur(clMemo, cardMemo); 
+		ImageIcon precedBlanc = new ImageIcon("ImageMemory/precedentBlanc.png"); 
+		barreSup.getPrecedent().setIcon(precedBlanc);
 		barreSup.getPrecedent().addMouseListener(new retourPrecedent());
 		barreSup.getModifier().setVisible(false);
 		barreSup.getSupprimer().setVisible(false);
+		barreSup.setOpaque(false);
 		
-		partieSup.setLayout(new GridLayout(2, 1));
+		partieSup.setLayout(new GridLayout(2, 1, 0, -85));
 		partieSup.add(barreSup); 
 		partieSup.add(titre); 
+		partieSup.setOpaque(false); 
 		
 		tabScore.setLayout(new GridLayout(nbScore+1, 1));
+		tabScore.setOpaque(false);
 		
 		joueurTrie = RecupDeserializ(); 
 		joueurTrie = TrieMeilleurScore(joueurTrie); 
@@ -69,9 +81,17 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 			
 		}
 		
+		tabScore.setBorder(new EmptyBorder(30, 40, 40, 40));
+		
 		this.setLayout(new BorderLayout());
 		this.add(partieSup, BorderLayout.NORTH); 
 		this.add(tabScore, BorderLayout.CENTER);
+		this.setBackground(Color.BLACK);
+		
+		this.setSize(new Dimension(388, 569));
+		this.setMaximumSize(this.getSize());
+		this.setMinimumSize(this.getSize());
+		this.setPreferredSize(this.getSize());
 	}
 	
 	public Joueur[] RecupDeserializ() {
