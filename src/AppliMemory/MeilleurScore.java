@@ -10,11 +10,14 @@ package AppliMemory;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import javax.swing.JPanel;
 
 
 import AppliContact.BarreSuperieur;
+import AppliContact.ListeContact;
 
 public class MeilleurScore extends JPanel implements SerializMemo{
 	
@@ -46,6 +49,9 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		this.cardMemo = cardMemo;
 		
 		barreSup = new BarreSuperieur(clMemo, cardMemo); 
+		barreSup.getPrecedent().addMouseListener(new retourPrecedent());
+		barreSup.getModifier().setVisible(false);
+		barreSup.getSupprimer().setVisible(false);
 		
 		partieSup.setLayout(new GridLayout(2, 1));
 		partieSup.add(barreSup); 
@@ -57,7 +63,7 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		joueurTrie = TrieMeilleurScore(joueurTrie); 
 		supprJoueur();
 		
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<joueurTrie.length; i++) {
 			
 			tabScore.add(new JLabelScore(i+1, joueurTrie[i])); 
 			
@@ -136,8 +142,15 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 			f.delete(); 
 			
 		}
-		
-		
+	}
+	
+	class retourPrecedent extends MouseAdapter{
+		public void mouseClicked(MouseEvent arg0) {
+			
+			clMemo.show(cardMemo, "Menu");
+			
+
+		}
 	}
 	
 }

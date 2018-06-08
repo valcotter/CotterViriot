@@ -18,7 +18,7 @@ public class JLabelMenu extends JLabel{
 	
 	public JLabelMenu(String contenu) {
 		
-		this.setForeground(Color.BLACK);
+		this.setForeground(Color.YELLOW);
 		this.setText(contenu);
 		this.setFont(font);
 		this.setHorizontalAlignment((int) CENTER_ALIGNMENT);

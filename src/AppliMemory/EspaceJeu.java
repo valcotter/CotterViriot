@@ -7,6 +7,7 @@ import AppliContact.PanelConstructDefaut;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -40,8 +41,7 @@ public class EspaceJeu extends JPanel {
 	private boolean premierTour = true; 
 	
 	//Btn pause 
-	private ImageIcon pause = new ImageIcon("ImageMemory/pause.png");
-	//private JLabel btnPause = new JLabel(pause); 
+	private ImageIcon pause = new ImageIcon("ImageMemory/pause.png"); 
 	
 	private JButton btnPause2 = new JButton(pause); 
 	private JButton btnTestFin = new JButton("Fin"); 
@@ -67,6 +67,8 @@ public class EspaceJeu extends JPanel {
 		
 		test.setLayout(new GridLayout(1, 2));
 		
+		btnPause2.setBackground(Color.BLACK);
+		
 		//Barre superieur 
 		btnPause2.addMouseListener(new ouvrirPause());
 		//this.add(btnPause2, BorderLayout.NORTH);
@@ -88,9 +90,13 @@ public class EspaceJeu extends JPanel {
 			plateau.add(tabCarte[i]);
 		}
 
+		test.setOpaque(false);
+		plateau.setOpaque(false);
+		chrono.setOpaque(false);
 		this.add(test, BorderLayout.NORTH);
 		this.add(plateau, BorderLayout.CENTER);
 		this.add(chrono, BorderLayout.SOUTH); 
+		this.setBackground(Color.BLACK);
 	
 	}
 	

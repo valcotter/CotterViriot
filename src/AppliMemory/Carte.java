@@ -7,23 +7,18 @@
 
 package AppliMemory;
 
-import java.awt.CardLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class Carte extends JLabel{
 	
 	private int cptClic = 0; 
 	private ImageIcon pays;  
 	private ImageIcon couverture = new ImageIcon("ImageMemory/japan.png");
-	private CardLayout cl; 
-	private JPanel card; 
 	private MouseListener retournerCrt = new RetournerCarte(); 
 	
 	public Carte(ImageIcon pays) {
@@ -36,7 +31,7 @@ public class Carte extends JLabel{
 	}
 	
 	public MouseListener getRetournerCrt() {
-		return retournerCrt;
+		return retournerCrt; 
 	}
 
 	public void changerCouleurCarte() {

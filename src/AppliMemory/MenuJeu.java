@@ -1,6 +1,9 @@
 package AppliMemory;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.event.MouseAdapter;
@@ -20,7 +23,7 @@ public class MenuJeu extends JPanel {
 	private JPanel cardMemo; 
 	
 	//Différentes rubriques 
-	private ImageIcon logoMemo = new ImageIcon("ImageMemory/logoMemory.png");
+	private ImageIcon logoMemo = new ImageIcon("ImageMemory/memoryTitre.png");
 	private JLabel titre = new JLabel(logoMemo); 
 	
 	//private JLabelMenu titre = new JLabelMenu("MEMORY"); 
@@ -29,22 +32,37 @@ public class MenuJeu extends JPanel {
 	
 	private EspaceJeu ej; 
 	
+	//Panel container menu
+	private JPanel menuCtn = new JPanel(); 
+	
+	//Fond ecran
+	private ImageIcon fond = new ImageIcon("ImageMemory/fondMenu.jpg"); 
+	private JLabel fondEcran = new JLabel(fond); 
+	
 	public MenuJeu(CardLayout clMemo, JPanel cardMemo) {
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo; 
+		
+		this.setLayout(new BorderLayout());
 		
 		//Ajout des listeners 
 		newPartie.addMouseListener(new ouvrirJeu());
 		score.addMouseListener(new ouvrirScore());
 		
 		//Différentes rubriques du menu 
-		//PB TAILLE IMAGE FOND A CHANGER 
-		this.setLayout(new GridLayout(3, 1, 0, 115));
-		this.add(titre); 
-		this.add(newPartie); 
-		this.add(score); 
+		menuCtn.setLayout(new GridLayout(3, 1, 0, 0));
+		menuCtn.add(titre); 
+		menuCtn.add(newPartie); 
+		menuCtn.add(score); 
+		menuCtn.setOpaque(false);
 		
-		//this.add(fond);
+		this.add(menuCtn, BorderLayout.CENTER); 
+		this.setSize(new Dimension(388, 569));
+		this.setMaximumSize(this.getSize());
+		this.setMinimumSize(this.getSize());
+		this.setPreferredSize(this.getSize());
+		this.setBackground(Color.BLACK);
+		
 	}
 	
 	public EspaceJeu getEj() {
