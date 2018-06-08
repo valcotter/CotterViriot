@@ -2,6 +2,7 @@ package AppliMemory;
 
 import java.awt.BorderLayout;
 import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 
 import AppliContact.PanelConstructDefaut;
 
@@ -40,11 +41,14 @@ public class EspaceJeu extends JPanel {
 	private Carte carte2 = null; 
 	private boolean premierTour = true; 
 	
-	//Btn pause 
+	//Btn pause et stop 
 	private ImageIcon pause = new ImageIcon("ImageMemory/pause.png"); 
+	private ImageIcon stop = new ImageIcon("ImageMemory/stop.png"); 
+	private JLabel btnPause = new JLabel(pause); 
+	private JLabel btnStop = new JLabel(stop); 
 	
-	private JButton btnPause2 = new JButton(pause); 
-	private JButton btnTestFin = new JButton("Fin"); 
+	//private JButton btnPause2 = new JButton(pause); 
+	//private JButton btnTestFin = new JButton("Fin"); 
 	
 	//Espace plateau de jeu
 	private JPanel plateau = new JPanel(); 
@@ -67,14 +71,15 @@ public class EspaceJeu extends JPanel {
 		
 		test.setLayout(new GridLayout(1, 2));
 		
-		btnPause2.setBackground(Color.BLACK);
+		//btnPause2.setBackground(Color.BLACK);
 		
 		//Barre superieur 
-		btnPause2.addMouseListener(new ouvrirPause());
+		btnPause.addMouseListener(new ouvrirPause());
 		//this.add(btnPause2, BorderLayout.NORTH);
-		btnTestFin.addMouseListener(new ouvrirFin());
-		test.add(btnPause2); 
-		test.add(btnTestFin); 
+		btnStop.addMouseListener(new ouvrirFin());
+		test.add(btnPause); 
+		test.add(btnStop); 
+		test.setBorder(new EmptyBorder(10, 0, 0, 0));
 		
 		//Plateau - Remplissage du gridlayout 
 		plateau.setLayout(new GridLayout(6, 5, 10, 0));

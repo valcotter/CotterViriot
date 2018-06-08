@@ -7,6 +7,7 @@
 
 package AppliMemory;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +35,7 @@ public class Chronometre extends JPanel implements Serializable{
 		this.seconde = seconde; 
 		
 		this.setLayout(new GridLayout(1, 1));
+		labelChrono.setForeground(Color.YELLOW);
 		this.add(labelChrono); 
 		
 	}
