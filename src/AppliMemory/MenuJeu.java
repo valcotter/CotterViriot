@@ -11,7 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MenuJeu extends JPanel {
+import AppliContact.PanelConstructDefaut;
+
+public class MenuJeu extends PanelConstructDefaut {
 	
 	//Récupération de toutes les cartes de l'application
 	private CardLayout clMemo; 
@@ -28,8 +30,7 @@ public class MenuJeu extends JPanel {
 	private EspaceJeu ej; 
 	
 	public MenuJeu(CardLayout clMemo, JPanel cardMemo) {
-		this.clMemo = clMemo; 
-		this.cardMemo = cardMemo; 
+		super(clMemo, cardMemo); 
 		
 		//Ajout des listeners 
 		newPartie.addMouseListener(new ouvrirJeu());

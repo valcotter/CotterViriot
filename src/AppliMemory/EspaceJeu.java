@@ -2,6 +2,9 @@ package AppliMemory;
 
 import java.awt.BorderLayout;
 import javax.swing.Timer;
+
+import AppliContact.PanelConstructDefaut;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -16,7 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class EspaceJeu extends JPanel {
+public class EspaceJeu extends PanelConstructDefaut {
 
 	private CardLayout clMemo; 
 	private JPanel cardMemo;  
@@ -54,8 +57,7 @@ public class EspaceJeu extends JPanel {
 	private int cptDerouleJeu = 0; 
 
 	public EspaceJeu(CardLayout clMemo, JPanel cardMemo) {
-		this.clMemo = clMemo; 
-		this.cardMemo = cardMemo;  
+		super(clMemo, cardMemo); 
 		
 		pp = new PanelPause(clMemo, cardMemo, this); 
 		cardMemo.add(pp, "Pause");
@@ -177,7 +179,7 @@ public class EspaceJeu extends JPanel {
 					
 					if(cptDerouleJeu==15) {
 						chrono.getTimer().stop();
-						FinDuJeu fdj = new FinDuJeu(chrono, clMemo, cardMemo); 
+						FinDuJeu fdj = new FinDuJeu(clMemo, cardMemo, chrono); 
 						cardMemo.add(fdj, "Fin"); 
 						clMemo.show(cardMemo, "Fin");
 					}
@@ -206,7 +208,7 @@ public class EspaceJeu extends JPanel {
 		public void mouseClicked(MouseEvent arg0) {
 
 			chrono.getTimer().stop();
-			fdj = new FinDuJeu(chrono, clMemo, cardMemo); 
+			fdj = new FinDuJeu(clMemo, cardMemo, chrono); 
 			cardMemo.add(fdj, "Fin"); 
 			clMemo.show(cardMemo, "Fin");
 		}

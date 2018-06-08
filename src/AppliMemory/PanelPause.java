@@ -16,7 +16,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class PanelPause extends JPanel {
+import AppliContact.PanelConstructDefaut;
+
+public class PanelPause extends PanelConstructDefaut {
 
 	private CardLayout clMemo; 
 	private JPanel cardMemo; 
@@ -34,8 +36,7 @@ public class PanelPause extends JPanel {
 	
 	
 	public PanelPause(CardLayout clMemo, JPanel cardMemo, EspaceJeu ej) {
-		this.clMemo = clMemo; 
-		this.cardMemo = cardMemo;  
+		super(clMemo, cardMemo);  
 		this.ej = ej;  
 		
 		this.setLayout(new BorderLayout());

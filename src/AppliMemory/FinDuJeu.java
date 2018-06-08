@@ -20,8 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import AppliContact.ListeContact;
+import AppliContact.PanelConstructDefaut;
 
-public class FinDuJeu extends JPanel implements SerializMemo{ 
+public class FinDuJeu extends PanelConstructDefaut implements SerializMemo{ 
 	
 	private CardLayout clMemo; 
 	private JPanel cardMemo; 
@@ -42,10 +43,9 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	
 	private FinDuJeu fdj; 
 	
-	public FinDuJeu(Chronometre chrono, CardLayout clMemo, JPanel cardMemo) {
+	public FinDuJeu(CardLayout clMemo, JPanel cardMemo, Chronometre chrono) {
+		super(clMemo, cardMemo); 
 		this.chrono = chrono; 
-		this.clMemo = clMemo; 
-		this.cardMemo = cardMemo; 
 		
 		this.setLayout(new GridLayout(4, 1));
 		this.add(fini); 
