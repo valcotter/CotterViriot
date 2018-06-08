@@ -81,6 +81,7 @@ class AfficheImage extends JPanel
 	private ImageBouton listBack = new ImageBouton("listblack.png");
 	private ImageBouton corbeille = new ImageBouton("poubelle.png");
 	
+	
 	public AfficheImage(int id, int nbrePhotos)
 	{
 		this.id = id;
