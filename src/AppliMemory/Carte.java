@@ -19,7 +19,7 @@ public class Carte extends JLabel{
 	private int idCarte; 
 	private int cptClic = 0; 
 	private ImageIcon pays;  
-	private ImageIcon couverture = new ImageIcon("ImageMemory/japan.png");
+	private ImageIcon couverture = new ImageIcon("ImageMemory/couverture.png");
 	private MouseListener retournerCrt = new RetournerCarte(); 
 	
 	public Carte(ImageIcon pays, int idCarte) {
