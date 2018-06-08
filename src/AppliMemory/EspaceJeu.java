@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class EspaceJeu extends PanelConstructDefaut {
+public class EspaceJeu extends JPanel {
 
 	private CardLayout clMemo; 
 	private JPanel cardMemo;  
@@ -57,7 +57,8 @@ public class EspaceJeu extends PanelConstructDefaut {
 	private int cptDerouleJeu = 0; 
 
 	public EspaceJeu(CardLayout clMemo, JPanel cardMemo) {
-		super(clMemo, cardMemo); 
+		this.clMemo = clMemo; 
+		this.cardMemo = cardMemo; 
 		
 		pp = new PanelPause(clMemo, cardMemo, this); 
 		cardMemo.add(pp, "Pause");

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 import AppliContact.PanelConstructDefaut;
 
-public class MenuJeu extends PanelConstructDefaut {
+public class MenuJeu extends JPanel {
 	
 	//Récupération de toutes les cartes de l'application
 	private CardLayout clMemo; 
@@ -30,7 +30,8 @@ public class MenuJeu extends PanelConstructDefaut {
 	private EspaceJeu ej; 
 	
 	public MenuJeu(CardLayout clMemo, JPanel cardMemo) {
-		super(clMemo, cardMemo); 
+		this.clMemo = clMemo; 
+		this.cardMemo = cardMemo; 
 		
 		//Ajout des listeners 
 		newPartie.addMouseListener(new ouvrirJeu());
@@ -44,14 +45,11 @@ public class MenuJeu extends PanelConstructDefaut {
 		this.add(score); 
 		
 		//this.add(fond);
-		
-	
 	}
 	
 	public EspaceJeu getEj() {
 		return ej;
 	}
-
 
 	public class ouvrirJeu extends MouseAdapter
 	{
@@ -75,7 +73,7 @@ public class MenuJeu extends PanelConstructDefaut {
 		public void mouseClicked(MouseEvent arg0)
 		{	
 			
-			MeilleurScore meilleurScore = new MeilleurScore(); 
+			MeilleurScore meilleurScore = new MeilleurScore(clMemo, cardMemo); 
 			cardMemo.add(meilleurScore, "Score"); 
 			
 			clMemo.show(cardMemo, "Score");

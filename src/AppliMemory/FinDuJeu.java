@@ -19,14 +19,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import AppliContact.FormulaireCreation;
 import AppliContact.ListeContact;
 import AppliContact.PanelConstructDefaut;
 
-public class FinDuJeu extends PanelConstructDefaut implements SerializMemo{ 
+public class FinDuJeu extends JPanel implements SerializMemo{ 
 	
 	private CardLayout clMemo; 
 	private JPanel cardMemo; 
-	private JFrame fenetre; 
 	
 	private JPanel formJoueur = new JPanel(); 
 	private JPanel chronoPanel = new JPanel(); 
@@ -42,9 +42,12 @@ public class FinDuJeu extends PanelConstructDefaut implements SerializMemo{
 	private JTextField nomJoueur = new JTextField(); 
 	
 	private FinDuJeu fdj; 
+	private ListeContact lc; 
+	private FormulaireCreation fc; 
 	
 	public FinDuJeu(CardLayout clMemo, JPanel cardMemo, Chronometre chrono) {
-		super(clMemo, cardMemo); 
+		this.clMemo = clMemo; 
+		this.cardMemo = cardMemo; 
 		this.chrono = chrono; 
 		
 		this.setLayout(new GridLayout(4, 1));
@@ -89,7 +92,7 @@ public class FinDuJeu extends PanelConstructDefaut implements SerializMemo{
 	class ouvrirListeContact extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
-			ListeContact lc = new ListeContact(clMemo, cardMemo, true, fdj); 
+			lc = new ListeContact(clMemo, cardMemo, true, fdj); 
 			lc.getAddContact().setVisible(false);
 			
 			cardMemo.add(lc, "liste"); 
@@ -97,5 +100,7 @@ public class FinDuJeu extends PanelConstructDefaut implements SerializMemo{
 			
 		}
 	}
+	
+
 	
 }

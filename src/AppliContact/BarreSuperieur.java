@@ -67,7 +67,7 @@ public class BarreSuperieur extends PanelConstructDefaut{
 		@Override
 		public void mouseClicked(MouseEvent arg0)
 		{
-			cl.show(cards, "Liste");
+			cl.previous(cards);
 		}
 	}
 

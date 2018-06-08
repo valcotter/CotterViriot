@@ -8,12 +8,18 @@
 package AppliMemory;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.io.File;
 import javax.swing.JPanel;
 
+
+import AppliContact.BarreSuperieur;
+
 public class MeilleurScore extends JPanel implements SerializMemo{
+	
+	private CardLayout clMemo = new CardLayout(); 
+	private JPanel cardMemo = new JPanel(); 
 	
 	//Fichier qui contient les fichiers serializé 
 	private File f = new File("SerializMemory/");
@@ -29,24 +35,37 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 	
 	private JLabelMenu titre = new JLabelMenu("Meilleurs scores"); 
 	
-	public MeilleurScore() {
+	//Panel supérieur 
+	private JPanel partieSup = new JPanel(); 
+	
+	//Barre supérieur 
+	private BarreSuperieur barreSup;
+	
+	public MeilleurScore(CardLayout clMemo, JPanel cardMemo) {
+		this.clMemo = clMemo; 
+		this.cardMemo = cardMemo;
+		
+		barreSup = new BarreSuperieur(clMemo, cardMemo); 
+		
+		partieSup.setLayout(new GridLayout(2, 1));
+		partieSup.add(barreSup); 
+		partieSup.add(titre); 
 		
 		tabScore.setLayout(new GridLayout(nbScore+1, 1));
 		
 		joueurTrie = RecupDeserializ(); 
 		joueurTrie = TrieMeilleurScore(joueurTrie); 
+		supprJoueur();
 		
-		tabScore.add(titre); 
-		
-		for(int i=0; i<joueurTrie.length; i++) {
+		for(int i=0; i<10; i++) {
 			
 			tabScore.add(new JLabelScore(i+1, joueurTrie[i])); 
 			
 		}
 		
-		tabScore.setBackground(Color.WHITE);
+		this.setLayout(new BorderLayout());
+		this.add(partieSup, BorderLayout.NORTH); 
 		this.add(tabScore, BorderLayout.CENTER);
-		this.setBackground(Color.WHITE);
 	}
 	
 	public Joueur[] RecupDeserializ() {
@@ -104,6 +123,20 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		}
 		
 		return tabJoueur; 
+		
+	}
+	
+	public void supprJoueur() {
+		
+		for(int i=10; i<joueurTrie.length; i++) {
+			
+			Joueur j = joueurTrie[i]; 
+			String path = "SerializMemory/"+j.getNom()+j.getChrono().toString();
+			File f = new File(path); 
+			f.delete(); 
+			
+		}
+		
 		
 	}
 	
