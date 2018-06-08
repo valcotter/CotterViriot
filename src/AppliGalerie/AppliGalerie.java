@@ -21,6 +21,7 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,7 +36,6 @@ public class AppliGalerie extends JPanel
 {
 	public JLabel labelTitre;	
 	private File folder = new File("./ImagesGalerie/");
-	private int nbrePhotos;
 	String []listContent = {"Card1", "Card2"};
 	
 	//CardLayout
@@ -56,10 +56,6 @@ public class AppliGalerie extends JPanel
 		labelTitre.setFont(policeNormal);
 		labelTitre.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 		
-		//Compte le nbre de photos dans la galerie
-		File[] listPhotos = folder.listFiles();
-		nbrePhotos = listPhotos.length;
-		
 		//Ajout panel photos au cardLayout
 		container.setLayout(clGalerie);
 		GrilleCentre gc = new GrilleCentre(container, listContent, clGalerie);
@@ -72,29 +68,33 @@ public class AppliGalerie extends JPanel
 
 class AfficheImage extends JPanel
 {
-	private String path = "";
+	private int id = 0;
 	private JPanel photoPane = new JPanel();
+	private int nbrePhotos = 0;
 	
 	private ImageIcon icon;
 	private JLabel labelImage;
 	private BufferedImage img = null;
 	private Image dimg;
+	private ImageBouton next = new ImageBouton("next.png");
+	private ImageBouton previous = new ImageBouton("precede.png");
+	private ImageBouton listBack = new ImageBouton("listblack.png");
+	private ImageBouton corbeille = new ImageBouton("poubelle.png");
 	
-	public AfficheImage(String path)
+	public AfficheImage(int id, int nbrePhotos)
 	{
-		this.path = path;		
-		//this.add(photoPane);
+		this.id = id;
+		this.nbrePhotos = nbrePhotos;
 	}
 	
 	void display()
 	{
 		//Ajout du panel lorsque l'on clique
-		photoPane.setLayout(clGalerie);
-		photoPane.setBackground(Color.BLACK);
+		photoPane.setLayout(null);
 		container.add(photoPane, listContent[1]);
-		clGalerie.show(container, listContent[1]);
 		
-		//icon = new ImageIcon(path);
+		//Path
+		String path = "ImagesGalerie/" + id + ".jpg";
 		
 		try {
 			img = ImageIO.read(new File(path));
@@ -106,9 +106,42 @@ class AfficheImage extends JPanel
 		dimg = img.getScaledInstance(350,350,Image.SCALE_SMOOTH);
 		icon = new ImageIcon(dimg);
 		labelImage = new JLabel(icon);
+
+		//Dimension de la photo
+		//System.out.println("Largeur : " + img.getWidth());
+		//System.out.println("Hauteur : " + img.getHeight());
+		
+		labelImage.setBounds(50, 50, 310,370);
+		previous.setBounds(20,450, 40,40);
+		next.setBounds(340,450, 40,40);
+		listBack.setBounds(175,443, 50,50);
+		corbeille.setBounds(330,0,40,40);
 		
 		photoPane.add(labelImage);
+		photoPane.add(next);
+		photoPane.add(previous);
+		photoPane.add(listBack);
+		photoPane.add(corbeille);
+
+		previous.addActionListener(new Ecouteurs(id, 0, nbrePhotos));
+		next.addActionListener(new Ecouteurs(id, 1, nbrePhotos));
+		listBack.addActionListener(new Ecouteurs(id, 2, nbrePhotos));
+		corbeille.addActionListener(new Ecouteurs(id, 3, nbrePhotos));
 		
+		if(id == 1)
+		{
+			photoPane.remove(previous);
+		}
+		
+		if(id == nbrePhotos)
+		{
+			photoPane.remove(next);
+		}
+		
+		container.revalidate();
+		container.repaint();
+
+		clGalerie.show(container, listContent[1]);
 	}
 }
 
@@ -136,30 +169,73 @@ class GrilleCentre extends JPanel
 		//Ajoute tableau au gridLayout
 		for(int i = 0; i != url.size(); i++)
 		{
-			String path = "ImagesGalerie/" + (i+1) + ".jpg";
+			int id = i+1;
+			String path = "ImagesGalerie/" + id + ".jpg";
 			ImageBouton temp = new ImageBouton(path);
 			this.add(temp);
-			temp.addActionListener(new Ecouteur(path));
+			temp.addActionListener(new Ecouteur(id, nbrePhotos));
 		}	
 	}
 }
 
 class Ecouteur implements ActionListener
 {	
-	String path = "";
+	int id = 0;
+	int nbrePhotos = 0;
 	
-	public Ecouteur(String path)
+	public Ecouteur(int id, int nbrePhotos)
 	{
-		this.path = path;
+		this.id = id;
+		this.nbrePhotos = nbrePhotos;
 	}
 	
 	public void actionPerformed(ActionEvent e) 
 	{
-		AfficheImage ai = new AfficheImage(path);
+		AfficheImage ai = new AfficheImage(id, nbrePhotos);
 		ai.display();
+	}	
+}
+
+class Ecouteurs implements ActionListener
+{	
+	int id = 0;
+	int i = 0;
+	int nbrePhotos = 0;
+	
+	public Ecouteurs(int id, int i, int nbrePhotos)
+	{
+		this.i = i;
+		this.id = id;
+		this.nbrePhotos = nbrePhotos;
 	}
 	
 	
+	public void actionPerformed(ActionEvent e) 
+	{
+		if(i == 0)	//Bouton previous
+		{	
+			id = id-1;
+			AfficheImage previous = new AfficheImage(id, nbrePhotos);
+			previous.display();
+		}
+		
+		if(i == 1)	//Bouton next
+		{
+			id++;
+			AfficheImage next = new AfficheImage(id, nbrePhotos);
+			next.display();
+		}
+		
+		if(i == 2)
+		{
+			clGalerie.show(container, listContent[0]);
+		}
+		
+		if(i == 3)	//Corbeille
+		{
+			
+		}
+	}	
 }
 
 class ImageBouton extends JButton
@@ -184,7 +260,7 @@ class ImageBouton extends JButton
 		
 		{
 	    	System.out.println("ERROR");
-	    }                
+	    }
 	}
 }
 
