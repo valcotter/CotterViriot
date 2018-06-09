@@ -151,6 +151,7 @@ class GrilleCentre extends JPanel
 	Vector <String> url = new Vector();						//Tableau dynamique
 	private File folder = new File("./ImagesGalerie/");
 	private int nbrePhotos;
+	private int id;
 	
 	public GrilleCentre(JPanel container, String []listContent, CardLayout clGalerie)
 	{		
@@ -164,7 +165,8 @@ class GrilleCentre extends JPanel
 		//Remplissage tableau défaut
 		for(int i = 0; i < nbrePhotos; i++)
 		{
-			url.add("ImagesGalerie/" + (i+1) + ".jpg");
+			id = i+1;
+			url.add("ImagesGalerie/" + id + ".jpg");
 		}
 		
 		//Ajoute tableau au gridLayout
@@ -234,9 +236,48 @@ class Ecouteurs implements ActionListener
 		
 		if(i == 3)	//Corbeille
 		{
+			DeleteFile df = new DeleteFile(id);
+			container.revalidate();
+			container.repaint();
+			clGalerie.show(container, listContent[0]);
 			
 		}
 	}	
+}
+
+public class DeleteFile
+{
+	int id = 0;
+	
+	
+	public DeleteFile(int id)
+	{
+		this.id = id;
+		String path = "ImagesGalerie/" + id + ".jpg";
+		
+	    try
+	    {
+
+	         File file = new File(path);
+
+	         if(file.delete())
+	         {
+	        	 System.out.println(file.getName() + " est supprimé.");
+	         }
+	         
+	         else
+	         {
+	        	 System.out.println("Opération de suppression echouée");
+	         }
+	    }
+	    
+	    catch(Exception e)
+	    {
+	         e.printStackTrace();
+	    }
+	}
+	
+
 }
 
 class ImageBouton extends JButton
