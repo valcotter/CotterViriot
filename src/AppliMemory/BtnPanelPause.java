@@ -27,7 +27,8 @@ public class BtnPanelPause extends JButton {
 		
 		this.setSize(350, 75);
 		this.setMaximumSize(this.getSize());
-		this.setBackground(Color.WHITE);
+		this.setBackground(Color.YELLOW);
+		this.setForeground(Color.BLACK);
 		
 		this.setFont(policeBtn);
 		this.setText(libelleBtn);

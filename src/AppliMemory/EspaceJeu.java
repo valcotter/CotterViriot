@@ -117,6 +117,10 @@ public class EspaceJeu extends JPanel {
 		this.chrono = chrono;
 	}
 
+	public JLabel getBtnPause() {
+		return btnPause;
+	}
+
 	//Crée les cartes en leurs associant un pays et les met dans un tab dans l'ordre 
 	public Carte[] attributionPaysCarte() {
 		

@@ -1,22 +1,16 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 2 juin 2018
-*/
-
 package AppliMemory;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import AppliContact.PanelConstructDefaut;
+import javax.swing.border.EmptyBorder;
 
 public class PanelPause extends JPanel {
 
@@ -28,7 +22,7 @@ public class PanelPause extends JPanel {
 	private JLabelMenu titrePause = new JLabelMenu("PAUSE");
 	
 	//Panel centrale 
-	private JPanel panelCentral = new JPanel(); 
+	private JPanel panelCentral = new JPanel();  
 	
 	private BtnPanelPause play = new BtnPanelPause(clMemo, cardMemo, "Play");
 	private BtnPanelPause restart = new BtnPanelPause(clMemo, cardMemo, "Recommencer la partie");
@@ -42,15 +36,19 @@ public class PanelPause extends JPanel {
 		
 		this.setLayout(new BorderLayout());
 		this.add(titrePause, BorderLayout.NORTH); 
+		this.setBackground(Color.BLACK);
+		titrePause.setForeground(Color.YELLOW);
 		
 		play.addMouseListener(new ReprendreJeu());
 		restart.addMouseListener(new Restart());
 		quitter.addMouseListener(new RetourMenu());
 		
 		panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.Y_AXIS));
+		panelCentral.setOpaque(false);
+		panelCentral.setBorder(new EmptyBorder(125, 20, 20, 20));
 		panelCentral.add(play); 
 		panelCentral.add(restart);
-		panelCentral.add(quitter); 
+		panelCentral.add(quitter);
 		
 		this.add(panelCentral, BorderLayout.CENTER);
 		
