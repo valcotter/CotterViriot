@@ -106,5 +106,22 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		
 		return true; 
 	}
+	
+	protected boolean verificationNom() {
+		if(nomT.getText()=="") {
+			nomT.setText("Nom incorrect");
+			return false; 
+		}
+		return true; 
+	}
+	
+	protected boolean verificationPrenom() {
+		if(prenomT.getText()=="") {
+			prenomT.setText("Prénom incorrect");
+			return false; 
+		}
+		return true; 
+	}
+	
 
 }
