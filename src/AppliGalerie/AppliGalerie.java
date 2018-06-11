@@ -28,8 +28,7 @@ public class AppliGalerie extends JPanel
 {
 	public JLabel labelTitre;	
 	private File folder = new File("./ImagesGalerie/");
-	String []listContent = {"Card1", "Card2"};
-	
+	String []listContent = {"Card1", "Card2"};	
 	
 	//CardLayout
 	private CardLayout clGalerie = new CardLayout();
