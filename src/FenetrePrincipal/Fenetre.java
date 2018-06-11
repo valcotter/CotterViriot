@@ -72,7 +72,7 @@ public class Fenetre extends JFrame
     private AppMemory memoryApp = new AppMemory();
     
     private boolean juste;
-    private Verrouillage verrou = new Verrouillage(juste);
+    private Verrouillage verrou = new Verrouillage(juste, cl, cards);
 
 	
 	public Fenetre()
@@ -119,7 +119,7 @@ public class Fenetre extends JFrame
 		
 		//Test CardLayout; 
 		cards.setLayout(cl);
-		//cards.add(verrou, "Verrouillage");
+		cards.add(verrou, "Verrouillage");
 		cards.add(accueil, "Accueil");
 		cards.add(contactApp, "Contact");
 		cards.add(galerieApp, "Galerie");
