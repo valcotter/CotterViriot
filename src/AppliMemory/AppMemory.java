@@ -1,17 +1,14 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 31 mai 2018
-*/
-
 package AppliMemory;
 
 import java.awt.CardLayout;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * AppMemory contient tous les panels necessaires au memory 
+ * 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter
+ */
 public class AppMemory extends JPanel {
 	
 	//CardLyout 
@@ -21,20 +18,19 @@ public class AppMemory extends JPanel {
 	//JPanel composant l'application
 	private MenuJeu menu;  
 	
+	/**
+	 * Constructeur de la classe @AppMemory
+	 */
 	public AppMemory() {
 		
 		menu = new MenuJeu(clMemo, cardMemo);
 		
 		cardMemo.setLayout(clMemo);
-		//Les différents panel du memory 
+		//Panel du memory. 
 		cardMemo.add(menu, "Menu"); 
 		
 		this.add(cardMemo);
 		
 	}
 
-	public MenuJeu getMenu() {
-		return menu;
-	}
-	
 }

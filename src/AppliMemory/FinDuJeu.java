@@ -1,32 +1,24 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 4 juin 2018
-*/
-
 package AppliMemory;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import AppliContact.FormulaireCreation;
 import AppliContact.ListeContact;
-import AppliContact.PanelConstructDefaut;
 
+/**
+ * @FinDuJeu est le panel de fin du jeu.
+ * 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter 
+ */
 public class FinDuJeu extends JPanel implements SerializMemo{ 
 	
 	private CardLayout clMemo; 
@@ -57,6 +49,13 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	private FinDuJeu fdj; 
 	private ListeContact lc; 
 	
+	/**
+	 * Constructeur de @FinDuJeu. 
+	 * 
+	 * @param clMemo, le CardLayout. 
+	 * @param cardMemo, le panel contenant les autres panels de l'application.
+	 * @param chrono, Objet @Chronometre. 
+	 */
 	public FinDuJeu(CardLayout clMemo, JPanel cardMemo, Chronometre chrono) {
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo; 
@@ -83,8 +82,8 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 		boutonBas.add(chercherListe); 
 		boutonBas.setOpaque(false);
 		
-		valider.addMouseListener(new sauverResultat());
-		chercherListe.addMouseListener(new ouvrirListeContact());
+		valider.addMouseListener(new SauverResultat());
+		chercherListe.addMouseListener(new OuvrirListeContact());
 		
 		this.add(chronoPanel);
 		this.add(formJoueur);
@@ -98,11 +97,22 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 		
 	}
 	
+	/**
+	 * Récupération du nom du joueur. 
+	 * @return nomJoueur. 
+	 */
 	public JTextField getNomJoueur() {
 		return nomJoueur;
 	}
 
-	class sauverResultat extends MouseAdapter{
+	/**
+	 * @SauverResultat sérilize le joueur venant de faire la partie et affiche le panel 
+	 * @MenuJeu. 
+	 * 
+	 * @author Audrey Viriot 
+	 * @author Valentine Cotter 
+	 */
+	class SauverResultat extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
 			Joueur joueur = new Joueur(nomJoueur.getText(), chrono.toString()); 
@@ -113,7 +123,13 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 		}
 	}
 	
-	class ouvrirListeContact extends MouseAdapter{
+	/**
+	 * @OuvrirListeContact ouvre la liste de contact @ListeContact au clic. 
+	 * 
+	 * @author Audrey Viriot 
+	 * @author Valentine Cotter 
+	 */
+	class OuvrirListeContact extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
 			lc = new ListeContact(clMemo, cardMemo, true, fdj); 
@@ -124,7 +140,5 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 			
 		}
 	}
-	
-
 	
 }

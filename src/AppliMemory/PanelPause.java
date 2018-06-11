@@ -9,6 +9,12 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * @PanelPause est le panel de pause du jeu. 
+ * 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter
+ */
 public class PanelPause extends JPanel {
 
 	private CardLayout clMemo; 
@@ -21,11 +27,17 @@ public class PanelPause extends JPanel {
 	//Panel centrale 
 	private JPanel panelCentral = new JPanel();  
 	
-	private BtnPanelPause play = new BtnPanelPause(clMemo, cardMemo, "Play");
-	private BtnPanelPause restart = new BtnPanelPause(clMemo, cardMemo, "Recommencer la partie");
-	private BtnPanelPause quitter = new BtnPanelPause(clMemo, cardMemo, "Quitter la partie"); 
+	private BtnPanelPause play = new BtnPanelPause("Play");
+	private BtnPanelPause restart = new BtnPanelPause("Recommencer la partie");
+	private BtnPanelPause quitter = new BtnPanelPause("Quitter la partie"); 
 	
-	
+	/**
+	 * Constructeur de @PanelPause. 
+	 * 
+	 * @param clMemo, le CardLayout. 
+	 * @param cardMemo, le panel contenant les autres panels de l'application.
+	 * @param ej, objet de la classe @EspaceJeu. 
+	 */
 	public PanelPause(CardLayout clMemo, JPanel cardMemo, EspaceJeu ej) {
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo; 
@@ -51,6 +63,13 @@ public class PanelPause extends JPanel {
 		
 	}
 	
+	/**
+	 * @ReprendreJeu permet d'afficher le panel @EspaceJeu, et de relancer le chronomètre
+	 * au clic sur le bouton. 
+	 * 
+	 * @author Audrey Viriot 
+	 * @author Valentine Cotter 
+	 */
 	class ReprendreJeu extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
@@ -60,6 +79,12 @@ public class PanelPause extends JPanel {
 		}
 	}
 	
+	/**
+	 * @Restart, ouvre un nouveau panel @EspaceJeu, au clic sur le bouton. 
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	class Restart extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
@@ -73,6 +98,12 @@ public class PanelPause extends JPanel {
 		}
 	}
 	
+	/**
+	 * @RetourMenu, affiche le panel @MenuJeu au clic sur le bouton. 
+	 * 
+	 * @author Audrey Viriot 
+	 * @author Valentine Cotter 
+	 */
 	class RetourMenu extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			

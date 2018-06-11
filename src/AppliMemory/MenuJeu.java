@@ -5,17 +5,18 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Panel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import AppliContact.PanelConstructDefaut;
-
+/**
+ * MenuJeu est le panel de menu du jeu. 
+ * 
+ * @author Audrey Viriot
+ * @author Valentine Cotter
+ */
 public class MenuJeu extends JPanel {
 	
 	//Récupération de toutes les cartes de l'application
@@ -35,10 +36,12 @@ public class MenuJeu extends JPanel {
 	//Panel container menu
 	private JPanel menuCtn = new JPanel(); 
 	
-	//Fond ecran
-	private ImageIcon fond = new ImageIcon("ImageMemory/fondMenu.jpg"); 
-	private JLabel fondEcran = new JLabel(fond); 
-	
+	/**
+	 * Constructeur de @MenuJeu. 
+	 * 
+	 * @param clMemo, le CardLayout. 
+	 * @param cardMemo, le panel contenant les autres panels de l'application.
+	 */
 	public MenuJeu(CardLayout clMemo, JPanel cardMemo) {
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo; 
@@ -46,8 +49,8 @@ public class MenuJeu extends JPanel {
 		this.setLayout(new BorderLayout());
 		
 		//Ajout des listeners 
-		newPartie.addMouseListener(new ouvrirJeu());
-		score.addMouseListener(new ouvrirScore());
+		newPartie.addMouseListener(new OuvrirJeu());
+		score.addMouseListener(new OuvrirScore());
 		
 		//Couleur 
 		newPartie.setForeground(Color.YELLOW);
@@ -69,11 +72,13 @@ public class MenuJeu extends JPanel {
 		
 	}
 	
-	public EspaceJeu getEj() {
-		return ej;
-	}
-
-	public class ouvrirJeu extends MouseAdapter
+	/**
+	 * @OuvrirJeu permet d'afficher le panel @Espacejeu et de lancer le chronomètre.  
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
+	public class OuvrirJeu extends MouseAdapter
 	{
 		@Override
 		public void mouseClicked(MouseEvent arg0)
@@ -89,7 +94,13 @@ public class MenuJeu extends JPanel {
 		
 	}
 	
-	public class ouvrirScore extends MouseAdapter
+	/**
+	 * @OuvrirScore permet d'ouvrir le panel @MeilleurScore .
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter
+	 */
+	public class OuvrirScore extends MouseAdapter
 	{
 		@Override
 		public void mouseClicked(MouseEvent arg0)

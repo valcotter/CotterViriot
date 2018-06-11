@@ -1,26 +1,24 @@
 package AppliMemory;
 
 import java.awt.BorderLayout;
-import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
-
-import AppliContact.PanelConstructDefaut;
-
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * @EspaceJeu est le panel contenant le plateau de jeu du mémory. 
+ * 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter 
+ */
 public class EspaceJeu extends JPanel {
 
 	private CardLayout clMemo; 
@@ -59,7 +57,13 @@ public class EspaceJeu extends JPanel {
 	//Compteur 
 	private int compteurClic = 0; 
 	private int cptDerouleJeu = 0; 
-
+	
+	/**
+	 * Constructeur de @EspaceJeu. 
+	 * 
+	 * @param clMemo, le CardLayout. 
+	 * @param cardMemo, le panel contenant les autres panels de l'application. 
+	 */
 	public EspaceJeu(CardLayout clMemo, JPanel cardMemo) {
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo; 
@@ -74,9 +78,9 @@ public class EspaceJeu extends JPanel {
 		//btnPause2.setBackground(Color.BLACK);
 		
 		//Barre superieur 
-		btnPause.addMouseListener(new ouvrirPause());
+		btnPause.addMouseListener(new OuvrirPause());
 		//this.add(btnPause2, BorderLayout.NORTH);
-		btnStop.addMouseListener(new ouvrirFin());
+		btnStop.addMouseListener(new OuvrirFin());
 		test.add(btnPause); 
 		test.add(btnStop); 
 		test.setBorder(new EmptyBorder(10, 0, 0, 0));
@@ -87,7 +91,7 @@ public class EspaceJeu extends JPanel {
 		//Initialisation des cartes 
 		attributionPaysCarte();
 		//Mélange des cartes 
-		MelangerCarte();
+		melangerCarte();
 		
 		//On remplis le plateau 
 		for(int i=0; i<tabCarte.length; i++) {
@@ -105,23 +109,20 @@ public class EspaceJeu extends JPanel {
 	
 	}
 	
-	public FinDuJeu getFdj() {
-		return fdj;
-	}
-
+	/**
+	 * Récupération de la variable chrono. 
+	 * @return chrono, le temps fait par le joueur. 
+	 */
 	public Chronometre getChrono() {
 		return chrono;
 	}
 
-	public void setChrono(Chronometre chrono) {
-		this.chrono = chrono;
-	}
 
-	public JLabel getBtnPause() {
-		return btnPause;
-	}
-
-	//Crée les cartes en leurs associant un pays et les met dans un tab dans l'ordre 
+	/**
+	 * Cette méthode remplis un tableau de @Carte et attribue à deux cartes 
+	 * côte à côte la même ImageIcon pays. 
+	 * @return tabCarte, un tableau de Carte. 
+	 */
 	public Carte[] attributionPaysCarte() {
 		
 		//Le fichier ou se trouve les img
@@ -143,8 +144,11 @@ public class EspaceJeu extends JPanel {
 		return tabCarte; 
 	}
 	
-	//Mélanger les cartes dans le désordre 
-	public void MelangerCarte() {
+	/**
+	 * Cette méthode mélange le tableau de @Carte.  
+	 * Pour que les paires ne soient plus côte à côte.  
+	 */
+	public void melangerCarte() {
 		
 		int nb1; 
 		int nb2; 
@@ -163,6 +167,13 @@ public class EspaceJeu extends JPanel {
 		
 	}
 	
+	/**
+	 * @EnregistrerClic enregistre les clics et gère le comportement des @Carte 
+	 * en fonction du nombre de clic de l'utilisateur. 
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	class EnregistrerClic extends MouseAdapter {
 		public void mouseClicked(MouseEvent arg0) {
 			
@@ -212,7 +223,13 @@ public class EspaceJeu extends JPanel {
 		}
 	}
 	
-	class ouvrirPause extends MouseAdapter{
+	/**
+	 * @OuvrirPause affiche le panel @PanelPause et arrête le chronomètre. 
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
+	class OuvrirPause extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 
 			clMemo.show(cardMemo, "Pause");
@@ -220,7 +237,16 @@ public class EspaceJeu extends JPanel {
 		}
 	}
 	
-	class ouvrirFin extends MouseAdapter{
+	/**
+	 * @OuvrirFin affiche le panel @FinDuJeu, arrête le chronomètre et simule 
+	 * une partie terminée au clic sur le bouton "stop". 
+	 * Cette méthode n'est la que pour la démonstration, afin de voir les comportements 
+	 * du programme sans devoir terminer une partie complète. 
+	 * 
+	 * @author Audrey Viriot 
+	 * @author Valentine Cotter 
+	 */
+	class OuvrirFin extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 
 			chrono.getTimer().stop();

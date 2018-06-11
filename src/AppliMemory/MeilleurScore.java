@@ -1,10 +1,3 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 5 juin 2018
-*/
-
 package AppliMemory;
 
 import java.awt.BorderLayout;
@@ -15,16 +8,18 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import AppliContact.BarreSuperieur;
-import AppliContact.ListeContact;
 
+/**
+ * @MeilleurScore est le panel affichant les meilleurs scores réalisés au memory. 
+ * 
+ * @author Audrey Viriot
+ * @author Valentine Cotter
+ */
 public class MeilleurScore extends JPanel implements SerializMemo{
 	
 	private CardLayout clMemo = new CardLayout(); 
@@ -51,6 +46,12 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 	//Barre supérieur 
 	private BarreSuperieur barreSup;
 	
+	/**
+	 * Constructeur de @MeilleurScore. 
+	 * 
+	 * @param clMemo, le CardLayout. 
+	 * @param cardMemo, le panel contenant les autres panels de l'application. 
+	 */
 	public MeilleurScore(CardLayout clMemo, JPanel cardMemo) {
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo;
@@ -58,7 +59,7 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		barreSup = new BarreSuperieur(clMemo, cardMemo); 
 		ImageIcon precedBlanc = new ImageIcon("ImageMemory/precedentBlanc.png"); 
 		barreSup.getPrecedent().setIcon(precedBlanc);
-		barreSup.getPrecedent().addMouseListener(new retourPrecedent());
+		barreSup.getPrecedent().addMouseListener(new RetourPrecedent());
 		barreSup.getModifier().setVisible(false);
 		barreSup.getSupprimer().setVisible(false);
 		barreSup.setOpaque(false);
@@ -71,8 +72,8 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		tabScore.setLayout(new GridLayout(nbScore+1, 1));
 		tabScore.setOpaque(false);
 		
-		joueurTrie = RecupDeserializ(); 
-		joueurTrie = TrieMeilleurScore(joueurTrie); 
+		joueurTrie = recupDeserializ(); 
+		joueurTrie = trieMeilleurScore(joueurTrie); 
 		supprJoueur();
 		
 		for(int i=0; i<joueurTrie.length; i++) {
@@ -94,7 +95,12 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		this.setPreferredSize(this.getSize());
 	}
 	
-	public Joueur[] RecupDeserializ() {
+	/**
+	 * Cette méthode désérialize tous les @Joueur et les mettent dans un tableau de @Joueur.
+	 * 
+	 * @return tabJoueur, le tableau rempli de tous les joueurs ayant effectué un score. 
+	 */
+	public Joueur[] recupDeserializ() {
 		
 		Joueur[] tabJoueur = new Joueur[nbScore]; 
 		
@@ -107,8 +113,15 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		return tabJoueur; 
 		
 	}
-	
-	public Joueur[] TrieMeilleurScore(Joueur[] tabJoueur) {
+	/**
+	 * trieMeilleurScore classe les joueurs en fonction du temps qu'ils ont effectué pour 
+	 * terminer le memory. Le temps étant enregistré en String, on le transforme en int 
+	 * pour effectuer le classement. 
+	 * 
+	 * @param tabJoueur, tableau rempli de tous les joueurs ayant effectué un score.
+	 * @return tabJoueur, trié dans l'ordre décroissant. 
+	 */
+	public Joueur[] trieMeilleurScore(Joueur[] tabJoueur) {
 		
 		int i, j;
 		Joueur tempo; 
@@ -152,6 +165,10 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		
 	}
 	
+	/**
+	 * @MeilleurScore n'affiche que les 10 meilleurs joueurs. On supprime donc les joueurs classés au dessus
+	 * du 10ème rang. 
+	 */
 	public void supprJoueur() {
 		
 		for(int i=10; i<joueurTrie.length; i++) {
@@ -164,7 +181,13 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		}
 	}
 	
-	class retourPrecedent extends MouseAdapter{
+	/**
+	 * @RetourPrecedant affiche le panel @MenuJeu, lors du clic sur la flèche précèdent. 
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
+	class RetourPrecedent extends MouseAdapter{
 		public void mouseClicked(MouseEvent arg0) {
 			
 			clMemo.show(cardMemo, "Menu");
