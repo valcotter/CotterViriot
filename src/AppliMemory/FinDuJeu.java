@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import AppliContact.FormulaireCreation;
 import AppliContact.ListeContact;
 
 /**
@@ -133,10 +135,20 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 		public void mouseClicked(MouseEvent arg0) {
 			
 			lc = new ListeContact(clMemo, cardMemo, true, fdj); 
-			lc.getAddContact().setVisible(false);
+			lc.getAddContact().addMouseListener(new AjouterContactDepuisMemo());
 			
-			cardMemo.add(lc, "liste"); 
-			clMemo.show(cardMemo, "liste");
+			cardMemo.add(lc, "Liste"); 
+			clMemo.show(cardMemo, "Liste");
+			
+		}
+	}
+	
+	class AjouterContactDepuisMemo extends MouseAdapter{
+		public void mouseClicked(MouseEvent arg0) {
+			
+			FormulaireCreation fc = new FormulaireCreation(clMemo, cardMemo, true, fdj); 
+			cardMemo.add(fc, "FormCreation"); 
+			clMemo.show(cardMemo, "FormCreation");
 			
 		}
 	}

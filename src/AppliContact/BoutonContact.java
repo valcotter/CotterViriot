@@ -88,7 +88,7 @@ public class BoutonContact extends JButton{
 			String prenomJoueur = c.getPrenom(); 
 			fdj.getNomJoueur().setText(prenomJoueur);
 			
-			cl.previous(cards);
+			cl.show(cards, "Fin");
 			
 		}
 	}

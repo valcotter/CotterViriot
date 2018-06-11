@@ -1,7 +1,6 @@
 package AppliContact;
 
 import java.awt.CardLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -15,7 +14,6 @@ public class AppliContact extends JPanel{
 	//Cardlayout pour les diff�rentes pages 
 	private CardLayout cl = new CardLayout(); 
 	private JPanel cards = new JPanel(); 
-	private JFrame fenetre; 
 	
 	//Les diff�rents panels
 	private ListeContact liste;   
@@ -28,7 +26,7 @@ public class AppliContact extends JPanel{
 	{
 		
 		liste = new ListeContact (cl, cards, false, null);
-		formNewContact = new FormulaireCreation(cl, cards);
+		formNewContact = new FormulaireCreation(cl, cards, false, null);
 		
 		cards.setLayout(cl);
 		cards.add(liste, "Liste"); 

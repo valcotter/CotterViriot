@@ -15,7 +15,7 @@ import AppliContact.FormulaireCreation;
 
 class FormulaireCreationTest {
 	
-	FormulaireCreation fc = new FormulaireCreation(null, null); 
+	FormulaireCreation fc = new FormulaireCreation(null, null, false, null); 
 
 	@Test
 	void testVerificationEntree() {

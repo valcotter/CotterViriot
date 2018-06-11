@@ -5,6 +5,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
+import AppliMemory.FinDuJeu;
+
 /**
  * @FormulaireCreation est le panel permettant de créer un nouveau contact. 
  * Cette classe hérite de @BaseFicheContact.  
@@ -14,14 +16,20 @@ import javax.swing.JPanel;
  */
 public class FormulaireCreation extends BaseFicheContact {
 	
+	private boolean isInMemo; 
+	private FinDuJeu fdj; 
+	
 	/**
 	 * Constructeur de @FormulaireCreation. 
 	 * 
 	 * @param cl, le CardLayout 
 	 * @param cards, le panel contenant les autres panels de l'application
+	 * @param isInMemo, permet de savoir si on appelle la liste dans le memory ou non
 	 */
-	public FormulaireCreation(CardLayout cl, JPanel cards) {
+	public FormulaireCreation(CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) {
 		super(cl, cards);
+		this.isInMemo = isInMemo; 
+		this.fdj = fdj; 
 
 		// Modification barre supérieur
 		barreSup.getModifier().setVisible(false);
@@ -52,17 +60,17 @@ public class FormulaireCreation extends BaseFicheContact {
 
 				// Serialization
 				MySerialization(tempo);
-
-				ListeContact lc = new ListeContact(cl, cards, false, null);
+				
+				ListeContact lc = new ListeContact(cl, cards, isInMemo, fdj);
 				cards.add(lc, "Liste");
 				cl.show(cards, "Liste");
-
+				
+				
 				// On vide le formulaire
 				nomT.setText("");
 				prenomT.setText("");
 				numTelT.setText("");
 				mailT.setText("");
-
 			}
 		}
 	}

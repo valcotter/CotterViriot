@@ -168,6 +168,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		public void mouseClicked(MouseEvent arg0) {
 			
 			cl.show(cards, "NouveauContact");
+			
 		}
 	}
 	
