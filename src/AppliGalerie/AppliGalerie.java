@@ -3,17 +3,13 @@ package AppliGalerie;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,16 +17,12 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 
 public class AppliGalerie extends JPanel
 {
@@ -237,18 +229,24 @@ class Ecouteurs implements ActionListener
 		if(i == 3)	//Corbeille
 		{
 			DeleteFile df = new DeleteFile(id);
+
+			
 			container.revalidate();
 			container.repaint();
-			clGalerie.show(container, listContent[0]);
 			
+			RenommerFichier rf = new RenommerFichier();
+			
+			container.revalidate();
+			container.repaint();
+			
+			clGalerie.show(container, listContent[0]);
 		}
 	}	
 }
 
-public class DeleteFile
+class DeleteFile
 {
-	int id = 0;
-	
+	int id = 0;	
 	
 	public DeleteFile(int id)
 	{
@@ -257,12 +255,12 @@ public class DeleteFile
 		
 	    try
 	    {
-
 	         File file = new File(path);
 
 	         if(file.delete())
 	         {
 	        	 System.out.println(file.getName() + " est supprimé.");
+	      
 	         }
 	         
 	         else
@@ -276,8 +274,27 @@ public class DeleteFile
 	         e.printStackTrace();
 	    }
 	}
-	
+}
 
+class RenommerFichier
+{
+	public RenommerFichier()
+	{
+		File dossier = new File("ImagesGalerie/");
+		File[] tousLesFichiers = dossier.listFiles();
+		int y = 0;
+		
+		for(int i = 1; i <= tousLesFichiers.length; i++)
+		{
+			File ancien = new File(tousLesFichiers[y].getPath());
+			File nouveau = new File("ImagesGalerie/" + i + ".jpg");
+			System.out.println("Ancien : " + ancien);
+			System.out.println("Nouveau : " + nouveau);
+			ancien.renameTo(nouveau);
+			y++;
+			System.out.println();
+		}
+	}
 }
 
 class ImageBouton extends JButton
@@ -286,7 +303,7 @@ class ImageBouton extends JButton
 	Border bordureVide = BorderFactory.createEmptyBorder();
 	
 	public ImageBouton(String url)		//paramètre
-	{
+	{	this.setOpaque(false);
 		this.url = url;
 		this.setPreferredSize(new Dimension(120,120));
 		this.setBorder(bordureVide);

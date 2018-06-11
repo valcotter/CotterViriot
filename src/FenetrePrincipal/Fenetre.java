@@ -20,6 +20,7 @@ import AppliContact.AppliContact;
 import AppliGalerie.AppliGalerie;
 import AppliMemory.AppMemory;
 import Main.Test;
+import Verrouillage.Verrouillage;
 
 /**************************************************
  * Classe Fenetre
@@ -59,6 +60,10 @@ public class Fenetre extends JFrame
     private ImageIcon close = new ImageIcon("power.png"); 
     private JLabel btnClose = new JLabel(close);
     
+    //Boutou verrouillage
+    private ImageIcon verr = new ImageIcon("verr.jpg");
+    private JLabel btnVerr = new JLabel(verr);
+    
     
     //Panel "D�finitif" -> Reste toujours sur l'�cran 
     private JPanel_BordureNoire panelNord = new JPanel_BordureNoire(); 
@@ -70,6 +75,9 @@ public class Fenetre extends JFrame
     private AppliContact contactApp= new AppliContact();
     private AppliGalerie galerieApp = new AppliGalerie();
     private AppMemory memoryApp = new AppMemory();
+    
+    private boolean juste;
+    private Verrouillage verrou = new Verrouillage(juste);
 
 	
 	public Fenetre()
@@ -89,8 +97,13 @@ public class Fenetre extends JFrame
 		btnClose.addMouseListener(new fermerFenetre());
 		btnHome.addMouseListener(new changerSouris());
 		btnHome.addMouseListener(new ouvrirAcceuil());
-		panelNord.add(btnClose); 
+		btnVerr.addMouseListener(new changerSouris());
+		btnVerr.addMouseListener(new verrouiller());
+		
+		panelNord.add(btnClose);
+		panelNord.add(btnVerr);
 		panelSud.add(btnHome); 
+		
 		this.add(panelNord, BorderLayout.NORTH); 
 		this.add(panelSud, BorderLayout.SOUTH);
 		
@@ -111,6 +124,7 @@ public class Fenetre extends JFrame
 		
 		//Test CardLayout; 
 		cards.setLayout(cl);
+		cards.add(verrou, "Verrouillage");
 		cards.add(accueil, "Accueil");
 		cards.add(contactApp, "Contact");
 		cards.add(galerieApp, "Galerie");
@@ -170,6 +184,15 @@ public class Fenetre extends JFrame
 		public void mouseClicked(MouseEvent arg0)
 		{
 			cl.show(cards, "Accueil");
+		}
+	}
+	
+	public class verrouiller extends MouseAdapter
+	{
+		@Override
+		public void mouseClicked(MouseEvent arg0)
+		{
+			cl.show(cards, "Verrouillage");
 		}
 	}
 	
