@@ -43,7 +43,7 @@ public class FormulaireCreation extends BaseFicheContact {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 
-			boolean ok = verificationEntree();
+			boolean ok = VerificationEntree(nomT.getText(), prenomT.getText(), numTelT.getText().length());
 
 			if (ok == true) {
 

@@ -127,7 +127,7 @@ public class FicheInfoContact extends BaseFicheContact {
 			SupprimerContactF(); 
 			
 			//On vérifie les entrées. 
-			boolean ok = verificationEntree(); 
+			boolean ok = VerificationEntree(nomT.getText(), prenomT.getText(), numTelT.getText().length()); 
 			
 			// On test si qqChose à été modifié
 			if (nomT.getText() != contact.getNom()) {

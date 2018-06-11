@@ -74,6 +74,30 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		this.add(formulaire);
 		this.add(sauvegarder);
 	}
+
+	protected boolean VerificationNom(String contenu) {
+		if(contenu=="") {
+			nomT.setText("Nom incorrect");
+			return false; 
+		}
+		return true; 
+	}
+	
+	protected boolean VerificationPrenom(String contenu) {
+		if(contenu=="") {
+			prenomT.setText("Prénom incorrect");
+			return false; 
+		}
+		return true; 
+	}
+	
+	protected boolean VerificationTelephone(int longueurNum) {
+		if(longueurNum != 10) {
+			numTelT.setText("Format numéro incorrect");
+			return false;
+		}
+		return true; 
+	}
 	
 	/**
 	 * Cette méthode permet de vérifier si les entrées de l'utilisateur sont bonnes dans le 
@@ -81,47 +105,19 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	 * 
 	 * @return true si les infos sont correct, sinon false. 
 	 */
-	protected boolean verificationEntree() {
+	public boolean VerificationEntree(String contenuNom, String contenuPrenom, int longueurNum) {
 		
-		if(nomT.getText().equals("") && prenomT.getText().equals("")) {
-			nomT.setText("Erreur - Aucune identité");
-			prenomT.setText("Erreur - Aucune identité");
-			return false;
+		if(VerificationNom(contenuNom)==true) {
+			if(VerificationPrenom(contenuPrenom)==true) {
+				if(VerificationTelephone(longueurNum)==true) {
+					return true; 
+				}
+			}
 		}
 		
-		//Format +41 non pris en compte 
-		if(numTelT.getText().length()<10) {
-			numTelT.setText("Format numéro incorrect");
-			return false; 	
-		}
-		if(numTelT.getText().length()>11) {
-			numTelT.setText("Format numéro incorrect");
-			return false; 
-		}
-		
-		if(numTelT.getText().equals("")) {
-			numTelT.setText("Erreur - Aucun numéro rentré");
-			return false; 
-		}
-		
-		return true; 
+		return false; 
 	}
 	
-	protected boolean verificationNom() {
-		if(nomT.getText()=="") {
-			nomT.setText("Nom incorrect");
-			return false; 
-		}
-		return true; 
-	}
-	
-	protected boolean verificationPrenom() {
-		if(prenomT.getText()=="") {
-			prenomT.setText("Prénom incorrect");
-			return false; 
-		}
-		return true; 
-	}
 	
 
 }
