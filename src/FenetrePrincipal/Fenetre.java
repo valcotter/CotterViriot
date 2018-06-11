@@ -4,22 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import java.awt.geom.RoundRectangle2D;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import AppliContact.AppliContact;
 import AppliGalerie.AppliGalerie;
 import AppliMemory.AppMemory;
-import Main.Test;
 import Verrouillage.Verrouillage;
 
 /**************************************************
@@ -124,14 +119,13 @@ public class Fenetre extends JFrame
 		
 		//Test CardLayout; 
 		cards.setLayout(cl);
-		cards.add(verrou, "Verrouillage");
+		//cards.add(verrou, "Verrouillage");
 		cards.add(accueil, "Accueil");
 		cards.add(contactApp, "Contact");
 		cards.add(galerieApp, "Galerie");
 		cards.add(memoryApp, "Memory");
 		this.add(cards, BorderLayout.CENTER); 
-		
-		//this.setContentPane(cards);
+
 		
 		this.setVisible(true);
 	}
