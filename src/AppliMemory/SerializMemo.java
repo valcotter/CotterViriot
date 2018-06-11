@@ -1,10 +1,3 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 4 juin 2018
-*/
-
 package AppliMemory;
 
 import java.io.File;
@@ -14,16 +7,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import AppliContact.Contact;
-
 public interface SerializMemo {
 	
 	/**
-	 * Cette méthode sérialize un contact 
+	 * Cette méthode sérialize un @Joueur. 
 	 * 
-	 * @param c, contact à serializé 
+	 * @param joueur, @Joueur à serializé 
 	 */
-	public default void MySerializationMemo(Joueur joueur) {
+	public default void mySerializationMemo(Joueur joueur) {
 		
 		String path = "SerializMemory/"+joueur.getNom()+joueur.getChrono().toString(); 
 		
@@ -52,12 +43,12 @@ public interface SerializMemo {
 	}
 	
 	/**
-	 * Cette méthode déserialize un contact
+	 * Cette méthode déserialize un @Joueur. 
 	 * 
-	 * @param path, chemin du fichier ou est serializé le contact 
-	 * @return le contact déserializé 
+	 * @param path, chemin du fichier ou est serializé le @Joueur. 
+	 * @return j, le @Joueur déserializé 
 	 */
-	public default Joueur MyDeserializationMemo(String path) {
+	public default Joueur myDeserializationMemo(String path) {
 		
 		String pathComplet = "SerializMemory/"+path; 
 		

@@ -1,10 +1,3 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 2 juin 2018
-*/
-
 package AppliMemory;
 
 import java.awt.Color;
@@ -12,10 +5,15 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
-
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * @Chonometre est une classe permettant de gérer et d'afficher un timer dans le panel @EspaceJeu.
+ * 
+ * @author Audrey Viriot
+ * @author Valentine Cotter 
+ */
 public class Chronometre extends JPanel implements Serializable{
 
 	private int heure; 
@@ -29,6 +27,13 @@ public class Chronometre extends JPanel implements Serializable{
 	
 	private Timer timer = new Timer(delais, tacheTimer); 
 	
+	/**
+	 * Constructeur de @Chronometre. 
+	 * 
+	 * @param heure
+	 * @param minute
+	 * @param seconde
+	 */
 	public Chronometre(int heure, int minute, int seconde) {
 		this.heure = heure; 
 		this.minute = minute; 
@@ -39,23 +44,19 @@ public class Chronometre extends JPanel implements Serializable{
 		this.add(labelChrono); 
 		
 	}
-		
+	
+	/**
+	 * Récupération du timer (l'objet qui gère le temps). 
+	 * @return timer 
+	 */
 	public Timer getTimer() {
 		return timer;
 	}
-
-	public int getHeure() {
-		return heure;
-	}
-
-	public int getMinute() {
-		return minute;
-	}
-
-	public int getSeconde() {
-		return seconde;
-	}
 	
+	/**
+	 * Redéfinition de la méthode toString. 
+	 * @return le temps au format hh.mm.ss. 
+	 */
 	public String toString() {
 		if(seconde>9) {
 			return heure+0+"."+0+minute+"."+seconde;
@@ -65,6 +66,13 @@ public class Chronometre extends JPanel implements Serializable{
 		 
 	}
 	
+	/**
+	 * @ActionDuChrono permet d'afficher le chronomètre et de changer le label à chaque 
+	 * nouvelle seconde/minute/heure. 
+	 * 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	class ActionDuCrono implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {

@@ -106,7 +106,7 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		
 		for(int i=0; i<nbScore; i++) {
 			String path = tabFichierJoueur[i]; 
-			Joueur j = MyDeserializationMemo(path);
+			Joueur j = myDeserializationMemo(path);
 			tabJoueur[i] = j; 
 		}
 		

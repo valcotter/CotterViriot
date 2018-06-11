@@ -1,41 +1,49 @@
-/**
-* Exercice X
-* Semaine X
-* Auteur : Audrey VIRIOT
-* Date de création : 4 juin 2018
-*/
-
 package AppliMemory;
 
 import java.io.Serializable;
-import java.util.Date;
 
+/**
+ * @Joueur représente la personne faisant une partie de mémory. 
+ * 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter 
+ */
 public class Joueur implements Serializable{
 	
 	private String nom; 
 	private String chrono; 
 	
+	/**
+	 * Constructeur de @Joueur. 
+	 * 
+	 * @param nom, le nom du joueur. 
+	 * @param chrono, le temps réalisé par le joueur. 
+	 */
 	public Joueur(String nom, String chrono) {
 		this.nom = nom; 
 		this.chrono = chrono; 
 	}
 
+	/**
+	 * Récupération du nom. 
+	 * @return nom, le nom du @Joueur. 
+	 */
 	public String getNom() {
 		return nom;
 	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
 	
+	/**
+	 * Récupération du chrono. 
+	 * @return chrono, le temps réalisé du joueur. 
+	 */
 	public String getChrono() {
 		return chrono;
 	}
-
-	public void setChrono(String chrono) {
-		this.chrono = chrono;
-	}
-
+	
+	/**
+	 * Redéfinition de la méthode toString. 
+	 * @return le nom du @Joueur ainsi que son temps. 
+	 */
 	public String toString() {
 		return nom+" - "+chrono.toString(); 
 	}

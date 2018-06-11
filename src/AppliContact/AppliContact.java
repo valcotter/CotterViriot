@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
-* AppliContact est la classe principal de l'application contact. Elle contient les panels 
+* @AppliContact est la classe principal de l'application contact. Elle contient les panels 
 * principaux qui contiennent les autres fonctionnalit�s. 
 *
 * @author Audrey Viriot

@@ -116,7 +116,7 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 		public void mouseClicked(MouseEvent arg0) {
 			
 			Joueur joueur = new Joueur(nomJoueur.getText(), chrono.toString()); 
-			MySerializationMemo(joueur);
+			mySerializationMemo(joueur);
 			
 			clMemo.show(cardMemo, "Menu");
 			
