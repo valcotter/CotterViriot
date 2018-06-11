@@ -1,13 +1,11 @@
 package AppliContact;
 
 import java.awt.CardLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
-* @AppliContact est la classe principal de l'application contact. Elle contient les panels 
-* principaux qui contiennent les autres fonctionnalitï¿½s. 
+* @AppliContact est le panel qui ocntient tous les panels necessaire à l'application. 
 *
 * @author Audrey Viriot
 * @author Valentine Cotter
@@ -24,7 +22,7 @@ public class AppliContact extends JPanel{
 	private PanelConstructDefaut formNewContact; 
 	
 	/**
-	 * Constructeur de la classe AppliContact()
+	 * Constructeur de @AppliContact 
 	 */
 	public AppliContact() 
 	{

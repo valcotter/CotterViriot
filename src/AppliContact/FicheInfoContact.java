@@ -10,7 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- * Cette classe réprésente la fiche contenant toute les informations de contcat 
+ * @FicheInfoContact est le panel contenant les informations du contact. 
+ * Cette classe hérite de @BaseFicheContact. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 
@@ -20,10 +21,11 @@ public class FicheInfoContact extends BaseFicheContact {
 	private Contact contact;
 
 	/**
+	 * Constructeur de @FicheInfoContact. 
 	 * 
-	 * @param c, contact associé à la fiche 
-	 * @param cl, le layout du panel de toute l'application contact 
-	 * @param cards, les panels contenu dans le layout 
+	 * @param cl, le CardLayout 
+	 * @param cards, le panel contenant les autres panels de l'application
+	 * @param c, le contact associé à la fiche
 	 */
 	public FicheInfoContact(CardLayout cl, JPanel cards, Contact c) {
 		super(cl, cards);
@@ -33,7 +35,6 @@ public class FicheInfoContact extends BaseFicheContact {
 		prenomT.setText(contact.getPrenom());
 		numTelT.setText(contact.getNumTelephone());
 		mailT.setText(contact.getMail());
-		photoContact.setDescription(contact.getPathPhoto());
 		
 		//esthétique 
 		nomT.setBackground(Color.WHITE);
@@ -58,7 +59,7 @@ public class FicheInfoContact extends BaseFicheContact {
 	}
 	
 	/**
-	 * Cette méthode supprime le contact dans le dossier des fichier serializé 
+	 * Cette méthode supprime le fichier sérializé d'un contact. 
 	 */
 	private void SupprimerContactF() {
 
@@ -69,7 +70,7 @@ public class FicheInfoContact extends BaseFicheContact {
 	}
 	
 	/**
-	 * Active la modification des JTextFields lors du clic sur le bouton 
+	 * @ActiverModif active la modification des JTextFields lors du clic sur le bouton 
 	 * 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
@@ -127,7 +128,7 @@ public class FicheInfoContact extends BaseFicheContact {
 			SupprimerContactF(); 
 			
 			//On vérifie les entrées. 
-			boolean ok = VerificationEntree(nomT.getText(), prenomT.getText(), numTelT.getText().length()); 
+			boolean ok = verificationEntree(nomT.getText(), prenomT.getText(), numTelT.getText().length()); 
 			
 			// On test si qqChose à été modifié
 			if (nomT.getText() != contact.getNom()) {

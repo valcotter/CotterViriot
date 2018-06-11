@@ -8,18 +8,16 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import AppliMemory.FinDuJeu;
 
 /**
- * ListeContact est le panel qui contient la liste de contact; 
+ * @ListeContact est le panel qui contient la liste de contact; 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 
@@ -56,10 +54,12 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	private FinDuJeu fdj; 
 	
 	/**
+	 * Constructeur de @ListeContact. 
 	 * 
-	 * @param cl, le layout du panel de toute l'application contact 
-	 * @param cards, les panels contenu dans le layout 
+	 * @param cl, le CardLayout
+	 * @param cards, le panel contenant les autres panels de l'application
 	 * @param isInMemo, est-ce que la liste est appelée dans l'application memory ou pas
+	 * @parma fdj, panel @FinDuJeu 
 	 */
 	
 	public ListeContact(CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) {
@@ -95,12 +95,17 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	
 	}
 	
+	/**
+	 * Récupération du bouton d'ajout des contacts. 
+	 * @return addContact
+	 */
 	public JButton getAddContact() {
 		return addContact;
 	}
 
 	/**
-	 * Cette méthode met à jour la liste. Elle crée un nouveau panel tous les 10 contacts. 
+	 * Cette méthode met à jour la liste. 
+	 * Elle crée un nouveau panel tous les 10 contacts. 
 	 */
 	public void majListe(boolean isInMemo) {
 		
@@ -152,8 +157,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	}
 	
 	/**
-	 * 
-	 * Pemet d'afficher le formulaire de création lors du clic sur le bouton 
+	 * Pemet d'afficher le panel @FormulaireCreation lors du clic sur le bouton 
 	 * 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 

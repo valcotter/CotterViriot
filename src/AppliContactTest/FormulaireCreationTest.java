@@ -23,7 +23,7 @@ class FormulaireCreationTest {
 		String contenuPrenom = ""; 
 		int longueurNum = 8; 
 		
-		assertFalse("Test de vérification des entrées", fc.VerificationEntree(contenuNom, contenuPrenom, longueurNum));
+		assertFalse("Test de vérification des entrées", fc.verificationEntree(contenuNom, contenuPrenom, longueurNum));
 		
 	}
 

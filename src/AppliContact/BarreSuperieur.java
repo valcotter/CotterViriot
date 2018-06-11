@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * BarrreSuperieur représente le panel contenant les fonctionnalités "précèdent",
+ * @BarrreSuperieur représente le panel contenant les fonctionnalités "précèdent",
  * "modifier" et "supprimer"
  * 
  * @author Audrey Viriot
@@ -27,9 +27,10 @@ public class BarreSuperieur extends PanelConstructDefaut{
 	private JLabel supprimer = new JLabel(poubelle);
 	
 	/**
+	 * Constructeur de @BarreSuperieur. 
 	 * 
-	 * @param cl, le layout du panel de toute l'application contact 
-	 * @param cards, les panels contenu dans le layout 
+	 * @param cl, le CardLayout  
+	 * @param cards, le panel contenant les autres panels de l'application
 	 */
 	public BarreSuperieur(CardLayout cl, JPanel cards) {
 		super(cl, cards); 
@@ -44,20 +45,32 @@ public class BarreSuperieur extends PanelConstructDefaut{
 
 	}
 	
+	/**
+	 * Récupération du label précèdent. 
+	 * @return precedent 
+	 */
 	public JLabel getPrecedent() {
 		return precedent;
 	}
-
+	
+	/**
+	 * Récupération du label modifier. 
+	 * @return modifier 
+	 */
 	public JLabel getModifier() {
 		return modifier;
 	}
 
+	/**
+	 * Récupération du label supprimer. 
+	 * @return supprimer 
+	 */
 	public JLabel getSupprimer() {
 		return supprimer;
 	}
 	
 	/**
-	 * Cette classe contient le listener qui permet de retourner à la liste de contact 
+	 * @RetourListeContact permet d'afficher le panel @ListeContact au clic. 
 	 * 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter

@@ -3,12 +3,11 @@ package AppliContact;
 import java.awt.CardLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- * Cette classe hérite de BaseFicheContact, c'est le formulaire de création d'un contact 
+ * @FormulaireCreation est le panel permettant de créer un nouveau contact. 
+ * Cette classe hérite de @BaseFicheContact.  
  *
  * @author Audrey Viriot 
  * @author Valentine Cotter 
@@ -16,9 +15,10 @@ import javax.swing.JPanel;
 public class FormulaireCreation extends BaseFicheContact {
 	
 	/**
+	 * Constructeur de @FormulaireCreation. 
 	 * 
-	 * @param cl, le layout du panel de toute l'application contact 
-	 * @param cards, les panels contenu dans le layout 
+	 * @param cl, le CardLayout 
+	 * @param cards, le panel contenant les autres panels de l'application
 	 */
 	public FormulaireCreation(CardLayout cl, JPanel cards) {
 		super(cl, cards);
@@ -43,13 +43,12 @@ public class FormulaireCreation extends BaseFicheContact {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 
-			boolean ok = VerificationEntree(nomT.getText(), prenomT.getText(), numTelT.getText().length());
+			boolean ok = verificationEntree(nomT.getText(), prenomT.getText(), numTelT.getText().length());
 
 			if (ok == true) {
 
 				// Récupération contact en cours de création
-				Contact tempo = new Contact(nomT.getText(), prenomT.getText(), numTelT.getText(), mailT.getText(),
-						"contactDefaut.png");
+				Contact tempo = new Contact(nomT.getText(), prenomT.getText(), numTelT.getText(), mailT.getText());
 
 				// Serialization
 				MySerialization(tempo);

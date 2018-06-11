@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
+ * @Serializ contient les méthodes permettant de sérializer et désérializer un objet @Contact.
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 

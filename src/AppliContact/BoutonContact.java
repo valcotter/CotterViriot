@@ -6,14 +6,11 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import AppliMemory.FinDuJeu;
 
 /**
- * BoutonContact est une classe qui permet de créer les boutons dans la liste de 
- * contact. 
+ * @BoutonContact représente les boutons dans la liste de contact.  
  * 
  * @author Audrey Viriot
  * @author Valentine Cotter 
@@ -34,10 +31,13 @@ public class BoutonContact extends JButton{
 	private Font policeNormal = new Font("Arial", 25, 25); 
 	
 	/**
+	 * Constructeur de @BoutonContact. 
 	 * 
 	 * @param c, contact associé au bouton 
-	 * @param cl, le layout du panel de toute l'application contact 
-	 * @param cards, les panels contenu dans le layout 
+	 * @param cl, le CardLayout 
+	 * @param cards, le panel contenant les autres panels de l'application
+	 * @param isInMemo, true si l'on se trouve dans le memory
+	 * @param fdj, panel @FinDuJeu
 	 */
 	public BoutonContact(Contact c, CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) {
 		this.c = c; 
@@ -45,7 +45,6 @@ public class BoutonContact extends JButton{
 		this.cl = cl; 
 		this.cards = cards; 
 		this.fdj = fdj; 
-		
 		
 		this.setFont(policeNormal);
 		this.setBackground(Color.WHITE);
@@ -62,7 +61,7 @@ public class BoutonContact extends JButton{
 	}
 		
 	/**
-	 * Cette classe permet d'ouvrir la fiche associé au contact sur la liste de contact. 
+	 * @OuvrirDetailContact permet d'ouvrir la fiche associé au contact sur la liste de contact. 
 	 * 
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
@@ -76,6 +75,12 @@ public class BoutonContact extends JButton{
 		}
 	}
 	
+	/**
+	 * @RecupPrenom permet de récupérer le prénom du contact pour l'inscrire dans le mémory. 
+	 * 
+	 * @author Audrey Viriot 
+	 * @author Valentine Cotter 
+	 */
 	class RecupPrenom extends MouseAdapter {
 		
 		public void mouseClicked(MouseEvent arg0) {

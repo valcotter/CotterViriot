@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 /**
- * Cette classe contient les 2 boutons permettant de défiler sur la liste. 
+ * @BoutonDefilementContact représente le panel contenant les boutons @BoutonSuivant. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 
@@ -21,6 +21,7 @@ public class BoutonDefilementListe extends JPanel {
 	private JPanel cardsListe;
 
 	/**
+	 * Constructeur de @BoutonDefilementListe. 
 	 * 
 	 * @param cl2, CardLayout de la liste contact 
 	 * @param cardsList, toute les pages de liste de contact 

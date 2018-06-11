@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
- * Classe permettant la création des deux boutons pour faire défiler les listes de contact 
+ * @BoutonSuivant représente les bouton se trouvant dans le panel @BoutonDefilement. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter  
@@ -13,6 +13,7 @@ import javax.swing.JButton;
 public class BoutonSuivant extends JButton{
 	
 	/**
+	 * Constructeur de @BoutonSuivant. 
 	 * 
 	 * @param pathIcon, chemin de l'image du bouton 
 	 */

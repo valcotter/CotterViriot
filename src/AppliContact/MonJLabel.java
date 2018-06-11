@@ -5,8 +5,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 /**
-*
-* Classe permettant a création d'un JLabel. 
+* @MonJlabel représente un label avec des caractéristiques particulière. 
 *
 * @author Audrey Viriot 
 * @author Valentine Cotter
@@ -19,6 +18,7 @@ public class MonJLabel extends JLabel{
 	private String contenu; 
 	
 	/**
+	 * Constructeur de @MonJLabel. 
 	 * 
 	 * @param contenu, texte attendu dans le JLabel 
 	 */
