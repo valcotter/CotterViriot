@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 /**
- * Cette classe définit un formulaire de base pour les contacts. 
+ * Cette classe dï¿½finit un formulaire de base pour les contacts. 
  * 
  * @author Audrey Viriot
  * @author Valentine Cotter
@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 public abstract class BaseFicheContact extends PanelConstructDefaut implements Serializ
 {
 
-	// Les différents panels
+	// Les diffï¿½rents panels
 	private BorderLayout bl = new BorderLayout(10, 10); 
 	protected JPanel photo = new JPanel();
 	protected JPanel formulaire = new JPanel();
@@ -26,8 +26,8 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 
 	// Les labels du formulaire
 	protected MonJLabel nomL = new MonJLabel("Nom : ");
-	protected MonJLabel prenomL = new MonJLabel("Prénom : ");
-	protected MonJLabel numtelL = new MonJLabel("Téléphone : ");
+	protected MonJLabel prenomL = new MonJLabel("PrÃ©nom : ");
+	protected MonJLabel numtelL = new MonJLabel("TÃ©lÃ©phone : ");
 	protected MonJLabel mailL = new MonJLabel("Mail : ");
 
 	// Les textField du formulaire
@@ -77,7 +77,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	}
 
 	/**
-	 * Vérifie si le JTextField du nom est rempli. 
+	 * Vï¿½rifie si le JTextField du nom est rempli. 
 	 * @param contenu, texte du JTextField 
 	 * @return true ou false
 	 */
@@ -92,7 +92,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	}
 	
 	/**
-	 * Vérifie si le JTextField du prénom est rempli. 
+	 * Vï¿½rifie si le JTextField du prï¿½nom est rempli. 
 	 * @param contenu, le texte du JTextField 
 	 * @return true ou false
 	 */
@@ -100,14 +100,14 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	{
 		if(contenu=="") 
 		{
-			prenomT.setText("Prénom incorrect");
+			prenomT.setText("Prï¿½nom incorrect");
 			return false; 
 		}
 		return true; 
 	}
 	
 	/**
-	 * Vérifie si le numéro de téléphone contient bien 10 chiffres. 
+	 * Vï¿½rifie si le numï¿½ro de tï¿½lï¿½phone contient bien 10 chiffres. 
 	 * @param longueurNum, la longueur du contenu du JTextField 
 	 * @return true ou false 
 	 */
@@ -115,19 +115,19 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	{
 		if(longueurNum != 10) 
 		{
-			numTelT.setText("Format numéro incorrect");
+			numTelT.setText("Format numï¿½ro incorrect");
 			return false;
 		}
 		return true; 
 	}
 	
 	/**
-	 * Cette méthode permet de vérifier si les entrées de l'utilisateur sont bonnes dans le 
+	 * Cette mï¿½thode permet de vï¿½rifier si les entrï¿½es de l'utilisateur sont bonnes dans le 
 	 * formulaire contact.
 	 * 
 	 * @param contenuNom, le nom du contact 
-	 * @param contenuPrenom, le prénom du contact 
-	 * @param contenuNom, la longueur du numéro de téléphone du contact 
+	 * @param contenuPrenom, le prï¿½nom du contact 
+	 * @param contenuNom, la longueur du numï¿½ro de tï¿½lï¿½phone du contact 
 	 * @return true si les infos sont correct, sinon false. 
 	 */
 	public boolean verificationEntree(String contenuNom, String contenuPrenom, int longueurNum) 

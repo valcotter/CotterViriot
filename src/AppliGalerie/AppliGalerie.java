@@ -136,7 +136,6 @@ class AjouterImage implements ActionListener
 	{
 		//Choix des extensions acceptée
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "jpeg", "png");
-
 		fileChooser.setFileFilter(filter);
 		fileChooser.setMultiSelectionEnabled(true);
 		
