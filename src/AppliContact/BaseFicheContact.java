@@ -77,7 +77,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	}
 
 	/**
-	 * Vï¿½rifie si le JTextField du nom est rempli. 
+	 * Vérifie si le JTextField du nom est rempli. 
 	 * @param contenu, texte du JTextField 
 	 * @return true ou false
 	 */
@@ -92,7 +92,7 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	}
 	
 	/**
-	 * Vï¿½rifie si le JTextField du prï¿½nom est rempli. 
+	 * Vérifie si le JTextField du prénom est rempli. 
 	 * @param contenu, le texte du JTextField 
 	 * @return true ou false
 	 */
@@ -100,14 +100,14 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	{
 		if(contenu=="") 
 		{
-			prenomT.setText("Prï¿½nom incorrect");
+			prenomT.setText("Prénom incorrect");
 			return false; 
 		}
 		return true; 
 	}
 	
 	/**
-	 * Vï¿½rifie si le numï¿½ro de tï¿½lï¿½phone contient bien 10 chiffres. 
+	 * Vérifie si le numéro de téléphone contient bien 10 chiffres. 
 	 * @param longueurNum, la longueur du contenu du JTextField 
 	 * @return true ou false 
 	 */
@@ -115,19 +115,19 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	{
 		if(longueurNum != 10) 
 		{
-			numTelT.setText("Format numï¿½ro incorrect");
+			numTelT.setText("Format numéro incorrect");
 			return false;
 		}
 		return true; 
 	}
 	
 	/**
-	 * Cette mï¿½thode permet de vï¿½rifier si les entrï¿½es de l'utilisateur sont bonnes dans le 
+	 * Cette méthode permet de vérifier si les entrées de l'utilisateur sont bonnes dans le 
 	 * formulaire contact.
 	 * 
 	 * @param contenuNom, le nom du contact 
-	 * @param contenuPrenom, le prï¿½nom du contact 
-	 * @param contenuNom, la longueur du numï¿½ro de tï¿½lï¿½phone du contact 
+	 * @param contenuPrenom, le prénom du contact 
+	 * @param contenuNom, la longueur du numéro de téléphone du contact 
 	 * @return true si les infos sont correct, sinon false. 
 	 */
 	public boolean verificationEntree(String contenuNom, String contenuPrenom, int longueurNum) 
