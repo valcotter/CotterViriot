@@ -96,7 +96,6 @@ public class AppliGalerie extends JPanel
 		labelTitre.add(new JLabel());
 		//Ajout du labelTitre au nord
 		this.add(labelTitre, BorderLayout.NORTH);
-
 		//Choix de la police d'écriture
 		Font policeNormal = new Font("Arial", 30, 30);
 		//Application du Font au label titre Galerie + bouton add
@@ -139,50 +138,55 @@ class AjouterImage implements ActionListener
 		fileChooser.setFileFilter(filter);
 		fileChooser.setMultiSelectionEnabled(true);
 		
+		//Ouverture de la fenêtre pour choisir la nouvelle photo
 		int reponse = fileChooser.showOpenDialog(null);
-		if (reponse == fileChooser.APPROVE_OPTION) {
-
-		File[] fs = fileChooser.getSelectedFiles();
-		String location = "./ImagesGalerie/";
-		
-		for (int i = 0; i < fs.length; i++) 
+		if (reponse == fileChooser.APPROVE_OPTION) 
 		{
-			String path = location + fs[i].getName();
-			Path source = fs[i].toPath();
-			
-			System.out.println("test: " + location);
 
-			if (checkExtension(fs[i]) == true) 
-			{
-				String choosedFile = fs[i].getName().substring(0, fs[i].getName().lastIndexOf("."));
-				//copier(source, location);
-				saveToGalerie(fs[i],choosedFile);
-			}
+			//Reprend la photo selectionner
+			File[] fs = fileChooser.getSelectedFiles();
+			//Dossier de destination
+			String location = "./ImagesGalerie/";
 			
-			else 
+			for (int i = 0; i < fs.length; i++) 
 			{
-				break;
+				//Path et Source
+				String path = location + fs[i].getName();
+				Path source = fs[i].toPath();
+	
+				//Si l'extension est valable
+				if (checkExtension(fs[i]) == true) 
+				{
+					//Récupère le nom de la photo
+					String choosedFile = fs[i].getName().substring(0, fs[i].getName().lastIndexOf("."));
+					EnregistrerGalerie(fs[i],choosedFile);
+				}
+				
+				else 
+				{
+					break;
+				}
 			}
-		}
-		
 
 		}
 		
 		//Si on annule 
-		if (reponse == fileChooser.CANCEL_OPTION) 
+		if (reponse == fileChooser.CANCEL_OPTION)
 		{
 			fileChooser.cancelSelection();
 			return;
 		}
 		
 		//Renomme les fichiers après ajout de l'image
-		RenommerFichier rf = new RenommerFichier();
-		
-
-		
+		RenommerFichier rf = new RenommerFichier();		
 	}
 	
-	private void saveToGalerie(File img, String choosedFile)
+	/**
+	 * EnregistrerGalerie copie l'image selectioné dans le dossier de destination
+	 * @param img
+	 * @param choosedFile
+	 */
+	private void EnregistrerGalerie(File img, String choosedFile)
 	{			
 		try
 		{			
@@ -198,16 +202,30 @@ class AjouterImage implements ActionListener
 	}
 }
 
-private String getFileExtension(File file) {
+/**
+ * getFileExtension prend l'extension de l'image selectionnée
+ * @param file
+ * @return
+ */
+private String getFileExtension(File file) 
+{
 	String fileName = file.getName();
+	
 	if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
 		return fileName.substring(fileName.lastIndexOf(".") + 1);
 	else
 		return "";
 }
 
-private boolean checkExtension(File fichier) {
+/**
+ * checkExtension contrôle si lextension est acceptée ou pas
+ * @param fichier
+ * @return
+ */
+private boolean checkExtension(File fichier) 
+{
 	String ext = getFileExtension(fichier);
+	
 	if (ext.toLowerCase().equals("jpeg") || ext.toLowerCase().equals("jpg") || ext.toLowerCase().equals("png"))
 		return true;
 	else
@@ -232,10 +250,12 @@ class GrilleCentre extends JPanel
 	 */
 	public GrilleCentre()
 	{	
-
 		//Compte le nbre de photos qui se trouve dans le dossier galerie
 		listPhotos = folder.listFiles();
 		nbrePhotos = listPhotos.length;
+		
+		//Renommer les fichiers au départ
+		RenommerFichier rd = new RenommerFichier();
 
 		//Création GridLayout qui contiendra les photos
 		this.setLayout(new GridLayout(0,3,5,5));
