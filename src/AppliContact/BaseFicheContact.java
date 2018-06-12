@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 /**
- * Cette classe dï¿½finit un formulaire de base pour les contacts. 
+ * Cette classe définit un formulaire de base pour les contacts. 
  * 
  * @author Audrey Viriot
  * @author Valentine Cotter
@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 public abstract class BaseFicheContact extends PanelConstructDefaut implements Serializ
 {
 
-	// Les diffï¿½rents panels
+	// Les différents panels
 	private BorderLayout bl = new BorderLayout(10, 10); 
 	protected JPanel photo = new JPanel();
 	protected JPanel formulaire = new JPanel();
@@ -26,8 +26,8 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 
 	// Les labels du formulaire
 	protected MonJLabel nomL = new MonJLabel("Nom : ");
-	protected MonJLabel prenomL = new MonJLabel("PrÃ©nom : ");
-	protected MonJLabel numtelL = new MonJLabel("TÃ©lÃ©phone : ");
+	protected MonJLabel prenomL = new MonJLabel("Prénom : ");
+	protected MonJLabel numtelL = new MonJLabel("Télé©phone : ");
 	protected MonJLabel mailL = new MonJLabel("Mail : ");
 
 	// Les textField du formulaire

@@ -25,7 +25,7 @@ import Verrouillage.Verrouillage;
 
 public class Fenetre extends JFrame
 {
-	//CrÃ©ation bouton
+	//Création bouton
 	
 	//Image de fond
 	private AfficheImage accueil = new AfficheImage();
