@@ -392,11 +392,23 @@ class AfficheImage extends JPanel
 	}
 }
 
+/**
+ * ClickImage est une action lorsque l'on clique sur une image pour l'agrandir
+ * @author Audrey
+ * @author Valentine
+ *
+ */
 class ClickImage implements ActionListener
 {	
+	
 	int id = 0;
 	int nbrePhotos = 0;
 	
+	/**
+	 * Constructeur de ClickImage
+	 * @param id
+	 * @param nbrePhotos
+	 */
 	public ClickImage(int id, int nbrePhotos)
 	{
 		this.id = id;
@@ -405,16 +417,26 @@ class ClickImage implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) 
 	{
+		//Instanciation de la variable
 		AfficheImage ai = new AfficheImage(id, nbrePhotos);
+		//Appel de la méthode AfficheImage
 		ai.display();
 	}	
 }
 
+/**
+ * getExtension récupère l'extension d'un fichier
+ * @param fichier
+ * @return
+ */
 private String getExtension(File fichier)
 {
 	String imgExtension = fichier.getName();
 
+	//prend le nom du fichier
 	String fileName = fichier.getName();
+	
+	//Prend l'extension
 	if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
 		return imgExtension.substring(imgExtension.lastIndexOf(".") + 1);
 	else
@@ -451,7 +473,7 @@ class Ecouteurs implements ActionListener
 			next.display();
 		}
 		
-		if(i == 2)
+		if(i == 2)	//Bouton retour sur la grille de photo
 		{
 			
 			clGalerie.show(container, listContent[0]);
@@ -460,9 +482,11 @@ class Ecouteurs implements ActionListener
 		
 		if(i == 3)	//Corbeille
 		{
+			//delete le fichier et les renomment
 			DeleteFile df = new DeleteFile(id);
 			RenommerFichier rf = new RenommerFichier();
 			
+			//refresh
 			gc.removeAll();
 			gc.repaint();
 			gc.revalidate();
@@ -477,7 +501,9 @@ class Ecouteurs implements ActionListener
 		}
 	}	
 }
-
+/**
+ * ChargementGrille recrée la grille avec le refresh des photos
+ */
 private void ChargementGrille()
 {
 	gc = new GrilleCentre();
@@ -487,6 +513,11 @@ private void ChargementGrille()
 	add(container, BorderLayout.CENTER);
 }
 
+/**
+ * DeleteFile supprime une photo de la galerie + du dossier
+ * @author Valentine
+ * @author Audrey
+ */
 class DeleteFile
 {
 	int id = 0;	
@@ -494,6 +525,7 @@ class DeleteFile
 	public DeleteFile(int id)
 	{
 		this.id = id;
+		//Path de la photo a supprimer
 		String path = "ImagesGalerie/" + id + ".jpg";
 		
 	    try
@@ -502,11 +534,13 @@ class DeleteFile
 
 	         if(file.delete())
 	         {
+	        	 //Message qui indique que la photo est supprimée
 	        	 System.out.println(file.getName() + " est supprimé.");
 	         }
 	         
 	         else
 	         {
+	        	 //Message qui indique que la suppression a échouée
 	        	 System.out.println("Opération de suppression echouée");
 	         }
 	    }
@@ -517,18 +551,25 @@ class DeleteFile
 	    }
 	}
 }
-
+/**
+ * RenommerFichier renomme les fichiers après supression ou ajout de photo
+ * @author Valentine
+ * @author Audrey
+ */
 class RenommerFichier
 {
 	public RenommerFichier()
 	{
+		
 		File dossier = new File("ImagesGalerie/");
 		File[] tousLesFichiers = dossier.listFiles();
+		
 		
 		if(temp == false)
 		{
 			int y = 0;
 			
+			//Renomme les fichiers de tous le dossier temporairement pour éviter la conclusion
 			for(int i = 1; i <= tousLesFichiers.length; i++)
 			{
 				File ancien = new File(tousLesFichiers[y].getPath());
@@ -537,10 +578,13 @@ class RenommerFichier
 				y++;
 			}
 			
+			//Met la variable a true
 			temp = true;
 			RenommerFichier rf = new RenommerFichier();	
 		}
 		
+		
+		//Renommer les fichiers définitivement et correctement
 		else
 		{
 			int y = 0;
@@ -557,6 +601,11 @@ class RenommerFichier
 		}
 	}
 }
+/**
+ * ImageBouton est une fonction qui crée les boutons et ensuite les peinds avec nos images
+ * @author Valentine
+ * @author Audrey
+ */
 
 class ImageBouton extends JButton
 {
@@ -564,12 +613,16 @@ class ImageBouton extends JButton
 	Border bordureVide = BorderFactory.createEmptyBorder();
 	
 	public ImageBouton(String path)		//paramètre
-	{	this.setOpaque(false);
+	{	
+		this.setOpaque(false);
 		this.path = path;
 		this.setPreferredSize(new Dimension(120,120));
 		this.setBorder(bordureVide);
 	}
 	
+	/**
+	 * paintComponent peinds les boutons avec les images
+	 */
 	public void paintComponent(Graphics g)
 	{
 		try 
