@@ -60,7 +60,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ
 	 * @param cl, le CardLayout
 	 * @param cards, le panel contenant les autres panels de l'application
 	 * @param isInMemo, est-ce que la liste est appelée dans l'application memory ou pas
-	 * @parma fdj, panel de fin du jeu 
+	 * @param fdj, panel de fin du jeu 
 	 */
 	
 	public ListeContact(CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) 

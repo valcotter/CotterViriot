@@ -125,9 +125,9 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	 * Cette méthode permet de vérifier si les entrées de l'utilisateur sont bonnes dans le 
 	 * formulaire contact.
 	 * 
-	 * @contenuNom le nom du contact 
-	 * @contenuPrenom le prénom du contact 
-	 * @longueurNum la longueur du numéro de téléphone du contact 
+	 * @param contenuNom, le nom du contact 
+	 * @param contenuPrenom, le prénom du contact 
+	 * @param contenuNom, la longueur du numéro de téléphone du contact 
 	 * @return true si les infos sont correct, sinon false. 
 	 */
 	public boolean verificationEntree(String contenuNom, String contenuPrenom, int longueurNum) 
