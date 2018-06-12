@@ -70,9 +70,7 @@ public class Fenetre extends JFrame
     private AppliContact contactApp= new AppliContact();
     private AppliGalerie galerieApp = new AppliGalerie();
     private AppMemory memoryApp = new AppMemory();
-    
-    private boolean juste;
-    private Verrouillage verrou = new Verrouillage(juste, cl, cards);
+    private Verrouillage verrou = new Verrouillage(cl, cards);
 
 	
 	public Fenetre()

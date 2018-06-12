@@ -4,72 +4,86 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Verrouillage extends JPanel
+public class Verrouillage extends JPanel implements SerializationMdp
 {
-	private JTextField txtCode = new JTextField();
-	private JLabel imgCadenas = new JLabel();
-	private JButton okCode = new JButton("Ok");
-	private String code = "hello";
-	private String codeTemp = "";
-	private boolean juste;
+	//JTextField 
+	private JTextField txtCode = new JTextField(); 
 	
-	//Récupération cardlayout et et jpanel 
+	//private JLabel imgCadenas = new JLabel();
+	
+	//Bouton
+	private JButton okCode = new JButton("Ok");
+	private JButton changerCode = new JButton("Changer le mot de passe"); 
+	
+	//Mot de passe 
+	private String code; 
+	
+	//Récupération cardlayout et jpanel 
 	private CardLayout cl; 
 	private JPanel cards; 
+	
+	private String codejuste = deserializMdp(); 
+	
+	private Verrouillage verrou; 
 
-	public Verrouillage(boolean juste, CardLayout cl, JPanel cards)
+	public Verrouillage(CardLayout cl, JPanel cards)
 	{
-		this.juste = juste;	//1=juste		 0=faux
 		this.cl = cl; 
 		this.cards = cards; 
 		
+		//serializMdp("hello");
+		
 		this.setLayout(null);
+		
+		okCode.addActionListener(new Decodage());
+		changerCode.addActionListener(new ChangeMotDePasse());
 		
 		//Placement du JTextField
 		txtCode.setBounds(150,320,100,40);
 		okCode.setBounds(170, 400, 60, 40);
+		changerCode.setBounds(100, 450, 200, 85);
 		this.add(txtCode);
-		this.add(okCode);		
+		this.add(okCode);	
+		this.add(changerCode); 
 		
-		okCode.addActionListener(new Decodage(code, txtCode));
+		verrou = this;
 		
 	}
 
+	public void setCodejuste(String codejuste) {
+		this.codejuste = codejuste;
+	}
 
-class Decodage implements ActionListener
-{
-	String code;
-	JTextField txtCode;
-	
-	public Decodage(String Code, JTextField txtCode)
+	class Decodage implements ActionListener
 	{
-		this.code = code;
-		this.txtCode = txtCode;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
-		code = txtCode.getText();
-		String codejuste = "hello";
-		
-		if(code.equals(codejuste))
+		@Override
+		public void actionPerformed(ActionEvent e) 
 		{
-			cl.show(cards, "Accueil");
-			System.out.println("ok");
-		}
-		
-		else
-		{
-			System.out.println("faux");
-		}
-		
+			code = txtCode.getText(); 
+			
+			if(code.equals(codejuste))
+			{
+				cl.show(cards, "Accueil");
+			}
 
+		}
+	
 	}
 	
-}
+	class ChangeMotDePasse implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			ChangementMdp chMdp = new ChangementMdp(cl, cards, codejuste, verrou); 
+			cards.add(chMdp, "NouveauMdp"); 
+			cl.show(cards, "NouveauMdp");
+			
+		}
+	}
+
 }

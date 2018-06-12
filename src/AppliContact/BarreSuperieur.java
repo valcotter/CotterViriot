@@ -26,6 +26,9 @@ public class BarreSuperieur extends PanelConstructDefaut
 	private ImageIcon poubelle = new ImageIcon("poubelle.png");
 	private JLabel supprimer = new JLabel(poubelle);
 	
+	//Listener 
+	private MouseAdapter retourListeContact = new RetourListeContat(); 
+	
 	/**
 	 * Constructeur de @BarreSuperieur. 
 	 * 
@@ -42,10 +45,14 @@ public class BarreSuperieur extends PanelConstructDefaut
 		this.add(supprimer);
 		
 		//Listener 
-		precedent.addMouseListener(new RetourListeContat());
+		precedent.addMouseListener(retourListeContact);
 
 	}
-	
+
+	public void setRetourListeContact(MouseAdapter retourListeContact) {
+		this.retourListeContact = retourListeContact;
+	}
+
 	/**
 	 * Récupération du label précèdent. 
 	 * @return precedent 
