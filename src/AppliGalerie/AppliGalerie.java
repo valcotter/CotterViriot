@@ -34,7 +34,7 @@ import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- * AppliGalerie contient tous les panels necessaires Ã  la Galerie
+ * AppliGalerie contient tous les panels necessaires à  la Galerie
  * 
  * @author Valentine
  * @author Audrey
@@ -53,15 +53,15 @@ public class AppliGalerie extends JPanel
 	//CardLayout de la galerie
 	private CardLayout clGalerie = new CardLayout();
 	
-	//CrÃ©ation du panel container du CardLayout
+	//Création du panel container du CardLayout
 	private JPanel container = new JPanel();
-	//DÃ©claration de la variable qui sert Ã  renommer les images temporairement
+	//Déclaration de la variable qui sert à  renommer les images temporairement
 	private boolean temp = false;
-	//CrÃ©ation de la variable grille centre
+	//Création de la variable grille centre
 	private GrilleCentre gc;
-	//CrÃ©ation de la variable scrollbar
+	//Création de la variable scrollbar
 	private JScrollPane scroll;
-	//CrÃ©ation du tableau qui contient la liste des photos
+	//Création du tableau qui contient la liste des photos
 	private File[] listPhotos;
 	private JLabel[] imagesList;
 	
@@ -81,11 +81,11 @@ public class AppliGalerie extends JPanel
 	{			
 		//Ajout du Layout en BorderLayout
 		this.setLayout(new BorderLayout());
-		//CrÃ©ation du Jpanel qui contiendra le titre et le bouton ajout
+		//Création du Jpanel qui contiendra le titre et le bouton ajout
 		labelTitre = new JPanel();
 		//JLabel qui contient le titre
 		titre = new JLabel("Galerie");
-		//CrÃ©ation du bouton
+		//Création du bouton
 		addImg = new JButton("+");
 		//Choix du layout = GridLayout
 		labelTitre.setLayout(new GridLayout(1,3));
@@ -96,7 +96,7 @@ public class AppliGalerie extends JPanel
 		labelTitre.add(new JLabel());
 		//Ajout du labelTitre au nord
 		this.add(labelTitre, BorderLayout.NORTH);
-		//Choix de la police d'Ã©criture
+		//Choix de la police d'écriture
 		Font policeNormal = new Font("Arial", 30, 30);
 		//Application du Font au label titre Galerie + bouton add
 		titre.setFont(policeNormal);
@@ -133,12 +133,12 @@ class AjouterImage implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{
-		//Choix des extensions acceptÃ©e
+		//Choix des extensions acceptée
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "jpeg", "png");
 		fileChooser.setFileFilter(filter);
 		fileChooser.setMultiSelectionEnabled(true);
 		
-		//Ouverture de la fenÃªtre pour choisir la nouvelle photo
+		//Ouverture de la fenêtre pour choisir la nouvelle photo
 		int reponse = fileChooser.showOpenDialog(null);
 		if (reponse == fileChooser.APPROVE_OPTION) 
 		{
@@ -157,7 +157,7 @@ class AjouterImage implements ActionListener
 				//Si l'extension est valable
 				if (checkExtension(fs[i]) == true) 
 				{
-					//RÃ©cupÃ¨re le nom de la photo
+					//Récupère le nom de la photo
 					String choosedFile = fs[i].getName().substring(0, fs[i].getName().lastIndexOf("."));
 					EnregistrerGalerie(fs[i],choosedFile);
 				}
@@ -177,12 +177,12 @@ class AjouterImage implements ActionListener
 			return;
 		}
 		
-		//Renomme les fichiers aprÃ¨s ajout de l'image
+		//Renomme les fichiers après ajout de l'image
 		RenommerFichier rf = new RenommerFichier();		
 	}
 	
 	/**
-	 * EnregistrerGalerie copie l'image selectionÃ© dans le dossier de destination
+	 * EnregistrerGalerie copie l'image selectioné dans le dossier de destination
 	 * @param img
 	 * @param choosedFile
 	 */
@@ -203,7 +203,7 @@ class AjouterImage implements ActionListener
 }
 
 /**
- * getFileExtension prend l'extension de l'image selectionnÃ©e
+ * getFileExtension prend l'extension de l'image selectionnée
  * @param file
  * @return
  */
@@ -218,7 +218,7 @@ private String getFileExtension(File file)
 }
 
 /**
- * checkExtension contrÃ´le si lextension est acceptÃ©e ou pas
+ * checkExtension contrà´le si lextension est acceptée ou pas
  * @param fichier
  * @return
  */
@@ -240,7 +240,7 @@ private boolean checkExtension(File fichier)
  */
 class GrilleCentre extends JPanel
 {
-	//DÃ©claration de l'array list qui contient le path des images
+	//Déclaration de l'array list qui contient le path des images
 	private ArrayList path = new ArrayList();
 	//Dossier qui contient le path du dossier des images
 	private File folder = new File("./ImagesGalerie/");
@@ -254,13 +254,13 @@ class GrilleCentre extends JPanel
 		listPhotos = folder.listFiles();
 		nbrePhotos = listPhotos.length;
 		
-		//Renommer les fichiers au dÃ©part
+		//Renommer les fichiers au départ
 		RenommerFichier rd = new RenommerFichier();
 
-		//CrÃ©ation GridLayout qui contiendra les photos
+		//Création GridLayout qui contiendra les photos
 		this.setLayout(new GridLayout(0,3,5,5));
 		
-		//Remplissage tableau dÃ©faut
+		//Remplissage tableau défaut
 		for(int i = 0; i < nbrePhotos; i++)
 		{
 			id = i+1;
@@ -298,20 +298,20 @@ class GrilleCentre extends JPanel
  */
 class AfficheImage extends JPanel
 {
-	//Variable qui dÃ©finit l'id de la photo
+	//Variable qui définit l'id de la photo
 	private int id = 0;
 	//Panel qui contient la photo en agrandis
 	private JPanel photoPane = new JPanel();
-	//Variable qui dÃ©finit le nbre de photos dans la grille
+	//Variable qui définit le nbre de photos dans la grille
 	private int nbrePhotos = 0;
 	
-	//DÃ©claration des variables servant Ã  afficher l'image
+	//Déclaration des variables servant à afficher l'image
 	private ImageIcon icon;
 	private JLabel labelImage;
 	private BufferedImage img = null;
 	private Image dimg;
 	
-	//CrÃ©ation des diffÃ©rents boutons pour le panel qui affiche les images
+	//Création des différents boutons pour le panel qui affiche les images
 	private ImageBouton next = new ImageBouton("next.png");
 	private ImageBouton previous = new ImageBouton("precede.png");
 	private ImageBouton listBack = new ImageBouton("listblack.png");
@@ -332,7 +332,7 @@ class AfficheImage extends JPanel
 	 */
 	void display()
 	{
-		//Met le layout Ã  null pour placer les Ã©lÃ©ments comme on le souhaite
+		//Met le layout à  null pour placer les éléments comme on le souhaite
 		photoPane.setLayout(null);
 		//Ajout du panel
 		container.add(photoPane, listContent[1]);
@@ -348,21 +348,21 @@ class AfficheImage extends JPanel
 			e.printStackTrace();
 		}
 		
-		//DÃ©finit la taille de l'image
+		//Définit la taille de l'image
 		dimg = img.getScaledInstance(350,350,Image.SCALE_SMOOTH);
-		//prend l'image en tant qu'icÃ´ne
+		//prend l'image en tant qu'icà´ne
 		icon = new ImageIcon(dimg);
 		//Ajoute l'icon au label image
 		labelImage = new JLabel(icon);
 		
-		//placement des composants dans la fenÃªtre
+		//placement des composants dans la fenêtre
 		labelImage.setBounds(50, 50, 310,370);
 		previous.setBounds(20,450, 40,40);
 		next.setBounds(340,450, 40,40);
 		listBack.setBounds(175,443, 50,50);
 		corbeille.setBounds(330,0,40,40);
 		
-		//Ajout des composants dans la fenÃªtre
+		//Ajout des composants dans la fenêtre
 		photoPane.add(labelImage);
 		photoPane.add(next);
 		photoPane.add(previous);
@@ -375,13 +375,13 @@ class AfficheImage extends JPanel
 		listBack.addActionListener(new LectureBouton(id, 2, nbrePhotos));
 		corbeille.addActionListener(new LectureBouton(id, 3, nbrePhotos));
 		
-		//Quand on est sur la premiÃ¨re photo, on enlÃ¨ve le bouton previous
+		//Quand on est sur la première photo, on enlève le bouton previous
 		if(id == 1)
 		{
 			photoPane.remove(previous);
 		}
 		
-		//Quand on est sur la derniÃ¨re photo, on enlÃ¨ve le bouton next
+		//Quand on est sur la dernière photo, on enlève le bouton next
 		if(id == nbrePhotos)
 		{
 			photoPane.remove(next);
@@ -419,13 +419,13 @@ class ClickImage implements ActionListener
 	{
 		//Instanciation de la variable
 		AfficheImage ai = new AfficheImage(id, nbrePhotos);
-		//Appel de la mÃ©thode AfficheImage
+		//Appel de la méthode AfficheImage
 		ai.display();
 	}	
 }
 
 /**
- * getExtension rÃ©cupÃ¨re l'extension d'un fichier
+ * getExtension récupère l'extension d'un fichier
  * @param fichier
  * @return
  */
@@ -502,7 +502,7 @@ class LectureBouton implements ActionListener
 	}	
 }
 /**
- * ChargementGrille recrÃ©e la grille avec le refresh des photos
+ * ChargementGrille recrée la grille avec le refresh des photos
  */
 private void ChargementGrille()
 {
@@ -534,14 +534,14 @@ class DeleteFile
 
 	         if(file.delete())
 	         {
-	        	 //Message qui indique que la photo est supprimÃ©e
-	        	 System.out.println(file.getName() + " est supprimÃ©.");
+	        	 //Message qui indique que la photo est supprimée
+	        	 System.out.println(file.getName() + " est supprimé.");
 	         }
 	         
 	         else
 	         {
-	        	 //Message qui indique que la suppression a Ã©chouÃ©e
-	        	 System.out.println("OpÃ©ration de suppression echouÃ©e");
+	        	 //Message qui indique que la suppression a échouée
+	        	 System.out.println("Opération de suppression echouée");
 	         }
 	    }
 	    
@@ -552,7 +552,7 @@ class DeleteFile
 	}
 }
 /**
- * RenommerFichier renomme les fichiers aprÃ¨s supression ou ajout de photo
+ * RenommerFichier renomme les fichiers après supression ou ajout de photo
  * @author Valentine
  * @author Audrey
  */
@@ -569,7 +569,7 @@ class RenommerFichier
 		{
 			int y = 0;
 			
-			//Renomme les fichiers de tous le dossier temporairement pour Ã©viter la conclusion
+			//Renomme les fichiers de tous le dossier temporairement pour éviter la conclusion
 			for(int i = 1; i <= tousLesFichiers.length; i++)
 			{
 				File ancien = new File(tousLesFichiers[y].getPath());
@@ -584,7 +584,7 @@ class RenommerFichier
 		}
 		
 		
-		//Renommer les fichiers dÃ©finitivement et correctement
+		//Renommer les fichiers définitivement et correctement
 		else
 		{
 			int y = 0;
@@ -602,7 +602,7 @@ class RenommerFichier
 	}
 }
 /**
- * ImageBouton est une fonction qui crÃ©e les boutons et ensuite les peinds avec nos images
+ * ImageBouton est une fonction qui crée les boutons et ensuite les peinds avec nos images
  * @author Valentine
  * @author Audrey
  */
@@ -612,7 +612,7 @@ class ImageBouton extends JButton
 	String path = "";
 	Border bordureVide = BorderFactory.createEmptyBorder();
 	
-	public ImageBouton(String path)		//paramÃ¨tre
+	public ImageBouton(String path)		//paramètre
 	{	
 		this.setOpaque(false);
 		this.path = path;

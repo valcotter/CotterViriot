@@ -199,7 +199,9 @@ public class Fenetre extends JFrame
 		@Override
 		public void mouseClicked(MouseEvent arg0)
 		{
+			
 			cl.show(cards, "Accueil");
+			
 		}
 	}
 	
