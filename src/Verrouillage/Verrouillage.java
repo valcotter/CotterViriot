@@ -3,17 +3,24 @@ package Verrouillage;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import FenetrePrincipal.AfficheImage;
+
 public class Verrouillage extends JPanel implements SerializationMdp
 {
+	
+	//Image cadenas 
+	private ImageIcon cadenas = new ImageIcon("imgVerrou/cadenas.png"); 
+	
+	//Rendre esthétique ok
+	
 	//JTextField 
 	private JTextField txtCode = new JTextField(); 
-	
-	//private JLabel imgCadenas = new JLabel();
 	
 	//Bouton
 	private JButton okCode = new JButton("Ok");
@@ -26,16 +33,16 @@ public class Verrouillage extends JPanel implements SerializationMdp
 	private CardLayout cl; 
 	private JPanel cards; 
 	
+	//Le code juste 
 	private String codejuste = deserializMdp(); 
 	
+	//Acces pour ChangementMdp
 	private Verrouillage verrou; 
 
 	public Verrouillage(CardLayout cl, JPanel cards)
 	{
 		this.cl = cl; 
 		this.cards = cards; 
-		
-		//serializMdp("hello");
 		
 		this.setLayout(null);
 		
@@ -68,6 +75,7 @@ public class Verrouillage extends JPanel implements SerializationMdp
 			if(code.equals(codejuste))
 			{
 				cl.show(cards, "Accueil");
+				txtCode.setText("");
 			}
 
 		}

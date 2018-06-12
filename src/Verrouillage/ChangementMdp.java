@@ -9,13 +9,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import FenetrePrincipal.*;
-
 
 public class ChangementMdp extends JPanel implements SerializationMdp
 {
@@ -87,6 +84,8 @@ public class ChangementMdp extends JPanel implements SerializationMdp
 				serializMdp(nvMdp);
 				verrou.setCodejuste(nvMdp);
 				cl.show(cards, "Verrouillage"); 
+				entrerAncienMdp.setText("");
+				entrerNouveauMdp.setText("");
 			}else {
 				entrerAncienMdp.setText("ERREUR");
 			}
@@ -100,6 +99,8 @@ public class ChangementMdp extends JPanel implements SerializationMdp
 		public void mouseClicked(MouseEvent arg0)
 		{
 			cl.show(cards, "Verrouillage"); 
+			entrerAncienMdp.setText("");
+			entrerNouveauMdp.setText("");
 		}
 	}
 	
