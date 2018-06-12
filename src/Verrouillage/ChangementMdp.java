@@ -38,11 +38,7 @@ public class ChangementMdp extends JPanel implements SerializationMdp
 	
 	//Barre sup 
 	private BarreSuperieur barreSup;
-	
-	//Jalbel retour 
-	private ImageIcon retour = new ImageIcon("retour.png"); 
-	private JLabel preced = new JLabel(retour); 
-	
+
 	//JLabel titre 
 	private JLabel titreLabel = new JLabel("Changer le mot de passe");
 	
