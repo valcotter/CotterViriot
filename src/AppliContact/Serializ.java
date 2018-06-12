@@ -13,37 +13,48 @@ import java.io.ObjectOutputStream;
  * @author Audrey Viriot 
  * @author Valentine Cotter 
  */
-public interface Serializ {
+public interface Serializ 
+{
 	
 	/**
 	 * Cette méthode sérialize un contact 
 	 * 
 	 * @param c, contact à serializé 
 	 */
-	public default void MySerialization(Contact c) {
+	public default void MySerialization(Contact c) 
+	{
 		
 		String path = "SerializationContact/contact"+c.getPrenom()+c.getNom()+c.getNumTelephone()+".serial"; 
 		
-		try {
+		try 
+		{
 			
 			FileOutputStream fos = new FileOutputStream(new File(path));
 			
 			ObjectOutputStream oos = new ObjectOutputStream(fos); 
 			
-			try {
+			try 
+			{
 				oos.writeObject(c);
 				oos.flush();
-			} finally {
-				try {
+			} 
+			finally 
+			{
+				try 
+				{
 					oos.close();
-				} finally {
+				} 
+				finally 
+				{
 					fos.close();
 				}
 			}
 
 			System.out.println("C'est ok S");
 			
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 	}
@@ -54,30 +65,42 @@ public interface Serializ {
 	 * @param path, chemin du fichier ou est serializé le contact 
 	 * @return le contact déserializé 
 	 */
-	public default Contact MyDeserialization(String path) {
+	public default Contact MyDeserialization(String path) 
+	{
 		
 		String pathComplet = "SerializationContact/"+path; 
 		
 		Contact c = null; 
 		
-		try {
+		try 
+		{
 			FileInputStream fis = new FileInputStream(pathComplet);
 			
 			ObjectInputStream ois = new ObjectInputStream(fis); 
 			
-			try {
+			try 
+			{
 				c = (Contact) ois.readObject(); 
-			} finally {
-				try {
+			} 
+			finally 
+			{
+				try 
+				{
 					ois.close();
-				} finally {
+				} 
+				finally 
+				{
 					fis.close();
 				}
 			}
 			
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
-		} catch (ClassNotFoundException cnfe) {
+		} 
+		catch (ClassNotFoundException cnfe) 
+		{
 			cnfe.printStackTrace();
 		}
 		

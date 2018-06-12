@@ -14,7 +14,8 @@ import AppliMemory.FinDuJeu;
  * @author Audrey Viriot 
  * @author Valentine Cotter 
  */
-public class FormulaireCreation extends BaseFicheContact {
+public class FormulaireCreation extends BaseFicheContact 
+{
 	
 	private boolean isInMemo; 
 	private FinDuJeu fdj; 
@@ -25,8 +26,10 @@ public class FormulaireCreation extends BaseFicheContact {
 	 * @param cl, le CardLayout 
 	 * @param cards, le panel contenant les autres panels de l'application
 	 * @param isInMemo, permet de savoir si on appelle la liste dans le memory ou non
+	 * @param fdj, Panel @FinDuJeu 
 	 */
-	public FormulaireCreation(CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) {
+	public FormulaireCreation(CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) 
+	{
 		super(cl, cards);
 		this.isInMemo = isInMemo; 
 		this.fdj = fdj; 
@@ -47,9 +50,11 @@ public class FormulaireCreation extends BaseFicheContact {
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class SaveContact extends MouseAdapter {
+	class SaveContact extends MouseAdapter 
+	{
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) 
+		{
 
 			boolean ok = verificationEntree(nomT.getText(), prenomT.getText(), numTelT.getText().length());
 

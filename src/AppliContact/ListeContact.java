@@ -22,7 +22,8 @@ import AppliMemory.FinDuJeu;
  * @author Audrey Viriot 
  * @author Valentine Cotter 
  */
-public class ListeContact extends PanelConstructDefaut implements Serializ {
+public class ListeContact extends PanelConstructDefaut implements Serializ 
+{
 	
 	//Accès contact serializé 
 	private File f = new File("SerializationContact");
@@ -62,7 +63,8 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	 * @parma fdj, panel @FinDuJeu 
 	 */
 	
-	public ListeContact(CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) {
+	public ListeContact(CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) 
+	{
 		super(cl, cards); 
 		this.isInMemo = isInMemo; 
 		this.fdj = fdj; 
@@ -99,7 +101,8 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	 * Récupération du bouton d'ajout des contacts. 
 	 * @return addContact
 	 */
-	public JButton getAddContact() {
+	public JButton getAddContact() 
+	{
 		return addContact;
 	}
 
@@ -107,7 +110,8 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	 * Cette méthode met à jour la liste. 
 	 * Elle crée un nouveau panel tous les 10 contacts. 
 	 */
-	public void majListe(boolean isInMemo) {
+	public void majListe(boolean isInMemo) 
+	{
 		
 		paths = f.list(); 
 		int nbContact = paths.length; 
@@ -119,14 +123,16 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 		int intervalleContact = 10; 
 		JPanel[] tableauPanel = new JPanel[nbPageListe];  
 		
-		for(int i=0; i<nbPageListe; i++) {
+		for(int i=0; i<nbPageListe; i++) 
+		{
 			
 			String nom = "Liste"+i; 
 			
 			tableauPanel[i] = new JPanel(); 
 			tableauPanel[i].setLayout(new BoxLayout(tableauPanel[i], BoxLayout.Y_AXIS));
 			
-			for(positionContact=cpt; positionContact<intervalleContact; positionContact++) {
+			for(positionContact=cpt; positionContact<intervalleContact; positionContact++) 
+			{
 				Contact c = MyDeserialization(paths[positionContact]); 
 				btnContact = new BoutonContact(c, cl, cards, isInMemo, fdj);
 				tableauPanel[i].add(btnContact);
@@ -137,14 +143,16 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 			cardsListe.add(tableauPanel[i], nom); 
 		}
 		
-		if(nbContact%10 != 0) {
+		if(nbContact%10 != 0) 
+		{
 			
 			restContact = nbContact%10; 
 			
 			JPanel myPanel = new JPanel();
 			myPanel.setLayout(new BoxLayout(myPanel,BoxLayout.Y_AXIS));
 			
-			for(int j=positionContact; j<positionContact+restContact; j++) {
+			for(int j=positionContact; j<positionContact+restContact; j++) 
+			{
 				Contact c = MyDeserialization(paths[j]); 
 				btnContact = new BoutonContact(c, cl, cards, isInMemo, fdj);
 				myPanel.add(btnContact);
@@ -162,10 +170,12 @@ public class ListeContact extends PanelConstructDefaut implements Serializ {
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */
-	class NouveauContact extends MouseAdapter {
+	class NouveauContact extends MouseAdapter 
+	{
 		
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			
 			cl.show(cards, "NouveauContact");
 			

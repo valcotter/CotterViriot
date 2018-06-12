@@ -8,7 +8,8 @@ import java.io.Serializable;
  * @author Audrey Viriot 
  * @author Valentine Cotter  
  */
-public class Contact implements Serializable {
+public class Contact implements Serializable 
+{
 	
 	private String nom; 
 	private String prenom; 
@@ -23,7 +24,8 @@ public class Contact implements Serializable {
 	 * @param numTelephone, numéro de téléphone du contact 
 	 * @param mail, mail du contact 
 	 */
-	public Contact(String nom, String prenom, String numTelephone, String mail) {
+	public Contact(String nom, String prenom, String numTelephone, String mail) 
+	{
 		this.nom = nom; 
 		this.prenom = prenom; 
 		this.numTelephone = numTelephone;
@@ -34,7 +36,8 @@ public class Contact implements Serializable {
 	 * Récupération du mail. 
 	 * @return mail, mail du contact 
 	 */
-	public String getMail() {
+	public String getMail() 
+	{
 		return mail;
 	}
 
@@ -42,7 +45,8 @@ public class Contact implements Serializable {
 	 * Modification du mail. 
 	 * @param mail, mail du contact 
 	 */
-	public void setMail(String mail) {
+	public void setMail(String mail) 
+	{
 		this.mail = mail;
 	}
 
@@ -50,7 +54,8 @@ public class Contact implements Serializable {
 	 * Récupération du nom. 
 	 * @return nom, nom du contact 
 	 */
-	public String getNom() {
+	public String getNom() 
+	{
 		return nom;
 	}
 	
@@ -58,7 +63,8 @@ public class Contact implements Serializable {
 	 * Modification du nom. 
 	 * @param nom, nom du contact 
 	 */
-	public void setNom(String nom) {
+	public void setNom(String nom) 
+	{
 		this.nom = nom;
 	}
 	
@@ -66,7 +72,8 @@ public class Contact implements Serializable {
 	 * Récupération du prénom. 
 	 * @return prenom, prenom du contact. 
 	 */
-	public String getPrenom() {
+	public String getPrenom() 
+	{
 		return prenom;
 	}
 
@@ -74,7 +81,8 @@ public class Contact implements Serializable {
 	 * Modification du prenom. 
 	 * @param prenom, prenom du contact. 
 	 */
-	public void setPrenom(String prenom) {
+	public void setPrenom(String prenom) 
+	{
 		this.prenom = prenom;
 	}
 	
@@ -82,14 +90,16 @@ public class Contact implements Serializable {
 	 * Récupération du numéro de téléphone. 
 	 * @return numTelephone, numéro du contact. 
 	 */
-	public String getNumTelephone() {
+	public String getNumTelephone() 
+	{
 		return numTelephone;
 	}
 	/**
 	 * Modification du numéro de téléphone. 
 	 * @param numTelephone, numéro du contact 
 	 */
-	public void setNumTelephone(String numTelephone) {
+	public void setNumTelephone(String numTelephone) 
+	{
 		this.numTelephone = numTelephone;
 	}
 	
@@ -97,7 +107,8 @@ public class Contact implements Serializable {
 	 * Redéfinition de la méthode toString(). 
 	 * @return prenom nom
 	 */
-	public String toString() {
+	public String toString() 
+	{
 		String s = prenom+" "+nom; 
 		return s; 
 	}

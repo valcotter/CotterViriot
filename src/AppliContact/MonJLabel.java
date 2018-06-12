@@ -11,7 +11,8 @@ import javax.swing.JLabel;
 * @author Valentine Cotter
 * 
 */
-public class MonJLabel extends JLabel{
+public class MonJLabel extends JLabel
+{
 
 	//Police
 	private Font policeNormal = new Font("Arial", 15, 15); 
@@ -22,7 +23,8 @@ public class MonJLabel extends JLabel{
 	 * 
 	 * @param contenu, texte attendu dans le JLabel 
 	 */
-	public MonJLabel(String contenu) {
+	public MonJLabel(String contenu) 
+	{
 		this.setText(contenu);
 		this.setFont(policeNormal);
 	}

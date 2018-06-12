@@ -9,7 +9,8 @@ import javax.swing.JPanel;
 * @author Audrey Viriot
 * @author Valentine Cotter
 */
-public class AppliContact extends JPanel{
+public class AppliContact extends JPanel
+{
 
 	//Cardlayout pour les diff�rentes pages 
 	private CardLayout cl = new CardLayout(); 

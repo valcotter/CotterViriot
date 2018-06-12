@@ -13,10 +13,12 @@ import javax.swing.JPanel;
  * @author Valentine Cotter 
  */
 
-public class BoutonDefilementListe extends JPanel {
-
+public class BoutonDefilementListe extends JPanel 
+{
+	//Les boutons du panel 
 	private BoutonSuivant btnPrecede = new BoutonSuivant("precede.png");
 	private BoutonSuivant btnNext = new BoutonSuivant("next.png");
+	//Accès aux différentes pages de contact 
 	private CardLayout cl2;
 	private JPanel cardsListe;
 
@@ -26,7 +28,8 @@ public class BoutonDefilementListe extends JPanel {
 	 * @param cl2, CardLayout de la liste contact 
 	 * @param cardsList, toute les pages de liste de contact 
 	 */
-	public BoutonDefilementListe(CardLayout cl2, JPanel cardsList) {
+	public BoutonDefilementListe(CardLayout cl2, JPanel cardsList) 
+	{
 
 		btnPrecede.addMouseListener(new DefilerRight());
 		btnNext.addMouseListener(new DefilerLeft());
@@ -45,9 +48,11 @@ public class BoutonDefilementListe extends JPanel {
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */
-	class DefilerRight extends MouseAdapter {
+	class DefilerRight extends MouseAdapter 
+	{
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) 
+		{
 
 			cl2.next(cardsListe);
 			
@@ -61,9 +66,11 @@ public class BoutonDefilementListe extends JPanel {
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class DefilerLeft extends MouseAdapter {
+	class DefilerLeft extends MouseAdapter 
+	{
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) 
+		{
 
 			cl2.previous(cardsListe);
 

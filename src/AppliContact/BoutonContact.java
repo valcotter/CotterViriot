@@ -15,16 +15,20 @@ import AppliMemory.FinDuJeu;
  * @author Audrey Viriot
  * @author Valentine Cotter 
  */
-public class BoutonContact extends JButton{
-
+public class BoutonContact extends JButton
+{
+	//Pour relier le bouton au contact 
 	private String nomBouton; 
 	private Contact c; 
 	
+	//Switcher sur les autres panels de l'appli
 	private CardLayout cl; 
 	private JPanel cards; 
 	
+	//Dans le cas ou on ouvre la liste depuis le mémory 
 	private FinDuJeu fdj; 
 	
+	//un bouton ouvre une fiche 
 	private FicheInfoContact fic;
 	
 	//Police
@@ -39,7 +43,9 @@ public class BoutonContact extends JButton{
 	 * @param isInMemo, true si l'on se trouve dans le memory
 	 * @param fdj, panel @FinDuJeu
 	 */
-	public BoutonContact(Contact c, CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) {
+	public BoutonContact(Contact c, CardLayout cl, JPanel cards, boolean isInMemo, 
+			FinDuJeu fdj) 
+	{
 		this.c = c; 
 		this.nomBouton = c.toString(); 
 		this.cl = cl; 
@@ -52,9 +58,13 @@ public class BoutonContact extends JButton{
 		this.setSize(405, 40);
 		this.setMaximumSize(this.getSize());
 		
-		if(isInMemo==false) {
+		//Le mouseListener est différent si on est dans le mémory ou non 
+		if(isInMemo==false) 
+		{
 			this.addMouseListener(new OuvrirDetailContact());
-		}else {
+		}
+		else
+		{
 			this.addMouseListener(new RecupPrenom());
 		}
 		
@@ -66,10 +76,14 @@ public class BoutonContact extends JButton{
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class OuvrirDetailContact extends MouseAdapter {
+	class OuvrirDetailContact extends MouseAdapter 
+	{
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) 
+		{	
+			//On crée une fiche contact 
 			fic = new FicheInfoContact(cl, cards, c); 
+			//On l'ajoute et on l'affiche 
 			cards.add(fic, c.toString()); 
 			cl.show(cards, c.toString());
 		}
@@ -81,13 +95,15 @@ public class BoutonContact extends JButton{
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class RecupPrenom extends MouseAdapter {
-		
-		public void mouseClicked(MouseEvent arg0) {
-			
+	class RecupPrenom extends MouseAdapter 
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
+			//On récupère le prénom du joueur
 			String prenomJoueur = c.getPrenom(); 
+			//On l'inscrit dans le JTextField du panel FinDuJeu 
 			fdj.getNomJoueur().setText(prenomJoueur);
-			
+			//On affiche la carte fin 
 			cl.show(cards, "Fin");
 			
 		}

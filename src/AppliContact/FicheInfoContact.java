@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -16,7 +14,8 @@ import javax.swing.JPanel;
  * @author Audrey Viriot 
  * @author Valentine Cotter 
  */
-public class FicheInfoContact extends BaseFicheContact {
+public class FicheInfoContact extends BaseFicheContact 
+{
 
 	private Contact contact;
 
@@ -27,7 +26,8 @@ public class FicheInfoContact extends BaseFicheContact {
 	 * @param cards, le panel contenant les autres panels de l'application
 	 * @param c, le contact associé à la fiche
 	 */
-	public FicheInfoContact(CardLayout cl, JPanel cards, Contact c) {
+	public FicheInfoContact(CardLayout cl, JPanel cards, Contact c) 
+	{
 		super(cl, cards);
 		this.contact = c;
 
@@ -61,7 +61,8 @@ public class FicheInfoContact extends BaseFicheContact {
 	/**
 	 * Cette méthode supprime le fichier sérializé d'un contact. 
 	 */
-	private void SupprimerContactF() {
+	private void SupprimerContactF() 
+	{
 
 		File f = new File("SerializationContact/contact" + contact.getPrenom() + contact.getNom()
 				+ contact.getNumTelephone() + ".serial");
@@ -75,10 +76,12 @@ public class FicheInfoContact extends BaseFicheContact {
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */
-	class ActiverModif extends MouseAdapter {
+	class ActiverModif extends MouseAdapter 
+	{
 
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) 
+		{
 
 			nomT.setEditable(true);
 			prenomT.setEditable(true);
@@ -96,10 +99,12 @@ public class FicheInfoContact extends BaseFicheContact {
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class SupprimerContact extends MouseAdapter {
+	class SupprimerContact extends MouseAdapter 
+	{
 
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) 
+		{
 
 			SupprimerContactF();
 
@@ -120,9 +125,11 @@ public class FicheInfoContact extends BaseFicheContact {
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter
 	 */
-	class SaveContactModif extends MouseAdapter {
+	class SaveContactModif extends MouseAdapter 
+	{
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			
 			//On supprime le fichier sérializé 
 			SupprimerContactF(); 

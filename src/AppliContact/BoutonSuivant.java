@@ -10,14 +10,16 @@ import javax.swing.JButton;
  * @author Audrey Viriot 
  * @author Valentine Cotter  
  */
-public class BoutonSuivant extends JButton{
+public class BoutonSuivant extends JButton
+{
 	
 	/**
 	 * Constructeur de @BoutonSuivant. 
 	 * 
 	 * @param pathIcon, chemin de l'image du bouton 
 	 */
-	public BoutonSuivant(String pathIcon) {
+	public BoutonSuivant(String pathIcon) 
+	{
 		
 		ImageIcon icone = new ImageIcon(pathIcon);
 		this.setIcon(icone);

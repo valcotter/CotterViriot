@@ -10,7 +10,8 @@ import javax.swing.JPanel;
  * @author Audrey Viriot 
  * @author Valentine Cotter
  */
-public abstract class PanelConstructDefaut extends JPanel{
+public abstract class PanelConstructDefaut extends JPanel
+{
 	
 	protected CardLayout cl = new CardLayout();
 	protected JPanel cards = new JPanel();  
@@ -21,7 +22,8 @@ public abstract class PanelConstructDefaut extends JPanel{
 	 *  @param cl, le layout du panel de toute l'application contact 
 	 *  @param cards, les panels contenu dans le layout 
 	 */
-	public PanelConstructDefaut(CardLayout cl, JPanel cards) {
+	public PanelConstructDefaut(CardLayout cl, JPanel cards) 
+	{
 		this.cl = cl; 
 		this.cards = cards;
 		

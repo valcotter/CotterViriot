@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -16,7 +15,8 @@ import javax.swing.border.EmptyBorder;
  * @author Audrey Viriot
  * @author Valentine Cotter
  */
-public abstract class BaseFicheContact extends PanelConstructDefaut implements Serializ{
+public abstract class BaseFicheContact extends PanelConstructDefaut implements Serializ
+{
 
 	// Les différents panels
 	private BorderLayout bl = new BorderLayout(10, 10); 
@@ -48,7 +48,8 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	 * @param cl, le CardLayout 
 	 * @param cards, le panel contenant les autres panels de l'application
 	 */
-	public BaseFicheContact(CardLayout cl, JPanel cards) {
+	public BaseFicheContact(CardLayout cl, JPanel cards) 
+	{
 		super(cl, cards);
 
 		// Partie Photo
@@ -80,8 +81,10 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	 * @param contenu, texte du JTextField 
 	 * @return true ou false
 	 */
-	protected boolean verificationNom(String contenu) {
-		if(contenu=="") {
+	protected boolean verificationNom(String contenu) 
+	{
+		if(contenu=="") 
+		{
 			nomT.setText("Nom incorrect");
 			return false; 
 		}
@@ -93,8 +96,10 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	 * @param contenu, le texte du JTextField 
 	 * @return true ou false
 	 */
-	protected boolean verificationPrenom(String contenu) {
-		if(contenu=="") {
+	protected boolean verificationPrenom(String contenu) 
+	{
+		if(contenu=="") 
+		{
 			prenomT.setText("Prénom incorrect");
 			return false; 
 		}
@@ -106,8 +111,10 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	 * @param longueurNum, la longueur du contenu du JTextField 
 	 * @return true ou false 
 	 */
-	protected boolean verificationTelephone(int longueurNum) {
-		if(longueurNum != 10) {
+	protected boolean verificationTelephone(int longueurNum) 
+	{
+		if(longueurNum != 10) 
+		{
 			numTelT.setText("Format numéro incorrect");
 			return false;
 		}
@@ -120,11 +127,15 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	 * 
 	 * @return true si les infos sont correct, sinon false. 
 	 */
-	public boolean verificationEntree(String contenuNom, String contenuPrenom, int longueurNum) {
+	public boolean verificationEntree(String contenuNom, String contenuPrenom, int longueurNum) 
+	{
 		
-		if(verificationNom(contenuNom)==true) {
-			if(verificationPrenom(contenuPrenom)==true) {
-				if(verificationTelephone(longueurNum)==true) {
+		if(verificationNom(contenuNom)==true) 
+		{
+			if(verificationPrenom(contenuPrenom)==true) 
+			{
+				if(verificationTelephone(longueurNum)==true) 
+				{
 					return true; 
 				}
 			}
@@ -133,6 +144,4 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 		return false; 
 	}
 	
-	
-
 }
