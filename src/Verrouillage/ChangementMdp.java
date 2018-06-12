@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,7 +18,12 @@ import javax.swing.border.EmptyBorder;
 
 import AppliContact.BarreSuperieur;
 
-
+/**
+ * @ChangementMdp représente le panel permettant de changer le mot de passe de 
+ * dévérouillage. 
+ * @author Audrey Viriot 
+ * @author Valentine Cotter 
+ */
 public class ChangementMdp extends JPanel implements SerializationMdp
 {
 	private CardLayout cl = new CardLayout(); 
@@ -61,7 +65,15 @@ public class ChangementMdp extends JPanel implements SerializationMdp
 	private Font policeTitre = new Font("Arial", 30, 30);
 	private Font police = new Font("Arial", 20, 20);
 
-	public ChangementMdp(CardLayout cl, JPanel cards, String mdp, Verrouillage verrou) {
+	/**
+	 * Constructeur de @Verrouillage
+	 * @param cl, le CardLayout
+	 * @param cards, le panel contenant les autres panels de l'application.
+	 * @param mdp, le mot de passe permettant de dévérouiller le téléphone 
+	 * @param verrou, le panel @Verrouillage 
+	 */
+	public ChangementMdp(CardLayout cl, JPanel cards, String mdp, Verrouillage verrou) 
+	{
 		this.cl = cl; 
 		this.cards = cards; 
 		this.mdp = mdp; 
@@ -104,6 +116,12 @@ public class ChangementMdp extends JPanel implements SerializationMdp
 		
 	}
 	
+	/**
+	 * @ValiderNouveauMdp change le mot de passe après vérification que l'ancien mot 
+	 * de passe est bon. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	class ValiderNouveauMdp implements ActionListener
 	{
 		@Override
@@ -124,6 +142,11 @@ public class ChangementMdp extends JPanel implements SerializationMdp
 		}
 	}
 	
+	/**
+	 * @RetourVerouillage retourne au panel précèdent. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	class RetourVerouillage extends MouseAdapter
 	{
 		@Override

@@ -13,7 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
-
+/**
+ * @Verrouillage représente le panel de vérrouillage du téléphone. 
+ * @author Audrey Viriot
+ * @author Valentine Cotter 
+ */
 public class Verrouillage extends JPanel implements SerializationMdp
 {
 	
@@ -47,14 +51,18 @@ public class Verrouillage extends JPanel implements SerializationMdp
 	
 	//police 
 	private Font police = new Font("Arial", 20, 20);
-
+	
+	/**
+	 * Constructeur de @ChangementMdp
+	 * @param cl, le CardLayout 
+	 * @param cards, le panel contenant les autres panels de l'application. 
+	 */
 	public Verrouillage(CardLayout cl, JPanel cards)
 	{
 		this.cl = cl; 
 		this.cards = cards; 
 		
 		this.setLayout(new BorderLayout());
-		//this.setBackground(Color.WHITE);
 		
 		//panel central 
 		panelCentral.setLayout(new GridLayout(3, 1));
@@ -68,6 +76,7 @@ public class Verrouillage extends JPanel implements SerializationMdp
 		panelCentral.setBorder(new EmptyBorder(0, 50, 30, 50));
 		panelCentral.setOpaque(false);
 		
+		//Ajout au panel principal 
 		this.add(imgCadenas, BorderLayout.NORTH); 
 		this.add(panelCentral, BorderLayout.CENTER); 
 		changerCode.setFont(police);
@@ -80,11 +89,20 @@ public class Verrouillage extends JPanel implements SerializationMdp
 		verrou = this;
 		
 	}
-
+	
+	/**
+	 * Modification de la variable. 
+	 * @param codejuste, le code permettant de dévérrouiller le téléphone
+	 */
 	public void setCodejuste(String codejuste) {
 		this.codejuste = codejuste;
 	}
-
+	
+	/**
+	 * @Decodage permet de dévérouiller le téléphone si le code est bon. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	class Decodage implements ActionListener
 	{
 		@Override
@@ -96,17 +114,25 @@ public class Verrouillage extends JPanel implements SerializationMdp
 			{
 				cl.show(cards, "Accueil");
 				txtCode.setText("");
+			}else {
+				txtCode.setText("");
 			}
 
 		}
 	
 	}
 	
+	/**
+	 * @ChangeMotDePasse affiche le panel @ChangementMdp au clic sur le bouton. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	class ChangeMotDePasse implements ActionListener
 	{
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			
+		public void actionPerformed(ActionEvent arg0) 
+		{
+				
 			ChangementMdp chMdp = new ChangementMdp(cl, cards, codejuste, verrou); 
 			cards.add(chMdp, "NouveauMdp"); 
 			cl.show(cards, "NouveauMdp");
