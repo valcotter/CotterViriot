@@ -35,11 +35,10 @@ public class AppliGalerie extends JPanel
 {
 	//Declaration du label qui contient le titre
 	public JLabel labelTitre;
-	
 	//Dossier qui contient les images de la galerie
 	private File folder = new File("./ImagesGalerie/");
 	//Tableau qui contient les Panels du cardLayout
-	String []listContent = {"Card1", "Card2"};
+	String []listContent = {"Card1", "Card2", "Card3"};
 	
 	//CardLayout de la galerie
 	private CardLayout clGalerie = new CardLayout();
@@ -57,6 +56,9 @@ public class AppliGalerie extends JPanel
 	
 	private int nbrePhotos;
 	private int id;
+	
+	//Ajout du bouton 
+	private ImageBouton add;
 
 	/**
 	 * Contructeur de la class AppliGalerie
@@ -64,9 +66,11 @@ public class AppliGalerie extends JPanel
 	public AppliGalerie()
 	{			
 		//Titre de la galerie
-		labelTitre = new JLabel("Galerie");		
+		labelTitre = new JLabel("Galerie");
+		//Ajout du bouton
+		add = new ImageBouton("add.png");
 		//Choix du layout = BorderLayout
-		this.setLayout(new BorderLayout());	
+		this.setLayout(new BorderLayout());
 		//Ajout du label au borderLayout au nord
 		this.add(labelTitre, BorderLayout.NORTH);
 		//Choix de la police d'écriture
@@ -82,6 +86,9 @@ public class AppliGalerie extends JPanel
 		gc = new GrilleCentre();
 		//Instanciation de la scrollbar
 		scroll = new JScrollPane(gc);
+		
+		scroll.getVerticalScrollBar().setUnitIncrement(16);
+		
 		//Ajout de la scrollbar au panel
 		container.add(scroll, listContent[0]);
 		//Ajout du panel container au borderLayout centre
@@ -128,7 +135,18 @@ class GrilleCentre extends JPanel
 			String path = "ImagesGalerie/" + id + ".jpg";
 			ImageBouton temp = new ImageBouton(path);
 			this.add(temp);
-			temp.addActionListener(new Ecouteur(id, nbrePhotos));
+			temp.addActionListener(new ClickImage(id, nbrePhotos));
+		}
+	}
+	
+	public void test() {
+		for(int i = 0; i != path.size(); i++)
+		{
+			int id = i+1;
+			String path = "ImagesGalerie/" + id + ".jpg";
+			ImageBouton temp = new ImageBouton(path);
+			this.add(temp);
+			temp.addActionListener(new ClickImage(id, nbrePhotos));
 		}
 	}
 }
@@ -183,7 +201,7 @@ class AfficheImage extends JPanel
 		//Path
 		String path = "ImagesGalerie/" + id + ".jpg";
 		
-		//Try catch qui trouve l'image avec son path
+		//Try-catch qui trouve l'image avec son path
 		try {
 			img = ImageIO.read(new File(path));
 		} catch (IOException e) {
@@ -235,12 +253,12 @@ class AfficheImage extends JPanel
 	}
 }
 
-class Ecouteur implements ActionListener
+class ClickImage implements ActionListener
 {	
 	int id = 0;
 	int nbrePhotos = 0;
 	
-	public Ecouteur(int id, int nbrePhotos)
+	public ClickImage(int id, int nbrePhotos)
 	{
 		this.id = id;
 		this.nbrePhotos = nbrePhotos;
@@ -293,15 +311,19 @@ class Ecouteurs implements ActionListener
 			DeleteFile df = new DeleteFile(id);
 			RenommerFichier rf = new RenommerFichier();
 			
+			gc.removeAll();
+			gc.repaint();
+			gc.revalidate();
 //			gc = null;
 //			container.remove(scroll);
 //			remove(container);
 			
-			//ChargementGrille();
-			clGalerie.show(container, listContent[0]);
+			ChargementGrille();
+			clGalerie.show(container, listContent[2]);
 			
 			revalidate();
 			repaint();
+			
 		}
 	}	
 }
@@ -311,7 +333,7 @@ private void ChargementGrille()
 	gc = new GrilleCentre();
 	scroll = new JScrollPane(gc);
 	scroll.getVerticalScrollBar().setUnitIncrement(16);
-	container.add(scroll);
+	container.add(scroll, listContent[2]);
 	add(container, BorderLayout.CENTER);
 }
 
@@ -407,7 +429,7 @@ class ImageBouton extends JButton
 	    } catch (IOException e)
 		
 		{
-	    	System.out.println("La photo n'est pas dans le dossier");
+	    	System.out.println("ERROR");
 	    }
 	}
 }
