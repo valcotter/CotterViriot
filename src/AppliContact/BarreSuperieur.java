@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * @BarrreSuperieur représente le panel contenant les fonctionnalités "précèdent",
+ * Cette classe représente le panel contenant les fonctionnalités "précèdent",
  * "modifier" et "supprimer"
  * 
  * @author Audrey Viriot
@@ -81,7 +81,7 @@ public class BarreSuperieur extends PanelConstructDefaut
 	}
 	
 	/**
-	 * @RetourListeContact permet d'afficher le panel @ListeContact au clic. 
+	 * Cette classe permet d'afficher le panel de la liste de contact au clic. 
 	 * 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter

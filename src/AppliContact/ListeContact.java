@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import AppliMemory.FinDuJeu;
 
 /**
- * @ListeContact est le panel qui contient la liste de contact; 
+ * Cette classe est le panel qui contient la liste de contact; 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 
@@ -60,7 +60,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ
 	 * @param cl, le CardLayout
 	 * @param cards, le panel contenant les autres panels de l'application
 	 * @param isInMemo, est-ce que la liste est appelée dans l'application memory ou pas
-	 * @parma fdj, panel @FinDuJeu 
+	 * @parma fdj, panel de fin du jeu 
 	 */
 	
 	public ListeContact(CardLayout cl, JPanel cards, boolean isInMemo, FinDuJeu fdj) 
@@ -109,6 +109,7 @@ public class ListeContact extends PanelConstructDefaut implements Serializ
 	/**
 	 * Cette méthode met à jour la liste. 
 	 * Elle crée un nouveau panel tous les 10 contacts. 
+	 * @param isInMemo, true si la liste est dans le mémory sinon false.
 	 */
 	public void majListe(boolean isInMemo) 
 	{

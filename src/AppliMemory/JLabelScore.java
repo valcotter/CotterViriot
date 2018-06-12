@@ -5,7 +5,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 /**
- * @JLabelScore représente les JLabel dans le panel @MeilleurScore. 
+ * Cette classe représente les JLabel dans le panel des meilleurs scores.
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 

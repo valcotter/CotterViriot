@@ -14,7 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 /**
- * @Verrouillage représente le panel de vérrouillage du téléphone. 
+ * Cette classe représente le panel de vérrouillage du téléphone. 
  * @author Audrey Viriot
  * @author Valentine Cotter 
  */
@@ -99,7 +99,7 @@ public class Verrouillage extends JPanel implements SerializationMdp
 	}
 	
 	/**
-	 * @Decodage permet de dévérouiller le téléphone si le code est bon. 
+	 * Cette classe permet de dévérouiller le téléphone si le code est bon. 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */
@@ -123,7 +123,7 @@ public class Verrouillage extends JPanel implements SerializationMdp
 	}
 	
 	/**
-	 * @ChangeMotDePasse affiche le panel @ChangementMdp au clic sur le bouton. 
+	 * Cette classe affiche le panel de changement de mot de passe au clic sur le bouton. 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */

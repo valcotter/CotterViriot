@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * @EspaceJeu est le panel contenant le plateau de jeu du mémory. 
+ * Cette classe est le panel contenant le plateau de jeu du mémory. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 
@@ -172,7 +172,7 @@ public class EspaceJeu extends JPanel
 	}
 	
 	/**
-	 * @EnregistrerClic enregistre les clics et gère le comportement des @Carte 
+	 * Cette classe enregistre les clics et gère le comportement des @Carte 
 	 * en fonction du nombre de clic de l'utilisateur. 
 	 * 
 	 * @author Audrey Viriot
@@ -234,7 +234,7 @@ public class EspaceJeu extends JPanel
 	}
 	
 	/**
-	 * @OuvrirPause affiche le panel @PanelPause et arrête le chronomètre. 
+	 * Cette classe affiche le panel @PanelPause et arrête le chronomètre. 
 	 * 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
@@ -250,7 +250,7 @@ public class EspaceJeu extends JPanel
 	}
 	
 	/**
-	 * @OuvrirFin affiche le panel @FinDuJeu, arrête le chronomètre et simule 
+	 * Cette classe affiche le panel de fin du jeu, arrête le chronomètre et simule 
 	 * une partie terminée au clic sur le bouton "stop". 
 	 * Cette méthode n'est la que pour la démonstration, afin de voir les comportements 
 	 * du programme sans devoir terminer une partie complète. 

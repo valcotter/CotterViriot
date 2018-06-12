@@ -5,7 +5,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 /**
- * @BtnPanelPause est un bouton se trouvant le @PanelPause. 
+ * Cette classe est un bouton se trouvant le @PanelPause. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 

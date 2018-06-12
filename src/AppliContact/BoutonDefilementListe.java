@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 /**
- * @BoutonDefilementContact représente le panel contenant les boutons @BoutonSuivant. 
+ * Cette classe représente le panel contenant les boutons @BoutonSuivant. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 

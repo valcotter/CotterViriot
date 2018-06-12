@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
- * @Carte est une carte de mémory. 
+ * Cette classe est une carte de mémory. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 

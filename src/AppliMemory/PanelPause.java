@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 /**
- * @PanelPause est le panel de pause du jeu. 
+ * Cette classe est le panel de pause du jeu. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter
@@ -66,7 +66,7 @@ public class PanelPause extends JPanel
 	}
 	
 	/**
-	 * @ReprendreJeu permet d'afficher le panel @EspaceJeu, et de relancer le chronomètre
+	 * Cette classe permet d'afficher le panel de jeu, et de relancer le chronomètre
 	 * au clic sur le bouton. 
 	 * 
 	 * @author Audrey Viriot 
@@ -84,7 +84,7 @@ public class PanelPause extends JPanel
 	}
 	
 	/**
-	 * @Restart, ouvre un nouveau panel @EspaceJeu, au clic sur le bouton. 
+	 * Cette classe ouvre un nouveau panel de jeu, au clic sur le bouton. 
 	 * 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
@@ -105,7 +105,7 @@ public class PanelPause extends JPanel
 	}
 	
 	/**
-	 * @RetourMenu, affiche le panel @MenuJeu au clic sur le bouton. 
+	 * Cette classe affiche le panel de menu du jeu au clic sur le bouton. 
 	 * 
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 

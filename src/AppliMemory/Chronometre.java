@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 /**
- * @Chonometre est une classe permettant de gérer et d'afficher un timer dans le panel @EspaceJeu.
+ * Cette classe est une classe permettant de gérer et d'afficher un timer dans le panel @EspaceJeu.
  * 
  * @author Audrey Viriot
  * @author Valentine Cotter 
@@ -31,9 +31,9 @@ public class Chronometre extends JPanel implements Serializable
 	/**
 	 * Constructeur de @Chronometre. 
 	 * 
-	 * @param heure
-	 * @param minute
-	 * @param seconde
+	 * @param heure, heure du chronomètre 
+	 * @param minute, minute du chronomètre 
+	 * @param seconde, seconde du chronomètre 
 	 */
 	public Chronometre(int heure, int minute, int seconde) 
 	{
@@ -71,7 +71,7 @@ public class Chronometre extends JPanel implements Serializable
 	}
 	
 	/**
-	 * @ActionDuChrono permet d'afficher le chronomètre et de changer le label à chaque 
+	 * Cette classe permet d'afficher le chronomètre et de changer le label à chaque 
 	 * nouvelle seconde/minute/heure. 
 	 * 
 	 * @author Audrey Viriot

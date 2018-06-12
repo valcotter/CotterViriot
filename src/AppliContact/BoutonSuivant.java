@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
- * @BoutonSuivant représente les bouton se trouvant dans le panel @BoutonDefilement. 
+ * Cette classe représente les bouton se trouvant dans le panel @BoutonDefilement. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter  

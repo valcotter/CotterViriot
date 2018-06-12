@@ -75,7 +75,7 @@ public class MenuJeu extends JPanel
 	}
 	
 	/**
-	 * @OuvrirJeu permet d'afficher le panel @Espacejeu et de lancer le chronomètre.  
+	 * Cette classe permet d'afficher le panel de jeu et de lancer le chronomètre.  
 	 * 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
@@ -97,7 +97,7 @@ public class MenuJeu extends JPanel
 	}
 	
 	/**
-	 * @OuvrirScore permet d'ouvrir le panel @MeilleurScore .
+	 * Cette classe permet d'ouvrir le panel des meilleurs scores.
 	 * 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter

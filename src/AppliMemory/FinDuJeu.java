@@ -16,7 +16,7 @@ import AppliContact.FormulaireCreation;
 import AppliContact.ListeContact;
 
 /**
- * @FinDuJeu est le panel de fin du jeu.
+ * Cette classe est le panel de fin du jeu.
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 
@@ -112,8 +112,8 @@ public class FinDuJeu extends JPanel implements SerializMemo
 	}
 
 	/**
-	 * @SauverResultat sérilize le joueur venant de faire la partie et affiche le panel 
-	 * @MenuJeu. 
+	 * Cette classe sérilize le joueur venant de faire la partie et affiche le panel 
+	 * de menu du jeu. 
 	 * 
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
@@ -132,7 +132,7 @@ public class FinDuJeu extends JPanel implements SerializMemo
 	}
 	
 	/**
-	 * @OuvrirListeContact ouvre la liste de contact @ListeContact au clic. 
+	 * Cette classe ouvre la liste de contact au clic. 
 	 * 
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 

@@ -3,7 +3,7 @@ package AppliContact;
 import java.io.Serializable;
 
 /**
- * @Contact représente l'objet contact. 
+ * Cette classe représente l'objet contact. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter  

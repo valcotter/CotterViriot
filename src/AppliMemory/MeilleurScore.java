@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import AppliContact.BarreSuperieur;
 
 /**
- * @MeilleurScore est le panel affichant les meilleurs scores réalisés au memory. 
+ * Cette classe est le panel affichant les meilleurs scores réalisés au memory. 
  * 
  * @author Audrey Viriot
  * @author Valentine Cotter
@@ -178,7 +178,7 @@ public class MeilleurScore extends JPanel implements SerializMemo
 	}
 	
 	/**
-	 * @MeilleurScore n'affiche que les 10 meilleurs joueurs. On supprime donc les joueurs classés au dessus
+	 * Le panel n'affiche que les 10 meilleurs joueurs. On supprime donc les joueurs classés au dessus
 	 * du 10ème rang. 
 	 */
 	public void supprJoueur() 
@@ -196,7 +196,7 @@ public class MeilleurScore extends JPanel implements SerializMemo
 	}
 	
 	/**
-	 * @RetourPrecedant affiche le panel @MenuJeu, lors du clic sur la flèche précèdent. 
+	 * Cette classe affiche le panel de menu du jeu, lors du clic sur la flèche précèdent. 
 	 * 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 

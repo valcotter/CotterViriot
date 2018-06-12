@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import AppliMemory.FinDuJeu;
 
 /**
- * @FormulaireCreation est le panel permettant de créer un nouveau contact. 
- * Cette classe hérite de @BaseFicheContact.  
+ * Cette classe est le panel permettant de créer un nouveau contact. 
+ * Cette classe hérite de BaseFicheContact.  
  *
  * @author Audrey Viriot 
  * @author Valentine Cotter 

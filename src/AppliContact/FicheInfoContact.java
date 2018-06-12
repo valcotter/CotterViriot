@@ -8,8 +8,8 @@ import java.io.File;
 import javax.swing.JPanel;
 
 /**
- * @FicheInfoContact est le panel contenant les informations du contact. 
- * Cette classe hérite de @BaseFicheContact. 
+ * Cette classe est le panel contenant les informations du contact. 
+ * Cette classe hérite de BaseFicheContact.
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 
@@ -71,7 +71,7 @@ public class FicheInfoContact extends BaseFicheContact
 	}
 	
 	/**
-	 * @ActiverModif active la modification des JTextFields lors du clic sur le bouton 
+	 * Cette classe active la modification des JTextFields lors du clic sur le bouton 
 	 * 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 

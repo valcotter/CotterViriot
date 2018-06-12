@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 /**
- * @BaseFicheContact définit un formulaire de base pour les contacts. 
+ * Cette classe définit un formulaire de base pour les contacts. 
  * 
  * @author Audrey Viriot
  * @author Valentine Cotter
@@ -125,6 +125,9 @@ public abstract class BaseFicheContact extends PanelConstructDefaut implements S
 	 * Cette méthode permet de vérifier si les entrées de l'utilisateur sont bonnes dans le 
 	 * formulaire contact.
 	 * 
+	 * @contenuNom le nom du contact 
+	 * @contenuPrenom le prénom du contact 
+	 * @longueurNum la longueur du numéro de téléphone du contact 
 	 * @return true si les infos sont correct, sinon false. 
 	 */
 	public boolean verificationEntree(String contenuNom, String contenuPrenom, int longueurNum) 

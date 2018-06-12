@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 import AppliContact.BarreSuperieur;
 
 /**
- * @ChangementMdp représente le panel permettant de changer le mot de passe de 
+ * Cette classe représente le panel permettant de changer le mot de passe de 
  * dévérouillage. 
  * @author Audrey Viriot 
  * @author Valentine Cotter 
@@ -112,7 +112,7 @@ public class ChangementMdp extends JPanel implements SerializationMdp
 	}
 	
 	/**
-	 * @ValiderNouveauMdp change le mot de passe après vérification que l'ancien mot 
+	 * Cette classe change le mot de passe après vérification que l'ancien mot 
 	 * de passe est bon. 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
@@ -138,7 +138,7 @@ public class ChangementMdp extends JPanel implements SerializationMdp
 	}
 	
 	/**
-	 * @RetourVerouillage retourne au panel précèdent. 
+	 * Cette classe retourne au panel précèdent. 
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */

@@ -4,8 +4,8 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
- * @PanelConstructDefaut initialise un CradLayout et un panel pour récupérer les panels de
- * @AppliContact.  
+ * Cette classe initialise un CradLayout et un panel pour récupérer les panels de
+ * l'application contact. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter

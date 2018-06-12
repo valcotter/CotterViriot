@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import AppliMemory.FinDuJeu;
 
 /**
- * @BoutonContact représente les boutons dans la liste de contact.  
+ * Cette classe représente les boutons dans la liste de contact.  
  * 
  * @author Audrey Viriot
  * @author Valentine Cotter 
@@ -71,7 +71,7 @@ public class BoutonContact extends JButton
 	}
 		
 	/**
-	 * @OuvrirDetailContact permet d'ouvrir la fiche associé au contact sur la liste de contact. 
+	 * Cette classe permet d'ouvrir la fiche associé au contact sur la liste de contact. 
 	 * 
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
@@ -90,7 +90,7 @@ public class BoutonContact extends JButton
 	}
 	
 	/**
-	 * @RecupPrenom permet de récupérer le prénom du contact pour l'inscrire dans le mémory. 
+	 * Cette classe permet de récupérer le prénom du contact pour l'inscrire dans le mémory. 
 	 * 
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 

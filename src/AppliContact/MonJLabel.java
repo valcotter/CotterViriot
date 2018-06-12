@@ -5,7 +5,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 /**
-* @MonJlabel représente un label avec des caractéristiques particulière. 
+* Cette classe représente un label avec des caractéristiques particulière. 
 *
 * @author Audrey Viriot 
 * @author Valentine Cotter

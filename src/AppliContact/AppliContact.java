@@ -4,7 +4,7 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
-* @AppliContact est le panel qui ocntient tous les panels necessaire à l'application. 
+* Cette classe est le panel qui ocntient tous les panels necessaire à l'application. 
 *
 * @author Audrey Viriot
 * @author Valentine Cotter

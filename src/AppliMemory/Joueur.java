@@ -3,7 +3,7 @@ package AppliMemory;
 import java.io.Serializable;
 
 /**
- * @Joueur représente la personne faisant une partie de mémory. 
+ * Cette classe représente la personne faisant une partie de mémory. 
  * 
  * @author Audrey Viriot 
  * @author Valentine Cotter 

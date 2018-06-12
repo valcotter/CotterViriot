@@ -56,7 +56,6 @@ public interface SerializationMdp
 	/**
 	 * Cette méthode déserialize le mot de passe 
 	 * 
-	 * @param path, chemin du fichier ou est serializé le mot de passe
 	 * @return le mot de passe serializé
 	 */
 	public default String deserializMdp() 

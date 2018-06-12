@@ -4,7 +4,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 /**
- * @JLabelMenu représente les panels dans la classe @MenuJeu. 
+ * Cette classe représente les panels dans la classe @MenuJeu. 
  * 
  * @author Audrey Viriot
  * @author Valentine Cotter 
