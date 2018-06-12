@@ -8,10 +8,16 @@ import javax.swing.JPanel;
 
 import Main.Test;
 
-//Voir pour fair une interface
+/**
+ * Classe pour afficher le fonc d'écran.
+ * @author Audrey Viriot
+ * @author Valentine Cotter
+ */
 public class AfficheImage extends JPanel
 {
-	
+	/**
+	 * Méthode pour afficher le fond d'écran. 
+	 */
 	public void paintComponent(Graphics g)
 	{
 		try 

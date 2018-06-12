@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"AppliContact"},{"l":"AppliContactTest"},{"l":"AppliGalerie"},{"l":"AppliMemory"},{"l":"FenetrePrincipal"},{"l":"Main"},{"l":"Verrouillage"}]
