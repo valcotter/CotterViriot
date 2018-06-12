@@ -17,15 +17,11 @@ import AppliGalerie.AppliGalerie;
 import AppliMemory.AppMemory;
 import Verrouillage.Verrouillage;
 
-/**************************************************
- * Classe Fenetre
- * Auteur : Cotter Valentine
- * Date   : 25 avril 2018
- * ************************************************
- * Cette classe contient tous les paramÃ¨tres de
- * notre fenÃªtre. Cela permet d'Ã©viter de le noter
- * dans le main
- **************************************************/
+/**
+ * Cette classe contient la fenêtre principale qui contient tous le smartphone. 
+ * @author Audrey Viriot
+ * @author Valentine Cotter 
+ */
 
 public class Fenetre extends JFrame
 {
@@ -72,7 +68,9 @@ public class Fenetre extends JFrame
     private AppMemory memoryApp = new AppMemory();
     private Verrouillage verrou = new Verrouillage(cl, cards);
 
-	
+	/**
+	 * Constructeur de la fenêtre. 
+	 */
 	public Fenetre()
 	{
 		//ParamÃ¨tres fenÃ¨tres
@@ -129,6 +127,11 @@ public class Fenetre extends JFrame
 		this.setVisible(true);
 	}
 
+	/**
+	 * Cette classe permet de changer le curseur au passage de la souris sur les icones. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	private class changerSouris extends MouseAdapter
 	{
 		@Override
@@ -144,6 +147,11 @@ public class Fenetre extends JFrame
 		}
 	}
 	
+	/**
+	 * Cette classe ouvre l'application contact au clic. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	private class ouvrirContact extends MouseAdapter
 	{
 		@Override
@@ -153,6 +161,11 @@ public class Fenetre extends JFrame
 		}
 	}
 	
+	/**
+	 * Cette classe permet d'ouvrir l'application galerie au clic sur l'icone. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	private class ouvrirGalerie extends MouseAdapter
 	{
 		@Override
@@ -162,6 +175,11 @@ public class Fenetre extends JFrame
 		}
 	}
 	
+	/**
+	 * Cette classe permet d'ouvrir l'application mémory au clic. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter
+	 */
 	public class ouvrirMemory extends MouseAdapter
 	{
 		@Override
@@ -171,6 +189,11 @@ public class Fenetre extends JFrame
 		}
 	}
 	
+	/**
+	 * Cette classe permet de retourner sur le panel d'acceuil au clic. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter
+	 */
 	public class ouvrirAcceuil extends MouseAdapter
 	{
 		@Override
@@ -180,6 +203,11 @@ public class Fenetre extends JFrame
 		}
 	}
 	
+	/**
+	 * Cette classe permet de vérouiller le téléphone au clic. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter 
+	 */
 	public class verrouiller extends MouseAdapter
 	{
 		@Override
@@ -189,6 +217,11 @@ public class Fenetre extends JFrame
 		}
 	}
 	
+	/**
+	 * Cette classe permet de fermer le programme au clic. 
+	 * @author Audrey Viriot
+	 * @author Valentine Cotter
+	 */
 	public class fermerFenetre extends MouseAdapter
 	{
 		@Override
