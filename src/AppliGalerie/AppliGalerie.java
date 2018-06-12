@@ -11,18 +11,27 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * AppliGalerie contient tous les panels necessaires à la Galerie
@@ -34,7 +43,8 @@ import javax.swing.border.Border;
 public class AppliGalerie extends JPanel
 {
 	//Declaration du label qui contient le titre
-	public JLabel labelTitre;
+	private JPanel labelTitre;
+	private JLabel titre;
 	//Dossier qui contient les images de la galerie
 	private File folder = new File("./ImagesGalerie/");
 	//Tableau qui contient les Panels du cardLayout
@@ -53,32 +63,50 @@ public class AppliGalerie extends JPanel
 	private JScrollPane scroll;
 	//Création du tableau qui contient la liste des photos
 	private File[] listPhotos;
+	private JLabel[] imagesList;
+	
+	//fileChooser pour ajouteur une photo
+	private JFileChooser fileChooser = new JFileChooser();
 	
 	private int nbrePhotos;
 	private int id;
 	
 	//Ajout du bouton 
-	private ImageBouton add;
+	private JButton addImg;
 
 	/**
 	 * Contructeur de la class AppliGalerie
 	 */
 	public AppliGalerie()
 	{			
-		//Titre de la galerie
-		labelTitre = new JLabel("Galerie");
-		//Ajout du bouton
-		add = new ImageBouton("add.png");
-		//Choix du layout = BorderLayout
+		//Ajout du Layout en BorderLayout
 		this.setLayout(new BorderLayout());
-		//Ajout du label au borderLayout au nord
+		//Création du Jpanel qui contiendra le titre et le bouton ajout
+		labelTitre = new JPanel();
+		//JLabel qui contient le titre
+		titre = new JLabel("Galerie");
+		//Création du bouton
+		addImg = new JButton("+");
+		//Choix du layout = GridLayout
+		labelTitre.setLayout(new GridLayout(1,3));
+		//Ajout du bouton + titre au GridLayout au nord
+		labelTitre.add(addImg);
+		labelTitre.add(titre);
+		//Ajout du JLabel vide
+		labelTitre.add(new JLabel());
+		//Ajout du labelTitre au nord
 		this.add(labelTitre, BorderLayout.NORTH);
+
 		//Choix de la police d'écriture
-		Font policeNormal = new Font("Arial", 45, 45);
-		//Application du Font au label titre Galerie
-		labelTitre.setFont(policeNormal);
+		Font policeNormal = new Font("Arial", 30, 30);
+		//Application du Font au label titre Galerie + bouton add
+		titre.setFont(policeNormal);
+		addImg.setFont(new Font("Arial", 30, 30));
 		//Alignement du titre de la galerie au centre
-		labelTitre.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+		titre.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+		
+		//Ajouter action sur le bouton addImg
+		addImg.addActionListener(new AjouterImage());
 		
 		//Choix du layout pour le jpanel container
 		container.setLayout(clGalerie);
@@ -86,14 +114,106 @@ public class AppliGalerie extends JPanel
 		gc = new GrilleCentre();
 		//Instanciation de la scrollbar
 		scroll = new JScrollPane(gc);
-		
 		scroll.getVerticalScrollBar().setUnitIncrement(16);
-		
 		//Ajout de la scrollbar au panel
 		container.add(scroll, listContent[0]);
 		//Ajout du panel container au borderLayout centre
 		this.add(container,BorderLayout.CENTER);
 	}	
+/**
+ * AjouterImage permet de selectionner une image depuis l'ordinateur et de l'ajouter dans notre galerie
+ * @author Audrey
+ * @author Valentine
+ *
+ */
+class AjouterImage implements ActionListener
+{
+/**
+ * ActionPerformed - Action sur le bouton addImg
+ */
+	@Override
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		//Choix des extensions acceptée
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG Images", "jpg", "jpeg", "png");
+
+		fileChooser.setFileFilter(filter);
+		fileChooser.setMultiSelectionEnabled(true);
+		
+		int reponse = fileChooser.showOpenDialog(null);
+		if (reponse == fileChooser.APPROVE_OPTION) {
+
+		File[] fs = fileChooser.getSelectedFiles();
+		String location = "./ImagesGalerie/";
+		
+		for (int i = 0; i < fs.length; i++) 
+		{
+			String path = location + fs[i].getName();
+			Path source = fs[i].toPath();
+			
+			System.out.println("test: " + location);
+
+			if (checkExtension(fs[i]) == true) 
+			{
+				String choosedFile = fs[i].getName().substring(0, fs[i].getName().lastIndexOf("."));
+				//copier(source, location);
+				saveToGalerie(fs[i],choosedFile);
+			}
+			
+			else 
+			{
+				break;
+			}
+		}
+		
+
+		}
+		
+		//Si on annule 
+		if (reponse == fileChooser.CANCEL_OPTION) 
+		{
+			fileChooser.cancelSelection();
+			return;
+		}
+		
+		//Renomme les fichiers après ajout de l'image
+		RenommerFichier rf = new RenommerFichier();
+		
+
+		
+	}
+	
+	private void saveToGalerie(File img, String choosedFile)
+	{			
+		try
+		{			
+			BufferedImage bi = ImageIO.read(img) ;
+			File outputfile = new File("./ImagesGalerie/" + choosedFile);
+			ImageIO.write(bi, getExtension(img), outputfile);
+		}
+		
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+}
+
+private String getFileExtension(File file) {
+	String fileName = file.getName();
+	if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+		return fileName.substring(fileName.lastIndexOf(".") + 1);
+	else
+		return "";
+}
+
+private boolean checkExtension(File fichier) {
+	String ext = getFileExtension(fichier);
+	if (ext.toLowerCase().equals("jpeg") || ext.toLowerCase().equals("jpg") || ext.toLowerCase().equals("png"))
+		return true;
+	else
+		return false;
+}
 	
 /**
  * GrilleCentre remplit la grille qui contient toutes les photos du dossier
@@ -271,6 +391,17 @@ class ClickImage implements ActionListener
 	}	
 }
 
+private String getExtension(File fichier)
+{
+	String imgExtension = fichier.getName();
+
+	String fileName = fichier.getName();
+	if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+		return imgExtension.substring(imgExtension.lastIndexOf(".") + 1);
+	else
+		return "";
+}
+
 class Ecouteurs implements ActionListener
 {	
 	int id = 0;
@@ -303,7 +434,9 @@ class Ecouteurs implements ActionListener
 		
 		if(i == 2)
 		{
+			
 			clGalerie.show(container, listContent[0]);
+
 		}
 		
 		if(i == 3)	//Corbeille
@@ -314,9 +447,7 @@ class Ecouteurs implements ActionListener
 			gc.removeAll();
 			gc.repaint();
 			gc.revalidate();
-//			gc = null;
-//			container.remove(scroll);
-//			remove(container);
+			gc.updateUI();
 			
 			ChargementGrille();
 			clGalerie.show(container, listContent[2]);
