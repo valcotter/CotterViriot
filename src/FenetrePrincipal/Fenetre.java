@@ -123,6 +123,7 @@ public class Fenetre extends JFrame
 		cards.add(galerieApp, "Galerie");
 		cards.add(memoryApp, "Memory");
 		this.add(cards, BorderLayout.CENTER); 
+		
 
 		
 		this.setVisible(true);
