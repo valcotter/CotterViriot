@@ -35,6 +35,7 @@ public class AppliGalerie extends JPanel
 	
 	//Création des 2 panels différents pour la galerie
 	private JPanel container = new JPanel();
+	private boolean temp = false;
 
 
 	public AppliGalerie()
@@ -229,10 +230,6 @@ class Ecouteurs implements ActionListener
 		if(i == 3)	//Corbeille
 		{
 			DeleteFile df = new DeleteFile(id);
-
-			
-			container.revalidate();
-			container.repaint();
 			
 			RenommerFichier rf = new RenommerFichier();
 			
@@ -282,17 +279,43 @@ class RenommerFichier
 	{
 		File dossier = new File("ImagesGalerie/");
 		File[] tousLesFichiers = dossier.listFiles();
-		int y = 0;
 		
-		for(int i = 1; i <= tousLesFichiers.length; i++)
+		if(temp == false)
 		{
-			File ancien = new File(tousLesFichiers[y].getPath());
-			File nouveau = new File("ImagesGalerie/" + i + ".jpg");
-			System.out.println("Ancien : " + ancien);
-			System.out.println("Nouveau : " + nouveau);
-			ancien.renameTo(nouveau);
-			y++;
-			System.out.println();
+			int y = 0;
+			
+			for(int i = 1; i <= tousLesFichiers.length; i++)
+			{
+				File ancien = new File(tousLesFichiers[y].getPath());
+				File tempName = new File("ImagesGalerie/" + i + "_.jpg");
+				System.out.println("Ancien : " + ancien);
+				System.out.println("Nouveau : " + tempName);
+				ancien.renameTo(tempName);
+				y++;
+				System.out.println();	
+			}
+			
+			temp = true;
+			RenommerFichier rf = new RenommerFichier();	
+			
+		}
+		
+		else
+		{
+			int y = 0;
+			
+			for(int i = 1; i <= tousLesFichiers.length; i++)
+			{
+				File ancien = new File(tousLesFichiers[y].getPath());
+				File nouveau = new File("ImagesGalerie/" + i + ".jpg");
+				System.out.println("Ancien : " + ancien);
+				System.out.println("Nouveau : " + nouveau);
+				ancien.renameTo(nouveau);
+				y++;
+				System.out.println();
+			}
+			
+			temp = false;
 		}
 	}
 }
