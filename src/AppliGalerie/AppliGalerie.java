@@ -370,10 +370,10 @@ class AfficheImage extends JPanel
 		photoPane.add(corbeille);
 
 		//Ajout des actions lorsque l'on clique dessus
-		previous.addActionListener(new Ecouteurs(id, 0, nbrePhotos));
-		next.addActionListener(new Ecouteurs(id, 1, nbrePhotos));
-		listBack.addActionListener(new Ecouteurs(id, 2, nbrePhotos));
-		corbeille.addActionListener(new Ecouteurs(id, 3, nbrePhotos));
+		previous.addActionListener(new LectureBouton(id, 0, nbrePhotos));
+		next.addActionListener(new LectureBouton(id, 1, nbrePhotos));
+		listBack.addActionListener(new LectureBouton(id, 2, nbrePhotos));
+		corbeille.addActionListener(new LectureBouton(id, 3, nbrePhotos));
 		
 		//Quand on est sur la première photo, on enlève le bouton previous
 		if(id == 1)
@@ -443,13 +443,13 @@ private String getExtension(File fichier)
 		return "";
 }
 
-class Ecouteurs implements ActionListener
+class LectureBouton implements ActionListener
 {	
 	int id = 0;
 	int i = 0;
 	int nbrePhotos = 0;
 	
-	public Ecouteurs(int id, int i, int nbrePhotos)
+	public LectureBouton(int id, int i, int nbrePhotos)
 	{
 		this.i = i;
 		this.id = id;
