@@ -15,7 +15,8 @@ import javax.swing.border.EmptyBorder;
  * @author Audrey Viriot 
  * @author Valentine Cotter
  */
-public class PanelPause extends JPanel {
+public class PanelPause extends JPanel 
+{
 
 	private CardLayout clMemo; 
 	private JPanel cardMemo; 
@@ -38,7 +39,8 @@ public class PanelPause extends JPanel {
 	 * @param cardMemo, le panel contenant les autres panels de l'application.
 	 * @param ej, objet de la classe @EspaceJeu. 
 	 */
-	public PanelPause(CardLayout clMemo, JPanel cardMemo, EspaceJeu ej) {
+	public PanelPause(CardLayout clMemo, JPanel cardMemo, EspaceJeu ej) 
+	{
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo; 
 		this.ej = ej;  
@@ -70,8 +72,10 @@ public class PanelPause extends JPanel {
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class ReprendreJeu extends MouseAdapter{
-		public void mouseClicked(MouseEvent arg0) {
+	class ReprendreJeu extends MouseAdapter
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			
 			ej.getChrono().getTimer().start();
 			clMemo.show(cardMemo, "Jeu");
@@ -85,8 +89,10 @@ public class PanelPause extends JPanel {
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */
-	class Restart extends MouseAdapter{
-		public void mouseClicked(MouseEvent arg0) {
+	class Restart extends MouseAdapter
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			
 			EspaceJeu ej = new EspaceJeu(clMemo, cardMemo); 
 			cardMemo.add(ej, "Jeu"); 
@@ -104,8 +110,10 @@ public class PanelPause extends JPanel {
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class RetourMenu extends MouseAdapter{
-		public void mouseClicked(MouseEvent arg0) {
+	class RetourMenu extends MouseAdapter
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			
 			clMemo.show(cardMemo, "Menu");
 			

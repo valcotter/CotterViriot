@@ -17,7 +17,8 @@ import javax.swing.JPanel;
  * @author Audrey Viriot
  * @author Valentine Cotter
  */
-public class MenuJeu extends JPanel {
+public class MenuJeu extends JPanel 
+{
 	
 	//Récupération de toutes les cartes de l'application
 	private CardLayout clMemo; 
@@ -42,7 +43,8 @@ public class MenuJeu extends JPanel {
 	 * @param clMemo, le CardLayout. 
 	 * @param cardMemo, le panel contenant les autres panels de l'application.
 	 */
-	public MenuJeu(CardLayout clMemo, JPanel cardMemo) {
+	public MenuJeu(CardLayout clMemo, JPanel cardMemo) 
+	{
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo; 
 		
@@ -112,5 +114,4 @@ public class MenuJeu extends JPanel {
 			clMemo.show(cardMemo, "Score");
 		}
 	}
-
 }

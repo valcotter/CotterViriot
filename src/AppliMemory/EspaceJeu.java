@@ -19,18 +19,20 @@ import javax.swing.JPanel;
  * @author Audrey Viriot 
  * @author Valentine Cotter 
  */
-public class EspaceJeu extends JPanel {
-
+public class EspaceJeu extends JPanel 
+{
+	//Switcher sur les autres panels de l'application 
 	private CardLayout clMemo; 
 	private JPanel cardMemo;  
 	
-	private JPanel test = new JPanel(); 
+	private JPanel panelSup = new JPanel(); 
 	
 	private MouseListener enregistreClic = new EnregistrerClic(); 
 	
 	//Chronometre 
 	private Chronometre chrono = new Chronometre(0, 0, 0); 
 	
+	//Panel accessible depuis le plateau de jeu 
 	private PanelPause pp;  
 	private FinDuJeu fdj; 
 	
@@ -44,9 +46,6 @@ public class EspaceJeu extends JPanel {
 	private ImageIcon stop = new ImageIcon("ImageMemory/stop.png"); 
 	private JLabel btnPause = new JLabel(pause); 
 	private JLabel btnStop = new JLabel(stop); 
-	
-	//private JButton btnPause2 = new JButton(pause); 
-	//private JButton btnTestFin = new JButton("Fin"); 
 	
 	//Espace plateau de jeu
 	private JPanel plateau = new JPanel(); 
@@ -64,7 +63,8 @@ public class EspaceJeu extends JPanel {
 	 * @param clMemo, le CardLayout. 
 	 * @param cardMemo, le panel contenant les autres panels de l'application. 
 	 */
-	public EspaceJeu(CardLayout clMemo, JPanel cardMemo) {
+	public EspaceJeu(CardLayout clMemo, JPanel cardMemo) 
+	{
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo; 
 		
@@ -73,17 +73,15 @@ public class EspaceJeu extends JPanel {
 		
 		this.setLayout(new BorderLayout());
 		
-		test.setLayout(new GridLayout(1, 2));
-		
-		//btnPause2.setBackground(Color.BLACK);
+		panelSup.setLayout(new GridLayout(1, 2));
 		
 		//Barre superieur 
 		btnPause.addMouseListener(new OuvrirPause());
 		//this.add(btnPause2, BorderLayout.NORTH);
 		btnStop.addMouseListener(new OuvrirFin());
-		test.add(btnPause); 
-		test.add(btnStop); 
-		test.setBorder(new EmptyBorder(10, 0, 0, 0));
+		panelSup.add(btnPause); 
+		panelSup.add(btnStop); 
+		panelSup.setBorder(new EmptyBorder(10, 0, 0, 0));
 		
 		//Plateau - Remplissage du gridlayout 
 		plateau.setLayout(new GridLayout(6, 5, 10, 0));
@@ -94,15 +92,16 @@ public class EspaceJeu extends JPanel {
 		melangerCarte();
 		
 		//On remplis le plateau 
-		for(int i=0; i<tabCarte.length; i++) {
+		for(int i=0; i<tabCarte.length; i++) 
+		{
 			tabCarte[i].addMouseListener(enregistreClic);
 			plateau.add(tabCarte[i]);
 		}
 
-		test.setOpaque(false);
+		panelSup.setOpaque(false);
 		plateau.setOpaque(false);
 		chrono.setOpaque(false);
-		this.add(test, BorderLayout.NORTH);
+		this.add(panelSup, BorderLayout.NORTH);
 		this.add(plateau, BorderLayout.CENTER);
 		this.add(chrono, BorderLayout.SOUTH); 
 		this.setBackground(Color.BLACK);
@@ -113,7 +112,8 @@ public class EspaceJeu extends JPanel {
 	 * Récupération de la variable chrono. 
 	 * @return chrono, le temps fait par le joueur. 
 	 */
-	public Chronometre getChrono() {
+	public Chronometre getChrono() 
+	{
 		return chrono;
 	}
 
@@ -123,7 +123,8 @@ public class EspaceJeu extends JPanel {
 	 * côte à côte la même ImageIcon pays. 
 	 * @return tabCarte, un tableau de Carte. 
 	 */
-	public Carte[] attributionPaysCarte() {
+	private Carte[] attributionPaysCarte() 
+	{
 		
 		//Le fichier ou se trouve les img
 		File pays = new File("ImageMemory/Pays"); 
@@ -148,18 +149,21 @@ public class EspaceJeu extends JPanel {
 	 * Cette méthode mélange le tableau de @Carte.  
 	 * Pour que les paires ne soient plus côte à côte.  
 	 */
-	public void melangerCarte() {
+	private void melangerCarte() 
+	{
 		
 		int nb1; 
 		int nb2; 
 		Carte carteTempo; 
 		
-		for(int i= 0; i<1000; i++) {
+		for(int i= 0; i<1000; i++) 
+		{
 			
 			nb1 = (int)(Math.random()*30); 
 			nb2 = (int)(Math.random()*30); 
 			
-			//On bouge les drapeau et on associe leurs places dans le tableau à leurs id 
+			//On mélange les drapeaux pour plus que chaque paire 
+			//soit l'une à coté de l'autre
 			carteTempo = tabCarte[nb1]; 
 			tabCarte[nb1] = tabCarte[nb2]; 
 			tabCarte[nb2] = carteTempo; 
@@ -174,14 +178,19 @@ public class EspaceJeu extends JPanel {
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */
-	class EnregistrerClic extends MouseAdapter {
-		public void mouseClicked(MouseEvent arg0) {
+	class EnregistrerClic extends MouseAdapter 
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			
-			switch(compteurClic) {
+			switch(compteurClic) 
+			{
 			case 0:
 				//Faire cette action mais pas au premier tour 
-				if(premierTour == false) {
-					if(carte1.equals(carte2) == false) {
+				if(premierTour == false) 
+				{
+					if(carte1.equals(carte2) == false) 
+					{
 						carte1.changerCouleurCarte();
 						carte2.changerCouleurCarte();
 					}
@@ -196,7 +205,8 @@ public class EspaceJeu extends JPanel {
 				//Récup de la carte sur laquelle on clic en 2eme 
 				carte2 = (Carte) arg0.getSource(); 
 				//Si carte = on enleve le listener 
-				if(carte1.equals(carte2) == true && carte1.getIdCarte() != carte2.getIdCarte()) {
+				if(carte1.equals(carte2) == true && carte1.getIdCarte() != carte2.getIdCarte()) 
+				{
 					carte1.removeMouseListener(carte1.getRetournerCrt());
 					carte1.removeMouseListener(enregistreClic);
 					carte2.removeMouseListener(carte2.getRetournerCrt());
@@ -204,7 +214,8 @@ public class EspaceJeu extends JPanel {
 					
 					cptDerouleJeu++; 
 					
-					if(cptDerouleJeu==15) {
+					if(cptDerouleJeu==15) 
+					{
 						chrono.getTimer().stop();
 						FinDuJeu fdj = new FinDuJeu(clMemo, cardMemo, chrono); 
 						cardMemo.add(fdj, "Fin"); 
@@ -218,8 +229,7 @@ public class EspaceJeu extends JPanel {
 				//Ce n'est plus le premier tour 
 				premierTour = false; 
 				break; 
-			}
-			
+			}	
 		}
 	}
 	
@@ -229,8 +239,10 @@ public class EspaceJeu extends JPanel {
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */
-	class OuvrirPause extends MouseAdapter{
-		public void mouseClicked(MouseEvent arg0) {
+	class OuvrirPause extends MouseAdapter
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
 
 			clMemo.show(cardMemo, "Pause");
 			chrono.getTimer().stop();
@@ -246,14 +258,14 @@ public class EspaceJeu extends JPanel {
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class OuvrirFin extends MouseAdapter{
-		public void mouseClicked(MouseEvent arg0) {
-
+	class OuvrirFin extends MouseAdapter
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			chrono.getTimer().stop();
 			fdj = new FinDuJeu(clMemo, cardMemo, chrono); 
 			cardMemo.add(fdj, "Fin"); 
 			clMemo.show(cardMemo, "Fin");
 		}
-	}
-	
+	}	
 }

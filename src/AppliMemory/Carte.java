@@ -13,7 +13,8 @@ import javax.swing.JLabel;
  * @author Audrey Viriot 
  * @author Valentine Cotter 
  */
-public class Carte extends JLabel{
+public class Carte extends JLabel
+{
 	
 	private int idCarte; 
 	private int cptClic = 0; 
@@ -27,7 +28,8 @@ public class Carte extends JLabel{
 	 * @param pays, ImageIcon représentant le drapeau d'un pays. 
 	 * @param idCarte, entier unique pour identifier chaque carte. 
 	 */
-	public Carte(ImageIcon pays, int idCarte) {
+	public Carte(ImageIcon pays, int idCarte) 
+	{
 		this.pays = pays;  
 		this.idCarte = idCarte; 
 		
@@ -41,7 +43,8 @@ public class Carte extends JLabel{
 	 * Récupération du MouseListener @RetournerCarte. 
 	 * @return retournerCrt, MouseListener permettant de retourner une carte au clic.
 	 */
-	public MouseListener getRetournerCrt() {
+	public MouseListener getRetournerCrt() 
+	{
 		return retournerCrt; 
 	}
 	
@@ -49,7 +52,8 @@ public class Carte extends JLabel{
 	 * Récupération de l'idCarte. 
 	 * @return idCarte, l'identifiant de la carte. 
 	 */
-	public int getIdCarte() {
+	public int getIdCarte() 
+	{
 		return idCarte;
 	}
 	
@@ -57,18 +61,23 @@ public class Carte extends JLabel{
 	 * Récupération du de l'ImageIcon pays. s 
 	 * @return pays, ImageIcon correspondant à un drapeau de pays. 
 	 */
-	public ImageIcon getPays() {
+	public ImageIcon getPays() 
+	{
 		return pays;
 	}
 	
 	/**
 	 * Cette méthode permet de retourner la carte en fonction du nombre de clic. 
 	 */
-	public void changerCouleurCarte() {
+	public void changerCouleurCarte() 
+	{
 		cptClic++; 
-		if (cptClic == 1) {
+		if (cptClic == 1) 
+		{
 			this.setIcon(pays);
-		}else{
+		}
+		else
+		{
 			this.setIcon(couverture);
 			cptClic = 0;
 		}
@@ -80,9 +89,11 @@ public class Carte extends JLabel{
 	 * @param crt, objet @Carte. 
 	 * @return true ou false. 
 	 */
-	public boolean equals(Carte crt) {
+	public boolean equals(Carte crt) 
+	{
 		
-		if( (pays.toString()).equals(crt.getPays().toString()) == true ) {
+		if( (pays.toString()).equals(crt.getPays().toString()) == true ) 
+		{
 			return true; 
 		}
 		
@@ -94,9 +105,11 @@ public class Carte extends JLabel{
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class RetournerCarte extends MouseAdapter {
+	class RetournerCarte extends MouseAdapter 
+	{
 		@Override
-		public void mouseClicked(MouseEvent arg0) {
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			changerCouleurCarte();
 		}
 	}

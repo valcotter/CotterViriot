@@ -10,7 +10,8 @@ import javax.swing.JButton;
  * @author Audrey Viriot 
  * @author Valentine Cotter 
  */
-public class BtnPanelPause extends JButton {
+public class BtnPanelPause extends JButton 
+{
 	
 	private Font policeBtn = new Font("Arial", 25, 25);
 	
@@ -18,7 +19,8 @@ public class BtnPanelPause extends JButton {
 	 * Constructeur de @BtnPanelPause. 
 	 * @param libelleBtn, chaine de caractère inscrite sur le bouton. 
 	 */
-	public BtnPanelPause(String libelleBtn) {
+	public BtnPanelPause(String libelleBtn) 
+	{
 		
 		this.setSize(350, 75);
 		this.setMaximumSize(this.getSize());

@@ -14,7 +14,8 @@ import javax.swing.Timer;
  * @author Audrey Viriot
  * @author Valentine Cotter 
  */
-public class Chronometre extends JPanel implements Serializable{
+public class Chronometre extends JPanel implements Serializable
+{
 
 	private int heure; 
 	private int minute; 
@@ -34,7 +35,8 @@ public class Chronometre extends JPanel implements Serializable{
 	 * @param minute
 	 * @param seconde
 	 */
-	public Chronometre(int heure, int minute, int seconde) {
+	public Chronometre(int heure, int minute, int seconde) 
+	{
 		this.heure = heure; 
 		this.minute = minute; 
 		this.seconde = seconde; 
@@ -49,7 +51,8 @@ public class Chronometre extends JPanel implements Serializable{
 	 * Récupération du timer (l'objet qui gère le temps). 
 	 * @return timer 
 	 */
-	public Timer getTimer() {
+	public Timer getTimer() 
+	{
 		return timer;
 	}
 	
@@ -57,13 +60,14 @@ public class Chronometre extends JPanel implements Serializable{
 	 * Redéfinition de la méthode toString. 
 	 * @return le temps au format hh.mm.ss. 
 	 */
-	public String toString() {
-		if(seconde>9) {
+	public String toString() 
+	{
+		if(seconde>9) 
+		{
 			return heure+0+"."+0+minute+"."+seconde;
 			//On considère qu'une partie ne peut pas être plus longue que 10 minutes 
 		}
-		return heure+0+"."+0+minute+"."+0+seconde;
-		 
+		return heure+0+"."+0+minute+"."+0+seconde; 
 	}
 	
 	/**
@@ -73,17 +77,21 @@ public class Chronometre extends JPanel implements Serializable{
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */
-	class ActionDuCrono implements ActionListener {
-
-		public void actionPerformed(ActionEvent arg0) {
+	class ActionDuCrono implements ActionListener 
+	{
+		//Compteur de temps pour le chronomètre. 
+		public void actionPerformed(ActionEvent arg0) 
+		{
 			
 			seconde++; 
-			if(seconde==60) {
+			if(seconde==60) 
+			{
 				seconde = 0; 
 				minute++; 
 			}
 			
-			if(minute==60) {
+			if(minute==60) 
+			{
 				minute = 0; 
 				heure++; 
 			}

@@ -20,7 +20,8 @@ import AppliContact.BarreSuperieur;
  * @author Audrey Viriot
  * @author Valentine Cotter
  */
-public class MeilleurScore extends JPanel implements SerializMemo{
+public class MeilleurScore extends JPanel implements SerializMemo
+{
 	
 	private CardLayout clMemo = new CardLayout(); 
 	private JPanel cardMemo = new JPanel(); 
@@ -52,7 +53,8 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 	 * @param clMemo, le CardLayout. 
 	 * @param cardMemo, le panel contenant les autres panels de l'application. 
 	 */
-	public MeilleurScore(CardLayout clMemo, JPanel cardMemo) {
+	public MeilleurScore(CardLayout clMemo, JPanel cardMemo) 
+	{
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo;
 		
@@ -76,7 +78,8 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 		joueurTrie = trieMeilleurScore(joueurTrie); 
 		supprJoueur();
 		
-		for(int i=0; i<joueurTrie.length; i++) {
+		for(int i=0; i<joueurTrie.length; i++) 
+		{
 			
 			tabScore.add(new JLabelScore(i+1, joueurTrie[i])); 
 			
@@ -100,11 +103,13 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 	 * 
 	 * @return tabJoueur, le tableau rempli de tous les joueurs ayant effectué un score. 
 	 */
-	public Joueur[] recupDeserializ() {
+	public Joueur[] recupDeserializ() 
+	{
 		
 		Joueur[] tabJoueur = new Joueur[nbScore]; 
 		
-		for(int i=0; i<nbScore; i++) {
+		for(int i=0; i<nbScore; i++) 
+		{
 			String path = tabFichierJoueur[i]; 
 			Joueur j = myDeserializationMemo(path);
 			tabJoueur[i] = j; 
@@ -121,34 +126,43 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 	 * @param tabJoueur, tableau rempli de tous les joueurs ayant effectué un score.
 	 * @return tabJoueur, trié dans l'ordre décroissant. 
 	 */
-	public Joueur[] trieMeilleurScore(Joueur[] tabJoueur) {
+	public Joueur[] trieMeilleurScore(Joueur[] tabJoueur) 
+	{
 		
 		int i, j;
 		Joueur tempo; 
 		
-		for(i=0; i<nbScore; i++) {
+		for(i=0; i<nbScore; i++) 
+		{
 		
-			for(j=0; j<nbScore; j++) {
-				
+			for(j=0; j<nbScore; j++) 
+			{
+				//On transforme les strings en int 
 				String stringMinute = tabJoueur[i].getChrono().substring(2,4);
 				String stringMinute2 = tabJoueur[j].getChrono().substring(2,4);
 				int intMinute = Integer.parseInt(stringMinute); 
 				int intMinute2 = Integer.parseInt(stringMinute2);
 				
-				if(intMinute < intMinute2) {
+				//On classe dans l'ordre - Avec les minutes 
+				if(intMinute < intMinute2) 
+				{
 					
 					tempo = tabJoueur[i];
 	                tabJoueur[i] = tabJoueur[j];
 	                tabJoueur[j] = tempo;
 					
-				}else if(intMinute == intMinute2){
+				}
+				//Dans le cas ou les minutes sont égales on regarde les secondes. 
+				else if(intMinute == intMinute2)
+				{
 					
 					String stringSeconde = tabJoueur[i].getChrono().substring(5,7);
 					String stringSeconde2 = tabJoueur[j].getChrono().substring(5,7);
 					int intSeconde= Integer.parseInt(stringSeconde); 
 					int intSeconde2 = Integer.parseInt(stringSeconde2);
 					
-					if(intSeconde < intSeconde2) {
+					if(intSeconde < intSeconde2) 
+					{
 						
 						tempo = tabJoueur[i];
 		                tabJoueur[i] = tabJoueur[j];
@@ -156,9 +170,7 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 						
 					}
 				}
-				
 			}
-			
 		}
 		
 		return tabJoueur; 
@@ -169,9 +181,11 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 	 * @MeilleurScore n'affiche que les 10 meilleurs joueurs. On supprime donc les joueurs classés au dessus
 	 * du 10ème rang. 
 	 */
-	public void supprJoueur() {
+	public void supprJoueur() 
+	{
 		
-		for(int i=10; i<joueurTrie.length; i++) {
+		for(int i=10; i<joueurTrie.length; i++) 
+		{
 			
 			Joueur j = joueurTrie[i]; 
 			String path = "SerializMemory/"+j.getNom()+j.getChrono().toString();
@@ -187,12 +201,13 @@ public class MeilleurScore extends JPanel implements SerializMemo{
 	 * @author Audrey Viriot
 	 * @author Valentine Cotter 
 	 */
-	class RetourPrecedent extends MouseAdapter{
-		public void mouseClicked(MouseEvent arg0) {
+	class RetourPrecedent extends MouseAdapter
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			
 			clMemo.show(cardMemo, "Menu");
 			
-
 		}
 	}
 	

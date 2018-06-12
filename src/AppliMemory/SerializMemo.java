@@ -7,37 +7,45 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public interface SerializMemo {
+public interface SerializMemo 
+{
 	
 	/**
 	 * Cette méthode sérialize un @Joueur. 
 	 * 
 	 * @param joueur, @Joueur à serializé 
 	 */
-	public default void mySerializationMemo(Joueur joueur) {
+	public default void mySerializationMemo(Joueur joueur) 
+	{
 		
 		String path = "SerializMemory/"+joueur.getNom()+joueur.getChrono().toString(); 
 		
-		try {
+		try 
+		{
 			
 			FileOutputStream fos = new FileOutputStream(new File(path));
 			
 			ObjectOutputStream oos = new ObjectOutputStream(fos); 
 			
-			try {
+			try 
+			{
 				oos.writeObject(joueur);
 				oos.flush();
-			} finally {
-				try {
+			} 
+			finally 
+			{
+				try 
+				{
 					oos.close();
-				} finally {
+				} 
+				finally 
+				{
 					fos.close();
 				}
 			}
-
-			System.out.println("C'est ok S");
-			
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 	}
@@ -48,30 +56,42 @@ public interface SerializMemo {
 	 * @param path, chemin du fichier ou est serializé le @Joueur. 
 	 * @return j, le @Joueur déserializé 
 	 */
-	public default Joueur myDeserializationMemo(String path) {
+	public default Joueur myDeserializationMemo(String path) 
+	{
 		
 		String pathComplet = "SerializMemory/"+path; 
 		
 		Joueur j = null;  
 		
-		try {
+		try 
+		{
 			FileInputStream fis = new FileInputStream(pathComplet);
 			
 			ObjectInputStream ois = new ObjectInputStream(fis); 
 			
-			try {
+			try 
+			{
 				j = (Joueur) ois.readObject(); 
-			} finally {
-				try {
+			} 
+			finally 
+			{
+				try 
+				{
 					ois.close();
-				} finally {
+				} 
+				finally 
+				{
 					fis.close();
 				}
 			}
 			
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
-		} catch (ClassNotFoundException cnfe) {
+		} 
+		catch (ClassNotFoundException cnfe) 
+		{
 			cnfe.printStackTrace();
 		}
 		

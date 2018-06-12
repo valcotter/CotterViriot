@@ -9,7 +9,8 @@ import javax.swing.JPanel;
  * @author Audrey Viriot 
  * @author Valentine Cotter
  */
-public class AppMemory extends JPanel {
+public class AppMemory extends JPanel 
+{
 	
 	//CardLyout 
 	private CardLayout clMemo = new CardLayout(); 
@@ -21,7 +22,8 @@ public class AppMemory extends JPanel {
 	/**
 	 * Constructeur de la classe @AppMemory
 	 */
-	public AppMemory() {
+	public AppMemory() 
+	{
 		
 		menu = new MenuJeu(clMemo, cardMemo);
 		

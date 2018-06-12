@@ -9,7 +9,8 @@ import javax.swing.JLabel;
  * @author Audrey Viriot
  * @author Valentine Cotter 
  */
-public class JLabelMenu extends JLabel{
+public class JLabelMenu extends JLabel
+{
 
 	private Font font = new Font("Arial",Font.BOLD,40);
 	
@@ -17,7 +18,8 @@ public class JLabelMenu extends JLabel{
 	 * Constructeur de @JLabelMenu. 
 	 * @param contenu, ce que l'on souhaite écrire dans le JLabel 
 	 */
-	public JLabelMenu(String contenu) {
+	public JLabelMenu(String contenu) 
+	{
 		
 		this.setText(contenu);
 		this.setFont(font);

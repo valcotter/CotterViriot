@@ -10,7 +10,8 @@ import javax.swing.JLabel;
  * @author Audrey Viriot 
  * @author Valentine Cotter 
  */
-public class JLabelScore extends JLabel {
+public class JLabelScore extends JLabel 
+{
 
 	private Joueur j;
 	private int classement; 
@@ -22,7 +23,8 @@ public class JLabelScore extends JLabel {
 	 * @param classement, la position du joueur dans le classement . 
 	 * @param j, le joueur @Joueur. 
 	 */
-	public JLabelScore(int classement, Joueur j) {
+	public JLabelScore(int classement, Joueur j) 
+	{
 		this.j = j; 
 		this.classement = classement; 
 		

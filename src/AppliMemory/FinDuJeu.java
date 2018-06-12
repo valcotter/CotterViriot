@@ -21,20 +21,21 @@ import AppliContact.ListeContact;
  * @author Audrey Viriot 
  * @author Valentine Cotter 
  */
-public class FinDuJeu extends JPanel implements SerializMemo{ 
+public class FinDuJeu extends JPanel implements SerializMemo
+{ 
 	
+	//Accès aux autres panels de l'application 
 	private CardLayout clMemo; 
 	private JPanel cardMemo; 
 	
+	///Panel dans le panel FinDuJeu
 	private JPanel formJoueur = new JPanel(); 
 	private JPanel chronoPanel = new JPanel(); 
 	private JPanel boutonBas = new JPanel(); 
 	
 	private Chronometre chrono; 
 	
-	//private JButton valider = new JButton("Valider");
-	//private JButton chercherListe = new JButton("Liste de contact");
-	
+	//JLabel et JTextField 
 	private JLabelMenu fini = new JLabelMenu("Partie terminée"); 
 	
 	private JLabelMenu joueur = new JLabelMenu("Joueur : "); 
@@ -48,7 +49,8 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	private ImageIcon chercherJoueur = new ImageIcon("ImageMemory/joueur.png"); 
 	private JLabel chercherListe = new JLabel(chercherJoueur); 
 	
-	private FinDuJeu fdj; 
+	//Panel accessible depuis FinDuJeu
+	private FinDuJeu fdj; //Pour passer en paramètre et le retrouver 
 	private ListeContact lc; 
 	
 	/**
@@ -58,7 +60,8 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	 * @param cardMemo, le panel contenant les autres panels de l'application.
 	 * @param chrono, Objet @Chronometre. 
 	 */
-	public FinDuJeu(CardLayout clMemo, JPanel cardMemo, Chronometre chrono) {
+	public FinDuJeu(CardLayout clMemo, JPanel cardMemo, Chronometre chrono) 
+	{
 		this.clMemo = clMemo; 
 		this.cardMemo = cardMemo; 
 		this.chrono = chrono; 
@@ -103,7 +106,8 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	 * Récupération du nom du joueur. 
 	 * @return nomJoueur. 
 	 */
-	public JTextField getNomJoueur() {
+	public JTextField getNomJoueur() 
+	{
 		return nomJoueur;
 	}
 
@@ -114,8 +118,10 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class SauverResultat extends MouseAdapter{
-		public void mouseClicked(MouseEvent arg0) {
+	class SauverResultat extends MouseAdapter
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			
 			Joueur joueur = new Joueur(nomJoueur.getText(), chrono.toString()); 
 			mySerializationMemo(joueur);
@@ -131,8 +137,10 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 	 * @author Audrey Viriot 
 	 * @author Valentine Cotter 
 	 */
-	class OuvrirListeContact extends MouseAdapter{
-		public void mouseClicked(MouseEvent arg0) {
+	class OuvrirListeContact extends MouseAdapter
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			
 			lc = new ListeContact(clMemo, cardMemo, true, fdj); 
 			lc.getAddContact().addMouseListener(new AjouterContactDepuisMemo());
@@ -143,8 +151,10 @@ public class FinDuJeu extends JPanel implements SerializMemo{
 		}
 	}
 	
-	class AjouterContactDepuisMemo extends MouseAdapter{
-		public void mouseClicked(MouseEvent arg0) {
+	class AjouterContactDepuisMemo extends MouseAdapter
+	{
+		public void mouseClicked(MouseEvent arg0) 
+		{
 			
 			FormulaireCreation fc = new FormulaireCreation(clMemo, cardMemo, true, fdj); 
 			cardMemo.add(fc, "FormCreation"); 
